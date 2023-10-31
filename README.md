@@ -17,8 +17,9 @@
 
 ## git commit convention
 
-| Feat | 기능추가 |
+| 커밋 헤더 | 헤더 설명 |
 | --- | --- |
+| Feat | 기능추가 |
 | Design | CSS 등 사용자 UI 디자인 변경 |
 | Style | 코드 포맷 변경, 세미 콜론 누락, 코드 수정이 없는 경우 |
 | Comment | 필요한 주석 추가, 변경 및 삭제 |
@@ -31,7 +32,21 @@
 | Chore | 빌드 업무 수정, 패키지 매니저 수정, 패키지 관리자 구성 등 업데이트, Production Code 변경 없음 |
 | !BREAKING | CHANGE 커다란 API 변경의 경우 |
 | !HOTFIX | 급하게 치명적인 버그를 고쳐야하는 경우 |
-- git branch convention
-    - 기본적으로 issue명을 따라간다
-    - feature의 경우 feat/#1
-    - fix의 경우fix/#1
+
+## git branch naming convention
+`git branch <category/reference/description-in-kebab-case>`
+
+**category**
+- 커밋 헤더 이름
+- feature의 경우 feat/
+- fix의 경우 fix/
+
+**reference**
+- 이슈 번호
+- 이슈 번호가 없을 경우는 `no-ref`
+
+**description**
+- 브랜치의 목적을 설명 (kebab-case로 작성)
+
+**Example**
+`git branch feat/issue-1/create-login-page-layout`
