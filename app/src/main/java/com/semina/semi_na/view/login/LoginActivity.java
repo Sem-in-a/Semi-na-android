@@ -1,7 +1,9 @@
 package com.semina.semi_na.view.login;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,9 +11,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.semina.semi_na.R;
+import com.semina.semi_na.base.MainActivity;
 import com.semina.semi_na.data.remote.RetrofitClient;
 import com.semina.semi_na.data.remote.RetrofitInterface;
+import com.semina.semi_na.data.remote.entity.Member;
 import com.semina.semi_na.data.remote.request.LoginRequest;
 import com.semina.semi_na.data.remote.response.LoginResponse;
 import com.semina.semi_na.databinding.ActivityLoginBinding;
@@ -34,6 +47,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private SharedPreferences preferences;
 
+    private DatabaseReference database;
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,19 +57,23 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        studentNumField = findViewById(R.id.login_studentNum_editText);
+        studentNumField = binding.loginStudentNumEditText;
         passwordField = binding.loginPasswordEditText;
         loginBtn = binding.loginBtn;
         retrofitInterface = RetrofitClient.getRetrofit().create(RetrofitInterface.class);
         preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
+        database = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
+
+
 
 
 
         loginBtn.setOnClickListener(view->{
             studentNum = String.valueOf(studentNumField.getText());
             password = String.valueOf(passwordField.getText());
-            Log.d("studentNum",studentNum);
-            Log.d("kathy",password);
+            Log.d("LoginActivity",studentNum);
+            Log.d("LoginActivity",password);
             if(studentNum.equals("")){
                 showToast("학번을 입력해주세요");
             }else if(password.equals("")){
@@ -68,22 +88,25 @@ public class LoginActivity extends AppCompatActivity {
                        if(response.isSuccessful()) {
                           LoginResponse loginResponse =response.body();
                            assert loginResponse != null;
-                           Log.d("loginres",loginResponse.getDept());
+                           Log.d("LoginActivity",loginResponse.getDept());
 
-                           /*
-                           @TODO Shared Preferences에 학번 이름 학부 토큰 저장
-                           @TODO 파베 연결 해두기
+                           String department = loginResponse.getParentDept();
+                           String major = loginResponse.getDept();
+                           String name = loginResponse.getName();
 
-                            */
-                           //Editor를 preferences에 쓰겠다고 연결
+                           Member member = new Member(studentNum,department,name,major);
+                           database.child("Member").child(studentNum).setValue(member);
                            SharedPreferences.Editor editor = preferences.edit();
-//                           //putString(KEY,VALUE)
-//                           editor.putString("userid",edt_id.getText().toString());
-//                           editor.putString("userpwd",edt_pwd.getText().toString());
-//                           //항상 commit & apply 를 해주어야 저장이 된다.
-//                           editor.commit();
-//                           //메소드 호출
-//                           getPreferences();
+                           editor.putString("studentNum",studentNum);
+                           editor.putString("depart",department);
+                           editor.putString("name",name);
+                           editor.putString("major",major);
+                           //항상 commit & apply 를 해주어야 저장이 된다.
+                           editor.commit();
+                           editor.apply();
+                           Log.d("LoginActivity",preferences.getString("studentNum",""));
+                           startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
 
                        }
 
