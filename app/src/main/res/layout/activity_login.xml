@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:padding="20dp"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".view.login.LoginActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/login_logo" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/Body3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="유세인트 학번"
+            android:textColor="@color/gray_400" />
+
+        <EditText
+            android:id="@+id/login_studentNum_editText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:inputType="number"
+            android:background="@drawable/edit_text_border" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/Body3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="유세인트 비밀번호"
+            android:textColor="@color/gray_400" />
+
+        <EditText
+            android:id="@+id/login_password_editText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:inputType="textPassword"
+            android:background="@drawable/edit_text_border" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/login_btn"
+        style="@style/Button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_border"
+        android:text="로그인하기"
+        android:textColor="@color/white" />
+</LinearLayout>
