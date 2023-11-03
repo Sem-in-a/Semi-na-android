@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -94,18 +95,40 @@ public class LoginActivity extends AppCompatActivity {
                            String major = loginResponse.getDept();
                            String name = loginResponse.getName();
 
-                           Member member = new Member(studentNum,department,name,major);
-                           database.child("Member").child(studentNum).setValue(member);
-                           SharedPreferences.Editor editor = preferences.edit();
-                           editor.putString("studentNum",studentNum);
-                           editor.putString("depart",department);
-                           editor.putString("name",name);
-                           editor.putString("major",major);
-                           //항상 commit & apply 를 해주어야 저장이 된다.
-                           editor.commit();
-                           editor.apply();
-                           Log.d("LoginActivity",preferences.getString("studentNum",""));
-                           startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                           database.child("Member").child(studentNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                               @Override
+                               public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                   if(task.isSuccessful()){
+                                       // 유저 정보가 있다는거
+                                       SharedPreferences.Editor editor = preferences.edit();
+                                       editor.putString("studentNum",studentNum);
+                                       editor.putString("depart",department);
+                                       editor.putString("name",name);
+                                       editor.putString("major",major);
+                                       //항상 commit & apply 를 해주어야 저장이 된다.
+                                       editor.commit();
+                                       editor.apply();
+                                       Log.d("LoginActivity",preferences.getString("studentNum",""));
+                                       startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
+                                   }else{
+                                       Member member = new Member(studentNum,department,name,major);
+                                       database.child("Member").child(studentNum).setValue(member);
+                                       SharedPreferences.Editor editor = preferences.edit();
+                                       editor.putString("studentNum",studentNum);
+                                       editor.putString("depart",department);
+                                       editor.putString("name",name);
+                                       editor.putString("major",major);
+                                       //항상 commit & apply 를 해주어야 저장이 된다.
+                                       editor.commit();
+                                       editor.apply();
+                                       Log.d("LoginActivity",preferences.getString("studentNum",""));
+                                       startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
+                                   }
+                               }
+                           });
+
 
 
                        }
