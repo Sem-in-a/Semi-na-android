@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
@@ -21,7 +20,7 @@
                 android:maxWidth="48dp"
                 android:src="@drawable/login_logo" />
         </Toolbar>
-
+        <!--        Search view with a box shadow, rounded corners, and the search icon to the right-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,15 +33,16 @@
             android:padding="8dp">
 
             <EditText
-                android:id="@+id/searchEditText"
-                style="@style/SubTitle1"
+                android:id="@+id/search_edit_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@null"
+                android:fontFamily="@font/suit_regular"
                 android:hint="세미나를 찾아보세요!"
                 android:inputType="text"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:textSize="16sp" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -50,40 +50,6 @@
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/search_icon" />
         </LinearLayout>
-
-        <TextView
-            style="@style/Title2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/search_by_major" />
-        />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:elevation="2dp"
-            app:tabBackground="@drawable/tab_background_selector"
-            app:tabGravity="center"
-            app:tabIndicator="@null"
-            app:tabMinWidth="85dp"
-            app:tabMode="scrollable"
-            app:tabRippleColor="@null"
-            app:tabTextAppearance="@style/Body1">
-
-
-        </com.google.android.material.tabs.TabLayout>
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-        </androidx.viewpager2.widget.ViewPager2>
     </LinearLayout>
 
 
