@@ -67,9 +67,6 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
 
-
-
-
         loginBtn.setOnClickListener(view->{
             studentNum = String.valueOf(studentNumField.getText());
             password = String.valueOf(passwordField.getText());

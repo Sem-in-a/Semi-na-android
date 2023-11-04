@@ -15,6 +15,12 @@
         android:theme="@style/Theme.Semina"
         tools:targetApi="31">
         <activity
+            android:name=".view.create.CreateCategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.create.CreateTitleActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.login.LoginActivity"
             android:exported="false" />
         <activity
@@ -28,7 +34,7 @@
         </activity>
         <activity
             android:name=".base.MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

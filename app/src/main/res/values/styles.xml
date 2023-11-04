@@ -18,7 +18,7 @@
     <style name="SubTitle1" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">18dp</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:fontFamily">@font/suit_regular</item>
+        <item name="android:fontFamily">@font/suit_semibold</item>
     </style>
     <style name="SUbTitle2" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">16dp</item>
