@@ -27,16 +27,20 @@ public class OnboardingActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                if(!sharedPreferences.getString("studentNum","").equals("")){
-                    Log.d("OnboardingActivity",sharedPreferences.getString("studentNum",""));
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                    finish();
-                }
-                else{
-                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class); //화면 전환
-                    startActivity(intent);
-                    finish();
-                }
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class); //화면 전환
+                startActivity(intent);
+                finish();
+
+//                if(!sharedPreferences.getString("studentNum","").equals("")){
+//                    Log.d("OnboardingActivity",sharedPreferences.getString("studentNum",""));
+//                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+//                    finish();
+//                }
+//                else{
+//                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class); //화면 전환
+//                    startActivity(intent);
+//                    finish();
+//                }
             }
         }, 1000);
     }
