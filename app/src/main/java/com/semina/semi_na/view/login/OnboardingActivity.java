@@ -26,6 +26,7 @@ public class OnboardingActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+
                 if(!sharedPreferences.getString("studentNum","").equals("")){
                     Log.d("OnboardingActivity",sharedPreferences.getString("studentNum",""));
                     startActivity(new Intent(getApplicationContext(),MainActivity.class));
