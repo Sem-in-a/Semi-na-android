@@ -21,17 +21,40 @@
             android:text="세미나 카테고리를 정해주세요"
             android:textColor="@color/black"
             style="@style/SubTitle1"/>
-        <EditText
-            android:id="@+id/create_title_edit"
+        <LinearLayout
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="세미나 이름을 적어주세요"/>
+            android:weightSum="2"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/create_category_major_btn"
+                style="@style/Button1"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="16dp"
+                android:text="전공"
+                android:background="@color/white"/>
+            <View
+                android:layout_width="20dp"
+                android:layout_height="0dp"/>
+            <Button
+                android:id="@+id/create_category_hobby_btn"
+                style="@style/Button1"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:elevation="16dp"
+                android:text="취미"
+                android:layout_height="wrap_content"
+                android:background="@color/white"/>
+        </LinearLayout>
+
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/activity_create_next_btn"
+        android:id="@+id/activity_create_category_next_btn"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:textColor="@color/white"

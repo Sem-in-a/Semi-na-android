@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="30dp"
+    android:gravity="center"
+    tools:context=".view.create.CreateCompleteActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="114dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="나의 소중한 지식을 공유할 수 있는 세미나가 열렸어요"
+            android:gravity="center"
+            android:textColor="@color/black"
+            style="@style/SubTitle1"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/create_success"/>
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/activity_create_complete_next_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textColor="@color/white"
+        style="@style/Button1"
+        android:clickable="true"
+        android:text="세미나 확인하러가기"
+        android:background="@drawable/button_border"
+        android:focusable="true" />
+
+
+</LinearLayout>
