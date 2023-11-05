@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -28,6 +29,9 @@ import com.semina.semi_na.data.remote.response.LoginResponse;
 import com.semina.semi_na.databinding.ActivityLoginBinding;
 
 import org.w3c.dom.Document;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,12 +66,12 @@ public class LoginActivity extends AppCompatActivity {
         preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
         database = FirebaseFirestore.getInstance();
 
-
         loginBtn.setOnClickListener(view -> {
+
             studentNum = String.valueOf(studentNumField.getText());
             password = String.valueOf(passwordField.getText());
-            Log.d("LoginActivity", studentNum);
-            Log.d("LoginActivity", password);
+//            Log.d("LoginActivity", studentNum);
+//            Log.d("LoginActivity", password);
             if (studentNum.equals("")) {
                 showToast("학번을 입력해주세요");
             } else if (password.equals("")) {
@@ -82,60 +86,60 @@ public class LoginActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             LoginResponse loginResponse = response.body();
                             assert loginResponse != null;
-                            Log.d("LoginActivity", loginResponse.getDept());
 
                             String department = loginResponse.getParentDept();
                             String major = loginResponse.getDept();
                             String name = loginResponse.getName();
+                            Member member = new Member(studentNum, department, name, major);
+                            ArrayList<String> memberList = new ArrayList<>();
 
                             database.collection("Member")
-                                    .whereEqualTo("studentNum", studentNum)
+                                    .whereIn("studentNum", Arrays.asList(studentNum))
                                     .get()
                                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                         @Override
                                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            if(task.getResult().getDocuments().size()==0){
+                                                Member member = new Member(studentNum, department, name, major);
+                                                Log.d("LoginActivity", "파이어 스토어접근");
+                                                database.collection("Member").add(member).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                                                        Log.d("LoginActivity", "파이어스토어 저장");
+                                                        SharedPreferences.Editor editor = preferences.edit();
+                                                        editor.putString("studentNum", studentNum);
+                                                        editor.putString("depart", department);
+                                                        editor.putString("name", name);
+                                                        editor.putString("major", major);
+                                                        //항상 commit & apply 를 해주어야 저장이 된다.
+                                                        editor.commit();
+                                                        editor.apply();
+                                                        Log.d("LoginActivity", preferences.getString("studentNum", ""));
+                                                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
-                                            Log.d("LoginActivity", task.getResult().getDocuments().toString());
-                                            Log.d("LoginActivity","이미 유저 있음");
-                                            // 유저 정보가 있다는거
-                                            SharedPreferences.Editor editor = preferences.edit();
-                                            editor.putString("studentNum", studentNum);
-                                            editor.putString("depart", department);
-                                            editor.putString("name", name);
-                                            editor.putString("major", major);
-                                            //항상 commit & apply 를 해주어야 저장이 된다.
-                                            editor.commit();
-                                            editor.apply();
-                                            Log.d("LoginActivity", preferences.getString("studentNum", ""));
-                                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                                    }
+                                                });
 
-                                        }
-                                    }).addOnCanceledListener(new OnCanceledListener() {
-                                        @Override
-                                        public void onCanceled() {
-                                            Member member = new Member(studentNum, department, name, major);
-                                            Log.d("LoginActivity", "파이어 스토어접근");
-                                            database.collection("Member").add(member).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<DocumentReference> task) {
-                                                    Log.d("LoginActivity", "파이어스토어 저장");
-                                                    SharedPreferences.Editor editor = preferences.edit();
-                                                    editor.putString("studentNum", studentNum);
-                                                    editor.putString("depart", department);
-                                                    editor.putString("name", name);
-                                                    editor.putString("major", major);
-                                                    //항상 commit & apply 를 해주어야 저장이 된다.
-                                                    editor.commit();
-                                                    editor.apply();
-                                                    Log.d("LoginActivity", preferences.getString("studentNum", ""));
-                                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                            }else{
 
-                                                }
-                                            });
+                                                Log.d("LoginActivity", task.getResult().getDocuments().toString());
+                                                Log.d("LoginActivity", "파이어 스토어접근");
+                                                SharedPreferences.Editor editor = preferences.edit();
+                                                editor.putString("studentNum", studentNum);
+                                                editor.putString("depart", department);
+                                                editor.putString("name", name);
+                                                editor.putString("major", major);
+                                                //항상 commit & apply 를 해주어야 저장이 된다.
+                                                editor.commit();
+                                                editor.apply();
+                                                Log.d("LoginActivity", preferences.getString("studentNum", ""));
+                                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
+                                            }
 
                                         }
                                     });
+
                         }
                     }
 

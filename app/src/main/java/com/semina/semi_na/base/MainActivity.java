@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         final int MENU_MYPAGE = R.id.menu_mypage;
 
 
-
         // 프래그먼트 생성
         fragment_home = new HomeFragment();
         fragment_create = new CreateFragment();
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         // 바텀 네비게이션
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
-        // 초기 플래그먼트 설정
+        // 초기 프래그먼트 설정
         getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment_home).commitAllowingStateLoss();
 
 
