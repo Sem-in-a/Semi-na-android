@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -59,108 +60,96 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = binding.loginBtn;
         retrofitInterface = RetrofitClient.getRetrofit().create(RetrofitInterface.class);
         preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
-        database =  FirebaseFirestore.getInstance();
+        database = FirebaseFirestore.getInstance();
 
 
-
-
-
-        loginBtn.setOnClickListener(view->{
+        loginBtn.setOnClickListener(view -> {
             studentNum = String.valueOf(studentNumField.getText());
             password = String.valueOf(passwordField.getText());
-            Log.d("LoginActivity",studentNum);
-            Log.d("LoginActivity",password);
-            if(studentNum.equals("")){
+            Log.d("LoginActivity", studentNum);
+            Log.d("LoginActivity", password);
+            if (studentNum.equals("")) {
                 showToast("학번을 입력해주세요");
-            }else if(password.equals("")){
+            } else if (password.equals("")) {
                 showToast("비밀번호를 입력해주세요");
-            }else{
+            } else {
                 LoginRequest loginRequest = new LoginRequest();
                 loginRequest.setStudentNum(studentNum);
                 loginRequest.setPassword(password);
-               retrofitInterface.postLogin(loginRequest).enqueue(new Callback<LoginResponse>() {
-                   @Override
-                   public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                       if(response.isSuccessful()) {
-                          LoginResponse loginResponse =response.body();
-                           assert loginResponse != null;
-                           Log.d("LoginActivity",loginResponse.getDept());
+                retrofitInterface.postLogin(loginRequest).enqueue(new Callback<LoginResponse>() {
+                    @Override
+                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                        if (response.isSuccessful()) {
+                            LoginResponse loginResponse = response.body();
+                            assert loginResponse != null;
+                            Log.d("LoginActivity", loginResponse.getDept());
 
-                           String department = loginResponse.getParentDept();
-                           String major = loginResponse.getDept();
-                           String name = loginResponse.getName();
+                            String department = loginResponse.getParentDept();
+                            String major = loginResponse.getDept();
+                            String name = loginResponse.getName();
 
+                            database.collection("Member")
+                                    .whereEqualTo("studentNum", studentNum)
+                                    .get()
+                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-                           database.collection("Member")
-                                   .get()
-                                   .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                               @Override
-                               public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                   if(task.isSuccessful()){
+                                            Log.d("LoginActivity", task.getResult().getDocuments().toString());
+                                            Log.d("LoginActivity","이미 유저 있음");
+                                            // 유저 정보가 있다는거
+                                            SharedPreferences.Editor editor = preferences.edit();
+                                            editor.putString("studentNum", studentNum);
+                                            editor.putString("depart", department);
+                                            editor.putString("name", name);
+                                            editor.putString("major", major);
+                                            //항상 commit & apply 를 해주어야 저장이 된다.
+                                            editor.commit();
+                                            editor.apply();
+                                            Log.d("LoginActivity", preferences.getString("studentNum", ""));
+                                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
-                                       for (QueryDocumentSnapshot document : task.getResult()) {
-                                           if(document.get("studentNum")==studentNum){
-                                               Log.d("LoginActivity","유저 이미 있음");
+                                        }
+                                    }).addOnCanceledListener(new OnCanceledListener() {
+                                        @Override
+                                        public void onCanceled() {
+                                            Member member = new Member(studentNum, department, name, major);
+                                            Log.d("LoginActivity", "파이어 스토어접근");
+                                            database.collection("Member").add(member).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<DocumentReference> task) {
+                                                    Log.d("LoginActivity", "파이어스토어 저장");
+                                                    SharedPreferences.Editor editor = preferences.edit();
+                                                    editor.putString("studentNum", studentNum);
+                                                    editor.putString("depart", department);
+                                                    editor.putString("name", name);
+                                                    editor.putString("major", major);
+                                                    //항상 commit & apply 를 해주어야 저장이 된다.
+                                                    editor.commit();
+                                                    editor.apply();
+                                                    Log.d("LoginActivity", preferences.getString("studentNum", ""));
+                                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
-                                               // 유저 정보가 있다는거
-                                               SharedPreferences.Editor editor = preferences.edit();
-                                               editor.putString("studentNum",studentNum);
-                                               editor.putString("depart",department);
-                                               editor.putString("name",name);
-                                               editor.putString("major",major);
-                                               //항상 commit & apply 를 해주어야 저장이 된다.
-                                               editor.commit();
-                                               editor.apply();
-                                               Log.d("LoginActivity",preferences.getString("studentNum",""));
-                                               startActivity(new Intent(getApplicationContext(),MainActivity.class));
-
-                                           }
-                                           else{
-                                               Member member = new Member(studentNum,department,name,major);
-                                               Log.d("LoginActivity","파이어 스토어접근");
-                                               database.collection("Member").add(member).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                                                   @Override
-                                                   public void onComplete(@NonNull Task<DocumentReference> task) {
-                                                       Log.d("LoginActivity","파이어스토어 저장");
-                                                       SharedPreferences.Editor editor = preferences.edit();
-                                                       editor.putString("studentNum",studentNum);
-                                                       editor.putString("depart",department);
-                                                       editor.putString("name",name);
-                                                       editor.putString("major",major);
-                                                       //항상 commit & apply 를 해주어야 저장이 된다.
-                                                       editor.commit();
-                                                       editor.apply();
-                                                       Log.d("LoginActivity",preferences.getString("studentNum",""));
-                                                       startActivity(new Intent(getApplicationContext(),MainActivity.class));
-
-                                                   }
-                                               });
-                                           }
-                                       }
+                                                }
+                                            });
 
 
+                                        }
+                                    });
+                        }
+                    }
 
+                    @Override
+                    public void onFailure(Call<LoginResponse> call, Throwable t) {
 
-                                   }
-                               }
-                           });
+                    }
 
-                       }
-
-                   }
-
-                   @Override
-                   public void onFailure(Call<LoginResponse> call, Throwable t) {
-
-                   }
-               });
-
+                });
             }
         });
-
     }
 
-    private void showToast(String msg){
-        Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+    public void showToast(String msg){
+        Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
     }
 }
