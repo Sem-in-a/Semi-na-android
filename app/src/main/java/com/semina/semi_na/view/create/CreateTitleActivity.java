@@ -1,5 +1,9 @@
 package com.semina.semi_na.view.create;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.semina.semi_na.R;
+import com.semina.semi_na.data.db.entity.Semina;
 import com.semina.semi_na.databinding.ActivityCreateTitleBinding;
 
 public class CreateTitleActivity extends AppCompatActivity {
@@ -26,13 +31,22 @@ public class CreateTitleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityCreateTitleBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         nextButton = binding.activityCreateTitleNextBtn;
         editTitle = binding.createTitleEdit;
-
         title = "";
 
         Log.d("CreateTitleActivity",title);
+
+        ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+
+                    @Override
+                    public void onActivityResult(ActivityResult o) {
+
+
+                    }
+                });
+
 
 
         nextButton.setOnClickListener(view->{
@@ -42,7 +56,11 @@ public class CreateTitleActivity extends AppCompatActivity {
             if(title.equals("")){
                 showToast("세미나 이름을 적어주세요");
             }else{
-                startActivity(new Intent(getApplicationContext(), CreateCategoryActivity.class));
+                Semina semina = new Semina();
+                semina.setTitle(title);
+                launcher.launch(new Intent(getApplicationContext(),CreateCategoryActivity.class).putExtra("semina",semina)
+                        .addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+                //startActivityForResult(new Intent(getApplicationContext(), CreateCategoryActivity.class));
             }
 
         });
