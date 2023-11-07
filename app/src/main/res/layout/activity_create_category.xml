@@ -34,8 +34,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="16dp"
-                android:text="전공"
-                android:background="@color/white"/>
+                android:background="@color/white"
+                android:selectAllOnFocus="false"
+                android:focusable="false"
+                android:text="전공"/>
             <View
                 android:layout_width="20dp"
                 android:layout_height="0dp"/>
@@ -46,8 +48,9 @@
                 android:layout_width="wrap_content"
                 android:elevation="16dp"
                 android:text="취미"
-                android:layout_height="wrap_content"
-                android:background="@color/white"/>
+                android:focusable="false"
+                android:background="@color/white"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
 
