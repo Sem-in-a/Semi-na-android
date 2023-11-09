@@ -45,11 +45,8 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         // 초기 프래그먼트 설정
+        bottomNavigationView.setSelectedItemId(MENU_HOME);
         getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment_home).commitAllowingStateLoss();
-
-
-        // 바텀 네비게이션
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
 
         // 리스너 등록
