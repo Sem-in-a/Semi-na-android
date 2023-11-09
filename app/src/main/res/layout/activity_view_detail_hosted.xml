@@ -6,7 +6,7 @@
   android:orientation="vertical">
 
   <LinearLayout
-    android:id="@+id/applied_title_container"
+    android:id="@+id/hosted_title_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -22,7 +22,7 @@
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="내가 신청한 세미나"
+      android:text="내가 주최한 세미나"
       android:textSize="18sp"
       android:textStyle="bold"
       android:textColor="#000000"
