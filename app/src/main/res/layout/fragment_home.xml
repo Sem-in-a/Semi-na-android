@@ -5,87 +5,90 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:maxWidth="48dp"
-                android:src="@drawable/login_logo" />
-        </Toolbar>
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="4dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/search_view_background"
-            android:elevation="2dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="8dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/searchEditText"
-                style="@style/Body3"
-                android:layout_width="0dp"
+            <Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="48dp"
+                    android:src="@drawable/login_logo" />
+            </Toolbar>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@null"
-                android:hint="세미나를 찾아보세요!"
-                android:inputType="text"
-                android:padding="8dp" />
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/search_view_background"
+                android:elevation="2dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="8dp">
 
-            <ImageView
+                <EditText
+                    android:id="@+id/searchEditText"
+                    style="@style/Body3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="세미나를 찾아보세요!"
+                    android:inputType="text"
+                    android:padding="8dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/search_icon" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/SubTitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/search_icon" />
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/search_by_major" />
+            />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:tabBackground="@drawable/tab_background_selector"
+                app:tabIndicatorHeight="0dp"
+                app:tabMinWidth="85dp"
+                app:tabMode="scrollable"
+                app:tabRippleColor="@null"
+                app:tabTextAppearance="@style/Body3">
+
+
+            </com.google.android.material.tabs.TabLayout>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="30dp"
+                android:saveEnabled="false">
+
+            </androidx.viewpager2.widget.ViewPager2>
         </LinearLayout>
-
-        <TextView
-            style="@style/SubTitle1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/search_by_major" />
-        />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:elevation="2dp"
-            app:tabBackground="@drawable/tab_background_selector"
-            app:tabGravity="center"
-            app:tabIndicator="@null"
-            app:tabMinWidth="85dp"
-            app:tabMode="scrollable"
-            app:tabRippleColor="@null"
-            app:tabTextAppearance="@style/Body3">
-
-
-        </com.google.android.material.tabs.TabLayout>
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager"
-            android:saveEnabled="false"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-        </androidx.viewpager2.widget.ViewPager2>
-    </LinearLayout>
+    </ScrollView>
 
 
     <!-- TODO: Update blank fragment layout -->
