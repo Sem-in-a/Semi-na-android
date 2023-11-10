@@ -74,7 +74,7 @@
               android:layout_height="23dp"
               android:background="#CFF4F0"
               android:gravity="center"
-              android:text="IT 대학"
+              android:text="학부"
               android:textColor="#000000"
               android:textSize="12sp"
               android:layout_marginTop="38dp" />
@@ -83,7 +83,7 @@
               android:id="@+id/some_id_major"
               android:layout_width="wrap_content"
               android:layout_height="20dp"
-              android:text="컴퓨터학부"
+              android:text="학과학과"
               android:layout_marginTop="70dp"
               android:textColor="#000000"
               android:textSize="12sp" />
@@ -91,9 +91,9 @@
             <TextView
               android:id="@+id/some_id_grade"
               android:textStyle="normal"
-              android:layout_width="56dp"
+              android:layout_width="wrap_content"
               android:layout_height="20dp"
-              android:text="2학년"
+              android:text="학번학번"
               android:textSize="12sp"
               android:textColor="#B3C9C6"
               android:layout_marginTop="70dp"
@@ -162,7 +162,8 @@
               android:layout_height="wrap_content"
               android:background="@drawable/chevron_right"
               android:layout_toRightOf="@+id/host_seminer"
-              android:layout_marginLeft="180dp"/>
+              android:layout_marginLeft="180dp"
+              android:visibility="gone"/>
         </RelativeLayout>
         <RelativeLayout
           android:layout_width="match_parent"
@@ -179,7 +180,7 @@
               android:layout_centerHorizontal="true"
               android:layout_marginTop="92dp"
               android:background="@drawable/no_hosted_seminer"
-              android:visibility="gone" />
+              android:visibility="visible" />
         </RelativeLayout>
     </RelativeLayout>
 
@@ -222,7 +223,8 @@
               android:layout_height="wrap_content"
               android:background="@drawable/chevron_right"
               android:layout_toRightOf="@+id/apply_id"
-              android:layout_marginLeft="180dp"/>
+              android:layout_marginLeft="180dp"
+              android:visibility="gone"/>
         </RelativeLayout>
         <RelativeLayout
           android:layout_width="match_parent"
@@ -237,7 +239,7 @@
               android:layout_centerHorizontal="true"
               android:layout_marginTop="92dp"
               android:background="@drawable/no_hosted_seminer"
-              android:visibility="gone" />
+              android:visibility="visible" />
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>
