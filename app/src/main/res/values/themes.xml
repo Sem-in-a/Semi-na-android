@@ -5,5 +5,5 @@
         <item name="colorSecondaryContainer">@color/bg_200</item>
     </style>
 
-    <style name="Theme.Semina" parent="Base.Theme.Semina" />
+  <style name="Theme.Semina" parent="Base.Theme.Semina" />
 </resources>
