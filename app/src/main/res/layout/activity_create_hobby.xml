@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="30dp"
-    tools:context=".view.create.CreateMajorActivity">
+    tools:context=".view.create.CreateHobbyActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -108,7 +108,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/activity_create_title_next_btn"
+        android:id="@+id/activity_create_hobby_next_btn"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:textColor="@color/white"

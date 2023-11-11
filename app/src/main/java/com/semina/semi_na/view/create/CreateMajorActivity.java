@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.semina.semi_na.R;
+import com.semina.semi_na.data.db.entity.HobbyCategory;
 import com.semina.semi_na.data.db.entity.MajorCategory;
 import com.semina.semi_na.data.db.entity.Semina;
 import com.semina.semi_na.databinding.ActivityCreateHobbyBinding;
@@ -47,7 +48,7 @@ public class CreateMajorActivity extends AppCompatActivity{
 
         intent = getIntent();
         Semina semina = (Semina) intent.getSerializableExtra("semina");
-        semina.setHobbyCategory(null);
+        semina.setHobbyCategory(HobbyCategory.NULL);
 
         binding.createMajorIt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,7 +156,7 @@ public class CreateMajorActivity extends AppCompatActivity{
                     showToast("전공을 선택해주세요");
                 }else{
                     semina.setMajorCategory(majorCategory);
-                    launcher.launch(new Intent(getApplicationContext(),CreateDateActivity.class).putExtra("semina",semina)
+                    launcher.launch(new Intent(getApplicationContext(),CreateLocationActivity.class).putExtra("semina",semina)
                             .addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
                 }
             }

@@ -67,6 +67,11 @@ dependencies {
     //OpenAI
     implementation("com.theokanning.openai-gpt3-java:service:0.16.1")
 
+    //Recycler view
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    // For control over item selection of both touch and mouse driven selection
+    implementation("androidx.recyclerview:recyclerview-selection:1.1.0")
+
 
 
 
