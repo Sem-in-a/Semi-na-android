@@ -2,7 +2,6 @@ package com.semina.semi_na.data.db.entity;
 
 
 import com.google.firebase.database.IgnoreExtraProperties;
-import com.semina.semi_na.data.remote.entity.Member;
 
 import java.io.Serializable;
 

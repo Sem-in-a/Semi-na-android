@@ -11,24 +11,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.semina.semi_na.R;
 import com.semina.semi_na.base.MainActivity;
 import com.semina.semi_na.data.remote.RetrofitClient;
 import com.semina.semi_na.data.remote.RetrofitInterface;
-import com.semina.semi_na.data.remote.entity.Member;
+import com.semina.semi_na.data.db.entity.Member;
 import com.semina.semi_na.data.remote.request.LoginRequest;
 import com.semina.semi_na.data.remote.response.LoginResponse;
 import com.semina.semi_na.databinding.ActivityLoginBinding;
-
-import org.w3c.dom.Document;
 
 import java.util.ArrayList;
 import java.util.Arrays;

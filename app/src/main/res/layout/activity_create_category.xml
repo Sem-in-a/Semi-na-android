@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="30dp"
-    tools:context=".view.create.CreateTitleActivity">
+    tools:context=".view.create.CreateCategoryActivity">
 
     <LinearLayout
         android:orientation="vertical"
