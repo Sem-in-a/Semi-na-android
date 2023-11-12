@@ -4,6 +4,7 @@ package com.semina.semi_na.data.db.entity;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 @IgnoreExtraProperties
 public class Semina implements Serializable {
@@ -15,13 +16,18 @@ public class Semina implements Serializable {
     private HobbyCategory hobbyCategory;
     private String date;
     private String time;
-    private Member host;
+    private String host;
     private String imgUrl;
     private Location location;
 
     private String locationDetail;
 
-    public Semina(String title, SeminaCategory seminaCategory,MajorCategory majorCategory,String date,String time, Member host,String imgUrl,Location location,String locationDetail){
+    private ArrayList<String> memberList;
+
+    private String description;
+
+    public Semina(String title, SeminaCategory seminaCategory,MajorCategory majorCategory,String date,String time, String host,String imgUrl,Location location,String locationDetail
+    ,ArrayList<String> memberList){
         this.title = title;
         this.seminaCategory = seminaCategory;
         this.majorCategory = majorCategory;
@@ -31,6 +37,7 @@ public class Semina implements Serializable {
         this.imgUrl = imgUrl;
         this.location = location;
         this.locationDetail = locationDetail;
+        this.memberList = memberList;
     }
 
     public Semina(){
@@ -49,7 +56,7 @@ public class Semina implements Serializable {
         this.hobbyCategory = hobbyCategory;
     }
 
-    public void setHost(Member host) {
+    public void setHost(String host) {
         this.host = host;
     }
 
@@ -91,5 +98,29 @@ public class Semina implements Serializable {
 
     public void setLocationDetail(String locationDetail) {
         this.locationDetail = locationDetail;
+    }
+
+    public ArrayList<String> getMemberList() {
+        return memberList;
+    }
+
+    public void setMemberList(ArrayList<String> memberList) {
+        this.memberList = memberList;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getHost() {
+        return host;
     }
 }

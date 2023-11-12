@@ -17,6 +17,8 @@ import com.semina.semi_na.R;
 import com.semina.semi_na.data.db.entity.Semina;
 import com.semina.semi_na.databinding.ActivityCreateMemberCountBinding;
 
+import java.util.ArrayList;
+
 public class CreateMemberCountActivity extends AppCompatActivity {
 
     private ActivityCreateMemberCountBinding binding;
@@ -25,6 +27,8 @@ public class CreateMemberCountActivity extends AppCompatActivity {
     private int count;
 
     private NumberPicker numberPicker;
+
+    private ArrayList<String> memberList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +56,8 @@ public class CreateMemberCountActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"모집인원을 설정해주세요",Toast.LENGTH_LONG).show();
                 }else{
                     Log.d("CreateMemberCountActivity",String.valueOf(count));
-                    semina.setTime(String.valueOf(count));
+                    memberList = new ArrayList<>(count);
+                    semina.setMemberList(memberList);
                     launcher.launch(new Intent(getApplicationContext(),CreateThumbnailActivity.class).putExtra("semina",semina)
                             .addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
                 }

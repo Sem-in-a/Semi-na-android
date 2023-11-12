@@ -23,10 +23,9 @@ public class CreateTitleActivity extends AppCompatActivity {
     private Button nextButton;
     private EditText editTitle;
     private String title;
-    private SharedPreferences studentNum;
-    private SharedPreferences name;
-    private SharedPreferences department;
-    private SharedPreferences major;
+
+    private String studentNum;
+    private SharedPreferences sharedPreferences;
     ActivityCreateTitleBinding binding;
 
 
@@ -38,10 +37,8 @@ public class CreateTitleActivity extends AppCompatActivity {
         nextButton = binding.activityCreateTitleNextBtn;
         editTitle = binding.createTitleEdit;
         title = "";
-        studentNum = getSharedPreferences("studentNum", MODE_PRIVATE);
-        name = getSharedPreferences("name",MODE_PRIVATE);
-        department = getSharedPreferences("department",MODE_PRIVATE);
-        major = getSharedPreferences("major",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
+        studentNum = sharedPreferences.getString("studentNum","");
 
         Log.d("CreateTitleActivity",title);
 
@@ -65,9 +62,9 @@ public class CreateTitleActivity extends AppCompatActivity {
                 showToast("세미나 이름을 적어주세요");
             }else{
                 Semina semina = new Semina();
-                Member member = new Member(studentNum.toString(), department.toString(), name.toString(), major.toString());
-                semina.setHost(member);
+                semina.setHost(studentNum);
                 semina.setTitle(title);
+                Log.d("CreateTitleActivity",semina.getHost());
                 launcher.launch(new Intent(getApplicationContext(),CreateCategoryActivity.class).putExtra("semina",semina)
                         .addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
                 //startActivityForResult(new Intent(getApplicationContext(), CreateCategoryActivity.class));
