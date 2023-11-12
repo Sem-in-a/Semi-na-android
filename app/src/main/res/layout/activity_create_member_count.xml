@@ -1,9 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="30dp"
     tools:context=".view.create.CreateMemberCountActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="114dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="모집인원을 정해주세요"
+            android:textColor="@color/black"
+            style="@style/SubTitle1"/>
+        <EditText
+            android:layout_marginTop="20dp"
+            android:id="@+id/create_member_count_picker"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="number"
+            android:textAlignment="textStart"
+            style="@style/Body2"
+            android:background="@drawable/edit_text_border"
+            android:text="n명"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/activity_create_member_count_next_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textColor="@color/white"
+        style="@style/Button1"
+        android:clickable="true"
+        android:text="다음"
+        android:background="@drawable/button_border"
+        android:focusable="true" />
+
+
+</LinearLayout>

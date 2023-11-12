@@ -47,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseFirestore database;
 
+    private String imgUrl = "https://images.unsplash.com/photo-1671716784499-a3d26826d844?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,6 +107,7 @@ public class LoginActivity extends AppCompatActivity {
                                                         editor.putString("depart", department);
                                                         editor.putString("name", name);
                                                         editor.putString("major", major);
+                                                        editor.putString("img",imgUrl);
                                                         //항상 commit & apply 를 해주어야 저장이 된다.
                                                         editor.commit();
                                                         editor.apply();
@@ -123,6 +126,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 editor.putString("depart", department);
                                                 editor.putString("name", name);
                                                 editor.putString("major", major);
+                                                editor.putString("img",imgUrl);
                                                 //항상 commit & apply 를 해주어야 저장이 된다.
                                                 editor.commit();
                                                 editor.apply();

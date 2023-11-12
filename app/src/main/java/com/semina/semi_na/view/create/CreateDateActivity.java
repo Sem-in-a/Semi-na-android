@@ -1,16 +1,23 @@
 package com.semina.semi_na.view.create;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import com.semina.semi_na.R;
+import com.semina.semi_na.data.db.entity.Semina;
 import com.semina.semi_na.databinding.ActivityCreateDateBinding;
 
 import java.util.Calendar;
@@ -25,13 +32,33 @@ public class CreateDateActivity extends AppCompatActivity {
     private int month;
     private int day;
 
+    private String finalDate;
+    private String finalTime;
+    private Intent intent;
+
+    private final String DATE = "";
+    private ActivityResultLauncher<Intent> launcher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityCreateDateBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        year=0;
+        finalDate = DATE;
+        finalTime = DATE;
 
+        intent = getIntent();
+        Semina semina = (Semina) intent.getSerializableExtra("semina");
+
+        launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+
+                    @Override
+                    public void onActivityResult(ActivityResult o) {
+
+
+                    }
+                });
 
         binding.createDateDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +77,10 @@ public class CreateDateActivity extends AppCompatActivity {
                             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                                   int dayOfMonth) {
 
+                                year = year;
+                                month = monthOfYear+1;
+                                dayOfMonth = dayOfMonth;
+                                finalDate = String.valueOf(year+"년 "+(monthOfYear+1)+"월 "+dayOfMonth+"일");
                                 binding.createDateDate.setText(year+"년 "+(monthOfYear+1)+"월 "+dayOfMonth+"일");
 
                             }
@@ -59,6 +90,27 @@ public class CreateDateActivity extends AppCompatActivity {
 
         });
 
-        Log.d("CreateDateActivity",year+" "+month+" "+day);
+        binding.activityCreateDateNextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finalTime = String.valueOf(binding.createDateTime.getText());
+                if(finalDate.equals(DATE)){
+                    showToast("날짜를 입력 해주세요");
+                }else if(finalTime.equals(DATE)) {
+                    showToast("시간을 입력 해주세요");
+                }else{
+                    semina.setDate(finalDate);
+                    semina.setTime(finalTime);
+                    launcher.launch(new Intent(getApplicationContext(),CreateMemberCountActivity.class).putExtra("semina",semina)
+                            .addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+                }
+            }
+        });
+
+    }
+
+    public void showToast(String msg){
+        Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
     }
 }

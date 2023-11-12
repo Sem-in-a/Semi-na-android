@@ -23,6 +23,7 @@
             style="@style/SubTitle1"/>
 
         <LinearLayout
+            android:layout_weight="1"
             android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,7 +41,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="20dp"/>
-            <Button
+            <EditText
                 android:id="@+id/create_date_time"
                 android:padding="10dp"
                 android:layout_width="match_parent"
@@ -51,6 +52,17 @@
                 android:background="@drawable/edit_text_border"
                 android:hint="세미나 시간 정하기"/>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/activity_create_date_next_btn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textColor="@color/white"
+            style="@style/Button1"
+            android:clickable="true"
+            android:text="다음"
+            android:background="@drawable/button_border"
+            android:focusable="true" />
 
     </LinearLayout>
 
