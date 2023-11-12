@@ -26,11 +26,11 @@ import java.util.Arrays;
 
 public class CreateLocationActivity extends AppCompatActivity {
 
-    ActivityCreateLocationBinding binding;
-    RecyclerView recyclerView;
-    CreateLocationRVAdapter adapter;
-    ArrayList<Location> locationList = new ArrayList<>(Arrays.asList(Location.IT,Location.LAW,Location.BUSINESS,Location.ENGINEER,Location.JOMANSIK));
-    Intent intent;
+    private ActivityCreateLocationBinding binding;
+    private RecyclerView recyclerView;
+    private CreateLocationRVAdapter adapter;
+    ArrayList<Location> locationList = new ArrayList<>(Arrays.asList(Location.IT,Location.Law,Location.Business,Location.Engineer,Location.Jomansik));
+    private Intent intent;
 
     private Location location;
 
@@ -45,7 +45,7 @@ public class CreateLocationActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter.setLocationList(locationList);
-        intent = new Intent();
+        intent = getIntent();
         Semina semina = (Semina) intent.getSerializableExtra("semina");
 
         ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
@@ -65,6 +65,8 @@ public class CreateLocationActivity extends AppCompatActivity {
 
                 Log.d("CreateLocationActivity",locationList.get(position).getLocName());
                 location = locationList.get(position);
+                assert semina != null;
+                semina.setLocation(locationList.get(position));
                 launcher.launch(new Intent(getApplicationContext(),CreateLocationDetailActivity.class).putExtra("semina",semina)
                         .addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
 

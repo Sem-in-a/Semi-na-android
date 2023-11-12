@@ -30,7 +30,7 @@ public class CreateHobbyActivity extends AppCompatActivity {
         binding = ActivityCreateHobbyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        intent = new Intent();
+        intent = getIntent();
         Semina semina = (Semina) intent.getSerializableExtra("semina");
         semina.setMajorCategory(MajorCategory.NULL);
 
