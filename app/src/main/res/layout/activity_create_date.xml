@@ -4,6 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="30dp"
     tools:context=".view.create.CreateDateActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="114dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="세미나 일시를 정해 주세요"
+            android:textColor="@color/black"
+            style="@style/SubTitle1"/>
+
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/create_date_date"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="date"
+                android:textAlignment="textStart"
+                style="@style/Body2"
+                android:background="@drawable/edit_text_border"
+                android:text="세미나 날짜 정하기"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+            <Button
+                android:id="@+id/create_date_time"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="time"
+                android:textAlignment="textStart"
+                style="@style/Body2"
+                android:background="@drawable/edit_text_border"
+                android:hint="세미나 시간 정하기"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
 
 </LinearLayout>

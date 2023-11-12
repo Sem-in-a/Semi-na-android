@@ -19,7 +19,9 @@ public class Semina implements Serializable {
     private String imgUrl;
     private Location location;
 
-    public Semina(String title, SeminaCategory seminaCategory,MajorCategory majorCategory,String date,String time, Member host,String imgUrl,Location location){
+    private String locationDetail;
+
+    public Semina(String title, SeminaCategory seminaCategory,MajorCategory majorCategory,String date,String time, Member host,String imgUrl,Location location,String locationDetail){
         this.title = title;
         this.seminaCategory = seminaCategory;
         this.majorCategory = majorCategory;
@@ -28,6 +30,7 @@ public class Semina implements Serializable {
         this.host = host;
         this.imgUrl = imgUrl;
         this.location = location;
+        this.locationDetail = locationDetail;
     }
 
     public Semina(){
@@ -80,5 +83,13 @@ public class Semina implements Serializable {
 
     public Location getLocation() {
         return location;
+    }
+
+    public String getLocationDetail() {
+        return locationDetail;
+    }
+
+    public void setLocationDetail(String locationDetail) {
+        this.locationDetail = locationDetail;
     }
 }

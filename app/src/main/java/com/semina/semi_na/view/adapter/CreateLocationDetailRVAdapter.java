@@ -34,7 +34,7 @@ public class CreateLocationDetailRVAdapter extends RecyclerView.Adapter<CreateLo
     @NonNull
     @Override
     public CreateLocationDetailRVAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.create_location_recyclerview_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.create_location_detail_rv_item, parent, false);
         return new CreateLocationDetailRVAdapter.ViewHolder(view);
     }
 

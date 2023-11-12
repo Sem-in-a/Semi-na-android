@@ -1,13 +1,19 @@
 package com.semina.semi_na.view.create;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -39,6 +45,16 @@ public class CreateLocationDetailActivity extends AppCompatActivity {
     private ArrayList<String> locationDetailList;
     private RecyclerView recyclerView;
     private CreateLocationDetailRVAdapter adapter;
+
+    ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+
+                @Override
+                public void onActivityResult(ActivityResult o) {
+
+
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +102,20 @@ public class CreateLocationDetailActivity extends AppCompatActivity {
                 Log.e("CreateLocationDetailActivity", "문서 가져오기 실패", e);
             }
         });
+
+        adapter.setOnItemClickListener(new CreateLocationDetailRVAdapter.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(View v, int position) {
+                Log.d("CreateLocationDetailActivity",locationDetailList.get(position));
+                assert semina != null;
+                semina.setLocationDetail(locationDetailList.get(position));
+                launcher.launch(new Intent(getApplicationContext(),CreateDateActivity.class).putExtra("semina",semina)
+                        .addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+
+            }
+        }) ;
+
 
 
     }
