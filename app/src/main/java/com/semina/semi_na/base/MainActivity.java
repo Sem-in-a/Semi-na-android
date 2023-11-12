@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     private Fragment fragment_my;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,11 +45,8 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         // 초기 프래그먼트 설정
+        bottomNavigationView.setSelectedItemId(MENU_HOME);
         getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment_home).commitAllowingStateLoss();
-
-
-        // 바텀 네비게이션
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
 
         // 리스너 등록
@@ -60,18 +56,18 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Log.i(TAG, "바텀 네비게이션 클릭");
 
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case MENU_HOME:
                         Log.i(TAG, "home 들어옴");
-                        getSupportFragmentManager().beginTransaction() .replace(R.id.main_layout,fragment_home).commitAllowingStateLoss();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment_home).commitAllowingStateLoss();
                         return true;
                     case MENU_CREATE_SEMINA:
                         Log.i(TAG, "세미나 등록 들어옴");
-                        getSupportFragmentManager().beginTransaction() .replace(R.id.main_layout,fragment_create).commitAllowingStateLoss();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment_create).commitAllowingStateLoss();
                         return true;
                     case MENU_MYPAGE:
                         Log.i(TAG, "mypage 들어옴");
-                        getSupportFragmentManager().beginTransaction() .replace(R.id.main_layout,fragment_my).commitAllowingStateLoss();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment_my).commitAllowingStateLoss();
                         return true;
                 }
                 return true;

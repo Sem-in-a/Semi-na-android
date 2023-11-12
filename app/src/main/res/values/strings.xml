@@ -9,4 +9,6 @@
     <string name="title_activity_fragment_mypage_view_detail_applied">
     fragment_mypage_view_detail_applied
   </string>
+
+    <string name="search_by_hobby">취미로 찾아보는 <font color="#167A90">샘이나!</font></string>
 </resources>

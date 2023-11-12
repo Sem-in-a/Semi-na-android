@@ -11,6 +11,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -104,5 +105,6 @@ public class HomeFragment extends Fragment {
             tab.setText(titles[position]);
             tab.setIcon((Integer) tabTitles.get(titles[position]));
         }).attach();
+
     }
 }

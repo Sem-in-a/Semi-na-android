@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:weightSum="2"
             android:orientation="horizontal">
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/create_category_major_btn"
                 style="@style/Button1"
                 android:layout_weight="1"
@@ -41,7 +41,7 @@
             <View
                 android:layout_width="20dp"
                 android:layout_height="0dp"/>
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/create_category_hobby_btn"
                 style="@style/Button1"
                 android:layout_weight="1"

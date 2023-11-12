@@ -1,8 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <!-- Base application theme. -->
-  <style name="Base.Theme.Semina" parent="Theme.AppCompat.Light.NoActionBar">
-
-  </style>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Semina" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/main_1</item>
+        <item name="colorSecondaryContainer">@color/bg_200</item>
+    </style>
 
   <style name="Theme.Semina" parent="Base.Theme.Semina" />
 </resources>
