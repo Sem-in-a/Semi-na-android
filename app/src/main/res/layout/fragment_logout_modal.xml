@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.mypage.LogoutModal">
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <RelativeLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="200dp"
+      android:layout_gravity="center_horizontal">
 
-</FrameLayout>
+        <ImageView
+          android:id="@+id/logout_modal_box"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_horizontal"
+          android:background="@drawable/logout_modal_box" />
+        <TextView
+          android:id="@+id/logout_modal_text"
+          android:textStyle="bold"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="정말 로그아웃 하시겠어요?"
+          android:textColor="#000000"
+          android:textSize="16sp"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="52dp"/>
+
+        <RelativeLayout
+          android:id="@+id/frame_61145"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/logout_modal_text"
+          android:layout_marginLeft="48dp"
+          android:layout_marginTop="41dp">
+            <Button
+              android:id="@+id/logout_no_btn"
+              android:layout_width="100dp"
+              android:layout_height="36dp"
+              android:background="@drawable/logout_no_btn"
+              android:text="취소"/>
+            <Button
+              android:id="@+id/logout_yes_btn"
+              android:layout_width="100dp"
+              android:layout_height="36dp"
+              android:background="@drawable/logout_yes_btn"
+              android:layout_marginLeft="23dp"
+              android:layout_toRightOf="@+id/logout_no_btn"
+              android:text="확인"
+              />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

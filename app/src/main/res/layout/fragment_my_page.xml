@@ -83,8 +83,8 @@
               android:id="@+id/some_id_major"
               android:layout_width="wrap_content"
               android:layout_height="20dp"
-              android:text="학과학과"
               android:layout_marginTop="70dp"
+              android:text="학과학과"
               android:textColor="#000000"
               android:textSize="12sp" />
 

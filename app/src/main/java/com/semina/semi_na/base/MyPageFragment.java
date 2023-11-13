@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.semina.semi_na.databinding.FragmentMyPageBinding;
+import com.semina.semi_na.view.mypage.LogoutModalFragment;
 import com.semina.semi_na.view.mypage.ViewDetailAppliedActivity;
 import com.semina.semi_na.view.mypage.ViewDetailHostedActivity;
 
@@ -40,6 +41,7 @@ public class MyPageFragment extends Fragment {
       startActivity(intent);
     });
 
+
     return view;
   }
 
@@ -48,5 +50,6 @@ public class MyPageFragment extends Fragment {
     super.onDestroyView();
     binding = null;
   }
+
 }
 
