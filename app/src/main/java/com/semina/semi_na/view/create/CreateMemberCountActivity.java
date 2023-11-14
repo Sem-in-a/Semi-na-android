@@ -58,7 +58,8 @@ public class CreateMemberCountActivity extends AppCompatActivity {
                     Log.d("CreateMemberCountActivity",String.valueOf(count));
                     memberList = new ArrayList<>(count);
                     semina.setMemberList(memberList);
-                    launcher.launch(new Intent(getApplicationContext(),CreateThumbnailActivity.class).putExtra("semina",semina)
+                    semina.setCapacity(count);
+                    launcher.launch(new Intent(getApplicationContext(),CreateDescriptionActivity.class).putExtra("semina",semina)
                             .addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
                 }
             }

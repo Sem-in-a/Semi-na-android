@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
-
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Semina"
         tools:targetApi="31">
+        <activity
+            android:name=".view.create.CreateDescriptionActivity"
+            android:exported="false" />
         <activity
             android:name=".view.create.ShowThumbNailImgActivity"
             android:exported="false" />
@@ -71,6 +73,7 @@
         <activity
             android:name=".view.mypage.ViewDetailAppliedActivity"
             android:exported="false" />
+
         <service
             android:name=".service.FirebaseMessagingService"
             android:exported="false">

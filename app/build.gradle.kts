@@ -20,7 +20,8 @@ android {
 
 
         // local.properties 내부에서 key값을 가져오는 함수 구현방식
-        buildConfigField("String", "OPENAI_KEY", getApiKey("OPENAI_KEY"))
+        buildConfigField("String", "UNSPLASH_KEY", getApiKey("UNSPLASH_KEY"))
+
     }
 
     buildTypes {
@@ -85,5 +86,8 @@ dependencies {
 
 // 2. local.properties 내부에서 key값을 가져오는 함수 구현방식
 fun getApiKey(propertyKey: String): String {
-    return gradleLocalProperties(rootDir).getProperty(propertyKey)
+    val gradleLocalProperties = gradleLocalProperties(rootDir)
+    val propertyValue = gradleLocalProperties.getProperty(propertyKey)
+
+    return propertyValue ?: throw IllegalStateException("Property '$propertyKey' not found in gradleLocalProperties")
 }
