@@ -20,7 +20,8 @@ android {
 
 
         // local.properties 내부에서 key값을 가져오는 함수 구현방식
-        buildConfigField("String", "OPENAI_KEY", getApiKey("OPENAI_KEY"))
+        buildConfigField("String", "UNSPLASH_KEY", getApiKey("UNSPLASH_KEY"))
+
     }
 
     buildTypes {
@@ -57,10 +58,20 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx:24.9.1")
+    // Add the dependency for the Cloud Storage library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-storage")
 
     //OpenAI
     implementation("com.theokanning.openai-gpt3-java:service:0.16.1")
 
+    //Recycler view
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    // For control over item selection of both touch and mouse driven selection
+    implementation("androidx.recyclerview:recyclerview-selection:1.1.0")
+
+    //Glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 
 
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -75,5 +86,8 @@ dependencies {
 
 // 2. local.properties 내부에서 key값을 가져오는 함수 구현방식
 fun getApiKey(propertyKey: String): String {
-    return gradleLocalProperties(rootDir).getProperty(propertyKey)
+    val gradleLocalProperties = gradleLocalProperties(rootDir)
+    val propertyValue = gradleLocalProperties.getProperty(propertyKey)
+
+    return propertyValue ?: throw IllegalStateException("Property '$propertyKey' not found in gradleLocalProperties")
 }

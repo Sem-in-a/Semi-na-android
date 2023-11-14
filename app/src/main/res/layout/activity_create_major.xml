@@ -1,9 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="30dp"
     tools:context=".view.create.CreateMajorActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="114dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="세부 전공을 선택해주세요"
+            android:textColor="@color/black"
+            style="@style/SubTitle1"/>
+        <GridLayout
+            android:layout_marginTop="40dp"
+            android:columnCount="4"
+            android:rowCount="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:background="?attr/selectableItemBackground"
+                android:id="@+id/create_major_it"
+                android:clickable="true"
+                android:layout_marginTop="20dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:src="@drawable/it_college_icon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    />
+                <TextView
+                    style="@style/Body3"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="IT 대학"/>
+            </LinearLayout>
+            <LinearLayout
+                android:background="?attr/selectableItemBackground"
+                android:id="@+id/create_major_engineer"
+                android:clickable="true"
+                android:layout_marginTop="20dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:src="@drawable/engineering_college_icon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    />
+                <TextView
+                    style="@style/Body3"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="공과대학"/>
+            </LinearLayout>
+            <LinearLayout
+                android:background="?attr/selectableItemBackground"
+                android:id="@+id/create_major_science"
+                android:clickable="true"
+                android:layout_marginTop="20dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:src="@drawable/natural_science_college_icon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    />
+                <TextView
+                    style="@style/Body3"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="자연과학대학"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="?attr/selectableItemBackground"
+                android:id="@+id/create_major_humanity"
+                android:clickable="true"
+                android:layout_marginTop="20dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:src="@drawable/humanity_college_icon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    />
+                <TextView
+                    style="@style/Body3"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="인문대학"/>
+            </LinearLayout>
+            <LinearLayout
+                android:background="?attr/selectableItemBackground"
+                android:id="@+id/create_major_law"
+                android:clickable="true"
+                android:layout_marginTop="20dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:src="@drawable/law_college_icon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    />
+                <TextView
+                    style="@style/Body3"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="법과대학"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="?attr/selectableItemBackground"
+                android:id="@+id/create_major_economic"
+                android:clickable="true"
+                android:layout_marginTop="20dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:src="@drawable/economics_college_icon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    />
+                <TextView
+                    style="@style/Body3"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="경제통상대학"/>
+            </LinearLayout>
+            <LinearLayout
+                android:background="?attr/selectableItemBackground"
+                android:id="@+id/create_major_business"
+                android:clickable="true"
+                android:layout_marginTop="20dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:src="@drawable/business_college_icon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    />
+                <TextView
+                    style="@style/Body3"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="경영대학"/>
+            </LinearLayout>
+            <LinearLayout
+                android:background="?attr/selectableItemBackground"
+                android:id="@+id/create_major_social"
+                android:clickable="true"
+                android:layout_marginTop="20dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:src="@drawable/social_science_college_icon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    />
+                <TextView
+                    style="@style/Body3"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="사회과학대학"/>
+            </LinearLayout>
+
+
+
+
+        </GridLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/activity_create_major_next_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textColor="@color/white"
+        style="@style/Button1"
+        android:clickable="true"
+        android:text="다음"
+        android:background="@drawable/button_border"
+        android:focusable="true" />
+
+
+</LinearLayout>

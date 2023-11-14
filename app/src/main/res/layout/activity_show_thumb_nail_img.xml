@@ -5,44 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     android:padding="30dp"
-    tools:context=".view.create.CreateThumbnailActivity">
+    tools:context=".view.create.ShowThumbNailImgActivity">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_marginTop="114dp"
         android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="거의 다 왔어요!\n세미나에 딱 맞는 키워드를 작성해주시면\n이미지를 추천해드릴게요!"
+            android:text="썸네일 이미지가 생성됐어요!"
             android:textColor="@color/black"
             style="@style/SubTitle1"/>
-        <EditText
-            android:layout_marginTop="20dp"
-            android:id="@+id/create_thumbnail_keyword_edit_text"
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:inputType="text"
-            android:textAlignment="textStart"
-            style="@style/Body2"
-            android:background="@drawable/edit_text_border"
-            android:text="샘이나는 샘이나"/>
+       <LinearLayout
+           android:gravity="center"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+           <ImageView
+               android:id="@+id/create_show_thumbnail_img"
+               android:src="@drawable/judy"
+               android:layout_gravity="center"
+               android:layout_width="220dp"
+               android:layout_height="220dp"/>
+       </LinearLayout>
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/activity_create_thumb_nail_next_btn"
+        android:id="@+id/activity_create__show_thumb_nail_next_btn"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:textColor="@color/white"
         style="@style/Button1"
         android:clickable="true"
-        android:text="이미지 검색하기"
+        android:text="다음"
         android:background="@drawable/button_border"
         android:focusable="true" />
 

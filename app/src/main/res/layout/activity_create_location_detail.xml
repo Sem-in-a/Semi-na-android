@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="30dp"
-    tools:context=".view.create.CreateLocationActivity">
+    tools:context=".view.create.CreateLocationDetailActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -22,9 +22,18 @@
             android:textColor="@color/black"
             style="@style/SubTitle1"/>
 
+        <TextView
+            android:id="@+id/create_location_detail_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="정보과학관"
+            android:layout_marginTop="40dp"
+            android:textColor="@color/main_3"
+            style="@style/SUbTitle2"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_marginTop="30dp"
-            android:id="@+id/create_location_recyclerView"
+            android:id="@+id/create_location_detail_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

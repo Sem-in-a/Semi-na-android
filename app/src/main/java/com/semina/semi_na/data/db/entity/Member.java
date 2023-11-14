@@ -1,10 +1,12 @@
-package com.semina.semi_na.data.remote.entity;
+package com.semina.semi_na.data.db.entity;
 
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.io.Serializable;
+
 @IgnoreExtraProperties
-public class Member {
+public class Member implements Serializable {
     private String studentNum;
     private String department;
     private String name;
