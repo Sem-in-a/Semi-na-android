@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.FragmentTransaction;
 import com.semina.semi_na.databinding.FragmentMyPageBinding;
 import com.semina.semi_na.view.mypage.LogoutModalFragment;
 import com.semina.semi_na.view.mypage.ViewDetailAppliedActivity;
@@ -39,6 +40,14 @@ public class MyPageFragment extends Fragment {
     binding.viewDetailApplied.setOnClickListener(appliedView -> {
       Intent intent = new Intent(getActivity(), ViewDetailAppliedActivity.class);
       startActivity(intent);
+    });
+
+    binding.logoutBtn.setOnClickListener(logoutView ->{
+      Fragment logoutFragment = new LogoutModalFragment();
+      FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+      //ransaction.replace(R.id.fragment_container, logoutFragment); // 'fragment_container'는 프래그먼트를 로드하는 FrameLayout의 ID입니다
+      transaction.addToBackStack(null); // 이 트랜잭션을 백 스택에 추가합니다
+      transaction.commit();
     });
 
 

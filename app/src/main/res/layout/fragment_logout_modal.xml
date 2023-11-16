@@ -35,19 +35,19 @@
           android:layout_below="@+id/logout_modal_text"
           android:layout_marginLeft="48dp"
           android:layout_marginTop="41dp">
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
               android:id="@+id/logout_no_btn"
               android:layout_width="100dp"
-              android:layout_height="36dp"
+              android:layout_height="48dp"
               android:background="@drawable/logout_no_btn"
-              android:text="취소"/>
-            <Button
+              android:text="취소" />
+            <androidx.appcompat.widget.AppCompatButton
               android:id="@+id/logout_yes_btn"
               android:layout_width="100dp"
-              android:layout_height="36dp"
-              android:background="@drawable/logout_yes_btn"
+              android:layout_height="48dp"
               android:layout_marginLeft="23dp"
               android:layout_toRightOf="@+id/logout_no_btn"
+              android:background="@drawable/logout_yes_btn"
               android:text="확인"
               />
         </RelativeLayout>
