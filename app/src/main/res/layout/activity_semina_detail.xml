@@ -1,90 +1,552 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="360dp"
-        android:elevation="0dp"
-        app:cardBackgroundColor="#A0000000">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ImageView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:alpha="0.5"
-            android:scaleType="centerCrop"
-            android:src="@drawable/swift_logo" />
+            android:layout_height="360dp"
+            android:elevation="0dp"
+            app:cardBackgroundColor="#A0000000">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginStart="32dp"
-            android:layout_marginBottom="16dp"
-            android:orientation="vertical">
-
-            <TextView
-                style="@style/Title2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="샘이나는 Swift UI"
-                android:textColor="@color/white" />
-
-            <TextView
-                style="@style/Body3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/text_margin"
-                android:text="2023.10.23 오후 3시"
-                android:textColor="@color/white" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.5"
+                android:scaleType="centerCrop"
+                android:src="@drawable/swift_logo" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginTop="@dimen/text_margin"
-                android:orientation="horizontal">
+                android:layout_gravity="bottom"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical">
 
-                <!-- Chip with IT college text                        -->
-                <com.google.android.material.chip.Chip
-                    style="@style/Body3"
+                <TextView
+                    style="@style/Title2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checkable="false"
-                    android:clickable="false"
-                    android:text="IT대학"
-                    app:chipBackgroundColor="@color/chip_bg"
-                    app:chipCornerRadius="4dp"
-                    app:chipEndPadding="4dp"
-                    app:chipMinHeight="20dp"
-                    app:chipMinTouchTargetSize="0dp"
-                    app:chipStartPadding="4dp"
-                    app:chipStrokeColor="@color/chip_bg" />
+                    android:text="샘이나는 Swift UI"
+                    android:textColor="@color/white" />
 
                 <TextView
                     style="@style/Body3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="정보과학관 203호"
+                    android:layout_marginTop="@dimen/text_margin"
+                    android:text="2023.10.23 오후 3시"
                     android:textColor="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="@dimen/text_margin"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Body3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="false"
+                        android:clickable="false"
+                        android:text="IT대학"
+                        app:chipBackgroundColor="@color/chip_bg"
+                        app:chipCornerRadius="4dp"
+                        app:chipEndPadding="4dp"
+                        app:chipMinHeight="20dp"
+                        app:chipMinTouchTargetSize="0dp"
+                        app:chipStartPadding="4dp"
+                        app:chipStrokeColor="@color/chip_bg" />
+
+                    <TextView
+                        style="@style/Body3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="정보과학관 203호"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/Body3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/text_margin"
+                    android:drawableStart="@drawable/participant_icon"
+                    android:drawableTint="@color/white"
+                    android:text="3/5명"
+                    android:textColor="@color/white" />
+
             </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                style="@style/Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="샘이나 소개"
+                android:textColor="@color/main_3"></TextView>
 
             <TextView
                 style="@style/Body3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/text_margin"
-                android:drawableStart="@drawable/participant_icon"
-                android:drawableTint="@color/white"
-                android:text="3/5명"
-                android:textColor="@color/white" />
+                android:layout_marginTop="12dp"
+                android:text="스유 한입 하실래요?\n ios 개발의 최신트렌드! 선언형 프로그래밍을 Swift UI로 학습해요"></TextView>
+
+            <TextView
+                style="@style/Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="개최자 소개"
+                android:textColor="@color/main_3"></TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/about_host"
+                    app:shapeAppearanceOverlay="@style/roundedImageView" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/text_margin"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Body2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="이정민" />
+
+                    <TextView
+                        style="@style/Body3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="컴퓨터학부 22학번"
+                        android:textColor="@color/gray_400" />
+
+                    <TextView
+                        style="@style/Body3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="유어슈에 짱먹으러 왔다" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                style="@style/Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="참여하는 사람들"
+                android:textColor="@color/main_3"></TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="55dp"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/participant_1"
+                            app:shapeAppearanceOverlay="@style/roundedImageView" />
+
+                        <com.google.android.material.chip.Chip
+                            style="@style/Body3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="4dp"
+                            android:checkable="false"
+                            android:clickable="false"
+                            android:text="IT대학"
+                            app:chipBackgroundColor="@color/chip_bg"
+                            app:chipCornerRadius="4dp"
+                            app:chipEndPadding="4dp"
+                            app:chipMinHeight="20dp"
+                            app:chipMinTouchTargetSize="0dp"
+                            app:chipStartPadding="4dp"
+                            app:chipStrokeColor="@color/chip_bg" />
+
+                        <TextView
+                            style="@style/Body3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="최서현"></TextView>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="55dp"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/participant_2"
+                            app:shapeAppearanceOverlay="@style/roundedImageView" />
+
+                        <com.google.android.material.chip.Chip
+                            style="@style/Body3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="4dp"
+                            android:checkable="false"
+                            android:clickable="false"
+                            android:text="IT대학"
+                            app:chipBackgroundColor="@color/chip_bg"
+                            app:chipCornerRadius="4dp"
+                            app:chipEndPadding="4dp"
+                            app:chipMinHeight="20dp"
+                            app:chipMinTouchTargetSize="0dp"
+                            app:chipStartPadding="4dp"
+                            app:chipStrokeColor="@color/chip_bg" />
+
+                        <TextView
+                            style="@style/Body3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="이중곤"></TextView>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="55dp"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/participant_3"
+                            app:shapeAppearanceOverlay="@style/roundedImageView" />
+
+                        <com.google.android.material.chip.Chip
+                            style="@style/Body3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:checkable="false"
+                            android:clickable="false"
+                            android:text="IT대학"
+                            app:chipBackgroundColor="@color/chip_bg"
+                            app:chipCornerRadius="4dp"
+                            app:chipEndPadding="4dp"
+                            app:chipMinHeight="20dp"
+                            app:chipMinTouchTargetSize="0dp"
+                            app:chipStartPadding="4dp"
+                            app:chipStrokeColor="@color/chip_bg" />
+
+                        <TextView
+                            style="@style/Body3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="손승우"></TextView>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                style="@style/Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/profile_logo"
+                android:drawablePadding="12dp"
+                android:gravity="center"
+                android:text="@string/recommended_semina"></TextView>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:columnCount="2"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingVertical="8dp">
+
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/han_liver_board" />
+
+
+                        <TextView
+                            style="@style/Body1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_marginTop="10dp"
+                            android:text="한강에 보드타러 가요" />
+
+                        <TextView
+                            style="@style/Body3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_marginTop="10dp"
+                            android:text="스케이트 보드 초심자를 위해 친절하게 알려드릴게요" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_marginTop="16dp"
+                            android:orientation="horizontal">
+
+                            <!-- Chip with IT college text                        -->
+                            <com.google.android.material.chip.Chip
+                                style="@style/Body3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checkable="false"
+                                android:clickable="false"
+                                android:text="IT대학"
+                                app:chipBackgroundColor="@color/chip_bg"
+                                app:chipCornerRadius="4dp"
+                                app:chipEndPadding="4dp"
+                                app:chipMinHeight="20dp"
+                                app:chipMinTouchTargetSize="0dp"
+                                app:chipStartPadding="4dp"
+                                app:chipStrokeColor="@color/chip_bg" />
+
+                            <TextView
+                                style="@style/Body3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="정보과학관 203호" />
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/Body3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_marginTop="4dp"
+                            android:text="컴퓨터학부 2학년 이정민" />
+
+                        <TextView
+                            style="@style/Body3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_marginTop="4dp"
+                            android:drawableStart="@drawable/participant_icon"
+                            android:text="3/5명" />
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingVertical="8dp">
+
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/dae_500" />
+
+
+                        <TextView
+                            style="@style/Body1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_marginTop="10dp"
+                            android:text="3대 500치는 방법" />
+
+                        <TextView
+                            style="@style/Body3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_marginTop="10dp"
+                            android:text="숭실대에서 나보다 벤치 프레스 잘하는 사람 없다" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_marginTop="16dp"
+                            android:orientation="horizontal">
+
+                            <!-- Chip with IT college text                        -->
+                            <com.google.android.material.chip.Chip
+                                style="@style/Body3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checkable="false"
+                                android:clickable="false"
+                                android:text="IT대학"
+                                app:chipBackgroundColor="@color/chip_bg"
+                                app:chipCornerRadius="4dp"
+                                app:chipEndPadding="4dp"
+                                app:chipMinHeight="20dp"
+                                app:chipMinTouchTargetSize="0dp"
+                                app:chipStartPadding="4dp"
+                                app:chipStrokeColor="@color/chip_bg" />
+
+                            <TextView
+                                style="@style/Body3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="정보과학관 203호" />
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/Body3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_marginTop="4dp"
+                            android:text="컴퓨터학부 2학년 이정민" />
+
+                        <TextView
+                            style="@style/Body3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_marginTop="4dp"
+                            android:drawableStart="@drawable/participant_icon"
+                            android:text="3/5명" />
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </GridLayout>
+
+            <Button
+                style="@style/Button1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="신청하기"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

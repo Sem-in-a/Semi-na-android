@@ -6,9 +6,9 @@
     <string name="home">홈</string>
     <string name="mypage">마이페이지</string>
     <string name="search_by_major">전공별로 찾아보는 <font color="#167A90">샘이나!</font></string>
-    <string name="title_activity_fragment_mypage_view_detail_applied">
-    fragment_mypage_view_detail_applied
-  </string>
-
     <string name="search_by_hobby">취미로 찾아보는 <font color="#167A90">샘이나!</font></string>
+    <string name="recommended_semina">이런 <font color="#167A90">샘이나</font>는 어때요?</string>
+    <string name="title_activity_fragment_mypage_view_detail_applied">
+        fragment_mypage_view_detail_applied
+    </string>
 </resources>
