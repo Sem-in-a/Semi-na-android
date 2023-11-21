@@ -8,8 +8,12 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.semina.semi_na.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,18 +21,36 @@ public class MainActivity extends AppCompatActivity {
     // 바텀 네비게이션
     BottomNavigationView bottomNavigationView;
 
-    private String TAG = "메인";
+    private String TAG = "MainActivity";
 
     // 프래그먼트 변수
     private Fragment fragment_home;
     private Fragment fragment_create;
     private Fragment fragment_my;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // firebase messaging
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.d(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+
+                        // Log and toast
+                        Log.d(TAG, token);
+                        Toast.makeText(MainActivity.this, token, Toast.LENGTH_SHORT).show();
+                    }
+                });
 
         final int MENU_HOME = R.id.menu_home;
         final int MENU_CREATE_SEMINA = R.id.menu_create_semina;
