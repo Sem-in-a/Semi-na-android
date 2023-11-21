@@ -9,7 +9,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.semina.semi_na.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         final int MENU_HOME = R.id.menu_home;
         final int MENU_CREATE_SEMINA = R.id.menu_create_semina;
         final int MENU_MYPAGE = R.id.menu_mypage;
+
 
 
         // 프래그먼트 생성
