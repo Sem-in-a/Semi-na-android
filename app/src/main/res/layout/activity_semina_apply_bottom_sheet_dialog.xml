@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomSheetLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_sheet_dialog_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingHorizontal="64dp"
+    android:paddingVertical="32dp">
+
+    <TextView
+        style="@style/SUbTitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="세미나 신청이 완료됐어요!"
+        android:textStyle="bold" />
+
+    <TextView
+        style="@style/Body3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="반드시 늦지 않게 참석해주세요!\n
+세미나 하루 전날 한번 더 알림을 드릴게요." />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Body3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="세미나 이름" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/seminarNameTextView"
+                style="@style/Body3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="샘이나는 Swift UI" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Body3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일시" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/seminarDateTextView"
+                style="@style/Body3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2023.10.23" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Body3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="장소" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/seminarPlaceTextView"
+                style="@style/Body3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="정보과학관 203호" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Body3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="신청인" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/seminarApplyPersonTextView"
+                style="@style/Body3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이중곤" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/confirmButton"
+        style="@style/Button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="확인"
+        android:textColor="@color/white"
+        app:cornerRadius="8dp" />
+
+
+</LinearLayout>
