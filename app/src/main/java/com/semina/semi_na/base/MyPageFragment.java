@@ -11,8 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.fragment.app.FragmentTransaction;
-import com.semina.semi_na.R;
 import com.semina.semi_na.databinding.FragmentMyPageBinding;
 import com.semina.semi_na.view.mypage.LogoutModalFragment;
 import com.semina.semi_na.view.mypage.ViewDetailAppliedActivity;
@@ -44,7 +42,7 @@ public class MyPageFragment extends Fragment {
       startActivity(intent);
     });
 
-    binding.logoutBtn.setOnClickListener(logoutView -> {
+    binding.logoutBtn.setOnClickListener(logoutView ->{
       DialogFragment logoutDialog = new LogoutModalFragment();
       logoutDialog.show(getParentFragmentManager(), "logoutDialog");
     });
