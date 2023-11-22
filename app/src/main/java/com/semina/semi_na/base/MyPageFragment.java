@@ -5,12 +5,14 @@ import static android.content.Context.MODE_PRIVATE;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.FragmentTransaction;
+import com.semina.semi_na.R;
 import com.semina.semi_na.databinding.FragmentMyPageBinding;
 import com.semina.semi_na.view.mypage.LogoutModalFragment;
 import com.semina.semi_na.view.mypage.ViewDetailAppliedActivity;
@@ -42,14 +44,10 @@ public class MyPageFragment extends Fragment {
       startActivity(intent);
     });
 
-    binding.logoutBtn.setOnClickListener(logoutView ->{
-      Fragment logoutFragment = new LogoutModalFragment();
-      FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-      //ransaction.replace(R.id.fragment_container, logoutFragment); // 'fragment_container'는 프래그먼트를 로드하는 FrameLayout의 ID입니다
-      transaction.addToBackStack(null); // 이 트랜잭션을 백 스택에 추가합니다
-      transaction.commit();
+    binding.logoutBtn.setOnClickListener(logoutView -> {
+      DialogFragment logoutDialog = new LogoutModalFragment();
+      logoutDialog.show(getParentFragmentManager(), "logoutDialog");
     });
-
 
     return view;
   }
@@ -59,6 +57,5 @@ public class MyPageFragment extends Fragment {
     super.onDestroyView();
     binding = null;
   }
-
 }
 

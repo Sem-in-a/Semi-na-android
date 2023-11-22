@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical">
 
-    <RelativeLayout
+    <FrameLayout
+      android:id="@+id/logout_container"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="200dp"
+      android:layout_marginTop="40dp"
       android:layout_gravity="center_horizontal">
 
         <ImageView
@@ -17,6 +17,7 @@
           android:layout_height="wrap_content"
           android:layout_gravity="center_horizontal"
           android:background="@drawable/logout_modal_box" />
+
         <TextView
           android:id="@+id/logout_modal_text"
           android:textStyle="bold"
@@ -25,32 +26,30 @@
           android:text="정말 로그아웃 하시겠어요?"
           android:textColor="#000000"
           android:textSize="16sp"
-          android:layout_centerHorizontal="true"
+          android:layout_gravity="center_horizontal"
           android:layout_marginTop="52dp"/>
 
-        <RelativeLayout
-          android:id="@+id/frame_61145"
+        <LinearLayout
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_below="@+id/logout_modal_text"
-          android:layout_marginLeft="48dp"
-          android:layout_marginTop="41dp">
+          android:orientation="horizontal"
+          android:layout_gravity="center_horizontal"
+          android:layout_marginTop="110dp">
+
             <androidx.appcompat.widget.AppCompatButton
               android:id="@+id/logout_no_btn"
               android:layout_width="100dp"
               android:layout_height="48dp"
               android:background="@drawable/logout_no_btn"
               android:text="취소" />
+
             <androidx.appcompat.widget.AppCompatButton
               android:id="@+id/logout_yes_btn"
               android:layout_width="100dp"
               android:layout_height="48dp"
               android:layout_marginLeft="23dp"
-              android:layout_toRightOf="@+id/logout_no_btn"
               android:background="@drawable/logout_yes_btn"
-              android:text="확인"
-              />
-        </RelativeLayout>
-    </RelativeLayout>
-
-</LinearLayout>
+              android:text="확인" />
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>

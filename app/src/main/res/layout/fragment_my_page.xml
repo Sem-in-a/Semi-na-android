@@ -180,7 +180,7 @@
               android:layout_centerHorizontal="true"
               android:layout_marginTop="92dp"
               android:background="@drawable/no_hosted_seminer"
-              android:visibility="visible" />
+              android:visibility="gone" />
         </RelativeLayout>
     </RelativeLayout>
 
@@ -239,7 +239,7 @@
               android:layout_centerHorizontal="true"
               android:layout_marginTop="92dp"
               android:background="@drawable/no_hosted_seminer"
-              android:visibility="visible" />
+              android:visibility="gone" />
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>
