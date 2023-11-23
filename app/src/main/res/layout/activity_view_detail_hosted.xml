@@ -1,31 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
+<ScrollView android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:orientation="vertical">
+  xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <LinearLayout
-    android:id="@+id/hosted_title_container"
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_alignParentTop="true"
-    android:layout_marginTop="63dp">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <LinearLayout
+      android:id="@+id/hosted_title_container"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:layout_alignParentTop="true"
+      android:layout_marginTop="63dp">
 
-    <ImageView
-      android:layout_width="wrap_content"
+      <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/profile_logo"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="31dp"/>
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="내가 주최한 세미나"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_marginLeft="5dp"/>
+    </LinearLayout>
+
+    <com.google.android.material.tabs.TabLayout
+      android:id="@+id/select_text_tabLayout"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="@drawable/profile_logo"
-      android:layout_alignParentLeft="true"
-      android:layout_marginLeft="31dp"/>
-    <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="내가 주최한 세미나"
-      android:textSize="18sp"
-      android:textStyle="bold"
-      android:textColor="#000000"
-      android:layout_marginLeft="5dp"/>
+      android:layout_marginTop="15dp"
+      app:tabIndicatorHeight="0dp"
+      app:tabMinWidth="180dp"
+      app:tabGravity="center"
+      app:tabMode="fixed">
+
+      <com.google.android.material.tabs.TabItem
+        android:id="@+id/proceeding_tab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="진행중" />
+
+      <com.google.android.material.tabs.TabItem
+        android:id="@+id/closed_tab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="마감" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+      android:id="@+id/applied_view_pager"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginTop="30dp"/>
+
   </LinearLayout>
-</LinearLayout>
+</ScrollView>

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical">
+<ScrollView android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:orientation="vertical">
 <LinearLayout
   android:id="@+id/applied_title_container"
   android:layout_width="match_parent"
@@ -28,4 +31,35 @@ android:orientation="vertical">
     android:textColor="#000000"
     android:layout_marginLeft="5dp"/>
 </LinearLayout>
+
+  <com.google.android.material.tabs.TabLayout
+    android:id="@+id/select_text_tabLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    app:tabIndicatorHeight="0dp"
+    app:tabMinWidth="180dp"
+    app:tabGravity="center"
+    app:tabMode="fixed">
+
+    <com.google.android.material.tabs.TabItem
+      android:id="@+id/proceeding_tab"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="진행중" />
+
+    <com.google.android.material.tabs.TabItem
+      android:id="@+id/closed_tab"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="마감" />
+  </com.google.android.material.tabs.TabLayout>
+
+  <androidx.viewpager2.widget.ViewPager2
+    android:id="@+id/applied_view_pager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="30dp"/>
+
 </LinearLayout>
+</ScrollView>
