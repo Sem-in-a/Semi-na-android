@@ -211,6 +211,7 @@
 
 
                         <TextView
+                          android:id="@+id/hosted_title"
                           style="@style/Body1"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
@@ -219,6 +220,7 @@
                           android:text="한강에 보드타러 가요" />
 
                         <TextView
+                          android:id="@+id/hosted_description"
                           style="@style/Body3"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
@@ -235,6 +237,7 @@
 
                             <!-- Chip with IT college text                        -->
                             <com.google.android.material.chip.Chip
+                              android:id="@+id/hosted_under_department"
                               style="@style/Body3"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
@@ -250,6 +253,7 @@
                               app:chipStrokeColor="@color/chip_bg" />
 
                             <TextView
+                              android:id="@+id/hosted_locationDetail"
                               style="@style/Body3"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
@@ -263,7 +267,7 @@
                           android:layout_height="wrap_content"
                           android:layout_gravity="start"
                           android:layout_marginTop="4dp"
-                          android:text="컴퓨터학부 2학년 이정민" />
+                          android:text="컴퓨터학부 학번" />
 
                         <TextView
                           style="@style/Body3"
@@ -271,7 +275,7 @@
                           android:layout_height="wrap_content"
                           android:layout_gravity="start"
                           android:layout_marginTop="4dp"
-                          android:text="2023.10.23 오후 3시" />
+                          android:text="이정민" />
 
                         <TextView
                           style="@style/Body3"
@@ -372,7 +376,7 @@
                           android:layout_height="wrap_content"
                           android:layout_gravity="start"
                           android:layout_marginTop="4dp"
-                          android:text="컴퓨터학부 2학년 이정민" />
+                          android:text="컴퓨터학부 학번" />
 
                         <TextView
                           style="@style/Body3"
@@ -380,7 +384,7 @@
                           android:layout_height="wrap_content"
                           android:layout_gravity="start"
                           android:layout_marginTop="4dp"
-                          android:text="2023.10.23 오후 3시" />
+                          android:text="이정민" />
 
                         <TextView
                           style="@style/Body3"
