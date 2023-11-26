@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.semina.semi_na.base.MainActivity;
 import com.semina.semi_na.data.remote.RetrofitClient;
 import com.semina.semi_na.data.remote.RetrofitInterface;
@@ -47,6 +48,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseFirestore database;
 
+    private String fcmToken;
+
     private String imgUrl = "https://images.unsplash.com/photo-1671716784499-a3d26826d844?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
     @Override
@@ -61,6 +64,22 @@ public class LoginActivity extends AppCompatActivity {
         retrofitInterface = RetrofitClient.getRetrofit().create(RetrofitInterface.class);
         preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
         database = FirebaseFirestore.getInstance();
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("LoginActivity", "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        fcmToken = task.getResult();
+
+                        Log.d("LoginActivity",fcmToken);
+                    }
+                });
 
         loginBtn.setOnClickListener(view -> {
 
@@ -86,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                             String department = loginResponse.getParentDept();
                             String major = loginResponse.getDept();
                             String name = loginResponse.getName();
-                            Member member = new Member(studentNum, department, name, major);
+                            Member member = new Member(studentNum, department, name, major,fcmToken);
                             ArrayList<String> memberList = new ArrayList<>();
 
                             database.collection("Member")
@@ -96,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                             if(task.getResult().getDocuments().size()==0){
-                                                Member member = new Member(studentNum, department, name, major);
+                                                Member member = new Member(studentNum, department, name, major,fcmToken);
                                                 Log.d("LoginActivity", "파이어 스토어접근");
                                                 database.collection("Member").add(member).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                                     @Override
