@@ -60,7 +60,7 @@ public class MyPageFragment extends Fragment {
       logoutDialog.show(getParentFragmentManager(), "logoutDialog");
     });
 
-    Query seminarQuery = db.collection("Seminars").whereEqualTo("host", currentUserId);
+    Query seminarQuery = db.collection("Semina").whereEqualTo("host", currentUserId);
     seminarQuery.get().addOnCompleteListener(task -> {
       if (task.isSuccessful()) {
         List<DocumentSnapshot> documents = task.getResult().getDocuments();
@@ -96,28 +96,36 @@ public class MyPageFragment extends Fragment {
   }
 
   // CardView에 데이터를 설정하는 메서드
+  // CardView에 데이터를 설정하는 메서드
   private void updateCardViewWithData(CardView cardView, DocumentSnapshot document) {
     // CardView 내의 각 View를 찾아옵니다.
     ImageView imageView = cardView.findViewById(R.id.hosted_img);
     TextView titleTextView = cardView.findViewById(R.id.hosted_title);
     TextView descriptionTextView = cardView.findViewById(R.id.hosted_description);
-    // 나머지 View 찾기 ...
+    TextView locationTextView = cardView.findViewById(R.id.hosted_under_department);
+    TextView locationDetailTextView = cardView.findViewById(R.id.hosted_location_detail);
+    TextView capacityTextView = cardView.findViewById(R.id.hosted_capacity);
 
     // DocumentSnapshot에서 데이터 추출
     String imgUrl = document.getString("imgUrl");
     String title = document.getString("title");
     String description = document.getString("description");
-    // 나머지 데이터 추출 ...
+    String location = document.getString("location");
+    String locationDetail = document.getString("locationDetail");
+    Long capacity = document.getLong("capacity");
 
     // UI 컴포넌트에 데이터 바인딩
     Glide.with(this).load(imgUrl).into(imageView);
     titleTextView.setText(title);
     descriptionTextView.setText(description);
-    // 나머지 데이터 바인딩 ...
+    locationTextView.setText(location);
+    locationDetailTextView.setText(locationDetail);
+    capacityTextView.setText(capacity + "명");
 
     // CardView를 보이게 설정
     cardView.setVisibility(View.VISIBLE);
   }
+
 
   @Override
   public void onDestroyView() {

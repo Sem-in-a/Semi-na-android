@@ -180,7 +180,7 @@
 
                 <androidx.cardview.widget.CardView
                   android:id="@+id/cardView1"
-                  android:layout_width="wrap_content"
+                  android:layout_width="145dp"
                   android:layout_height="wrap_content"
                   android:layout_rowWeight="1"
                   android:layout_columnWeight="1"
@@ -207,7 +207,7 @@
                             <ImageView
                               android:id="@+id/hosted_img"
                               android:layout_width="145dp"
-                              android:layout_height="wrap_content"
+                              android:layout_height="143dp"
                               android:adjustViewBounds="true"
                               android:src="@drawable/board" />
                         </androidx.cardview.widget.CardView>
@@ -255,7 +255,7 @@
                               app:chipStrokeColor="@color/chip_bg" />
 
                             <TextView
-                              android:id="@+id/hosted_locationDetail"
+                              android:id="@+id/hosted_location_detail"
                               style="@style/Body3"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
