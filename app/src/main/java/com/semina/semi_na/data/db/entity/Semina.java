@@ -28,7 +28,7 @@ public class Semina implements Serializable {
     private int capacity;
 
     public Semina(String title, SeminaCategory seminaCategory,MajorCategory majorCategory,String date,String time, String host,String imgUrl,Location location,String locationDetail
-    ,ArrayList<String> memberList,int capacity){
+    ,ArrayList<String> memberList,int capacity,HobbyCategory hobbyCategory){
         this.title = title;
         this.seminaCategory = seminaCategory;
         this.majorCategory = majorCategory;
@@ -40,6 +40,7 @@ public class Semina implements Serializable {
         this.locationDetail = locationDetail;
         this.memberList = memberList;
         this.capacity = capacity;
+        this.hobbyCategory = hobbyCategory;
     }
 
     public Semina(){
@@ -132,5 +133,13 @@ public class Semina implements Serializable {
 
     public int getCapacity() {
         return capacity;
+    }
+
+    public HobbyCategory getHobbyCategory() {
+        return hobbyCategory;
+    }
+
+    public String getDate() {
+        return date;
     }
 }

@@ -30,10 +30,6 @@ public class CreateHobbyActivity extends AppCompatActivity {
         binding = ActivityCreateHobbyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        intent = getIntent();
-        Semina semina = (Semina) intent.getSerializableExtra("semina");
-        semina.setMajorCategory(MajorCategory.NULL);
-
 
         ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
@@ -93,7 +89,7 @@ public class CreateHobbyActivity extends AppCompatActivity {
             public void onClick(View view) {
                 binding.createHobbyFood.setSelected(!view.isSelected());
                 if(binding.createHobbyFood.isSelected()){
-                    hobbyCategory = HobbyCategory.BOOK;
+                    hobbyCategory = HobbyCategory.FOOD;
                     binding.createHobbyFood.setBackground(getDrawable(R.drawable.tab_selected_background));
                 }else{
                     binding.createHobbyFood.setBackground(null);
@@ -104,13 +100,16 @@ public class CreateHobbyActivity extends AppCompatActivity {
         binding.activityCreateHobbyNextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                intent = getIntent();
+                Semina semina = (Semina) intent.getSerializableExtra("semina");
                 if(hobbyCategory==HobbyCategory.NULL){
                     showToast("취미를 선택해주세요");
-                }else{
+                }
+                else{
                 semina.setHobbyCategory(hobbyCategory);
                 launcher.launch(new Intent(getApplicationContext(),CreateLocationActivity.class).putExtra("semina",semina)
                         .addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
-            }
+                }
             }
         });
 

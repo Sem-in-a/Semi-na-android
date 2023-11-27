@@ -46,10 +46,6 @@ public class CreateMajorActivity extends AppCompatActivity{
                 });
 
 
-        intent = getIntent();
-        Semina semina = (Semina) intent.getSerializableExtra("semina");
-        semina.setHobbyCategory(HobbyCategory.NULL);
-
         binding.createMajorIt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -150,8 +146,11 @@ public class CreateMajorActivity extends AppCompatActivity{
         });
 
         binding.activityCreateMajorNextBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+                intent = getIntent();
+                Semina semina = (Semina) intent.getSerializableExtra("semina");
                 if(majorCategory==MajorCategory.NULL){
                     showToast("전공을 선택해주세요");
                 }else{
