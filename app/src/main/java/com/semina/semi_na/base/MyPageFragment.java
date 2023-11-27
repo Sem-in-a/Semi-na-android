@@ -19,12 +19,14 @@ import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.type.Date;
 import com.semina.semi_na.R;
 import com.semina.semi_na.databinding.FragmentMyPageBinding;
 import com.semina.semi_na.view.mypage.LogoutModalFragment;
 import com.semina.semi_na.view.mypage.ViewDetailAppliedActivity;
 import com.semina.semi_na.view.mypage.ViewDetailHostedActivity;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class MyPageFragment extends Fragment {
@@ -60,32 +62,40 @@ public class MyPageFragment extends Fragment {
       logoutDialog.show(getParentFragmentManager(), "logoutDialog");
     });
 
-    Query seminarQuery = db.collection("Semina").whereEqualTo("host", currentUserId);
+    List<String> hostIds = Arrays.asList(currentUserId);
+
+    Query seminarQuery = db.collection("Semina").whereIn("host", hostIds);
     seminarQuery.get().addOnCompleteListener(task -> {
       if (task.isSuccessful()) {
         List<DocumentSnapshot> documents = task.getResult().getDocuments();
         getActivity().runOnUiThread(() -> {
           if (!documents.isEmpty()) {
             Log.d("MyPageFragment", "Document count: " + documents.size());
-            // 데이터가 있을 경우, 'no_hosted_seminer' 이미지를 숨기고 'hosted_grid'를 보여줍니다.
+            // 데이터가 있을 경우, 'no_hosted_semina' 이미지를 숨기고 'hosted_grid'와 'viewDetailHosted'를 보여줍니다
             binding.noHostedSeminer.setVisibility(View.GONE);
             binding.hostedGrid.setVisibility(View.VISIBLE);
+            binding.viewDetailHosted.setVisibility(View.VISIBLE);
 
             // 가져온 데이터로 UI를 채웁니다.
             for (int i = 0; i < documents.size(); i++) {
               DocumentSnapshot document = documents.get(i);
+              Log.d("MyPageFragment", "Document " + i + ": " + document.getData());
+
               if (i == 0) {
                 // 첫 번째 CardView를 채웁니다.
                 updateCardViewWithData(binding.cardView1, document);
               } else if (i == 1) {
                 // 두 번째 CardView를 채웁니다.
                 updateCardViewWithData(binding.cardView2, document);
+              }else {
+                Log.d("MyPageFragment", "No documents found");
               }
             }
           } else {
-            // 데이터가 없을 경우, 'no_hosted_seminer' 이미지를 보여주고 'hosted_grid'를 숨깁니다.
+            // 데이터가 없을 경우, 'no_hosted_seminer' 이미지를 보여주고 'hosted_grid'와 'viewDetailHosted'을 숨깁니다.
             binding.noHostedSeminer.setVisibility(View.VISIBLE);
             binding.hostedGrid.setVisibility(View.GONE);
+            binding.viewDetailHosted.setVisibility(View.GONE);
           }
         });
       } else {
