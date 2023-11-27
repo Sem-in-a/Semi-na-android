@@ -66,6 +66,7 @@ public class MyPageFragment extends Fragment {
         List<DocumentSnapshot> documents = task.getResult().getDocuments();
         getActivity().runOnUiThread(() -> {
           if (!documents.isEmpty()) {
+            Log.d("MyPageFragment", "Document count: " + documents.size());
             // 데이터가 있을 경우, 'no_hosted_seminer' 이미지를 숨기고 'hosted_grid'를 보여줍니다.
             binding.noHostedSeminer.setVisibility(View.GONE);
             binding.hostedGrid.setVisibility(View.VISIBLE);
@@ -95,7 +96,6 @@ public class MyPageFragment extends Fragment {
     return view;
   }
 
-  // CardView에 데이터를 설정하는 메서드
   // CardView에 데이터를 설정하는 메서드
   private void updateCardViewWithData(CardView cardView, DocumentSnapshot document) {
     // CardView 내의 각 View를 찾아옵니다.
