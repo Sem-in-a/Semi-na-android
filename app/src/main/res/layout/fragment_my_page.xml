@@ -176,7 +176,7 @@
               android:layout_height="wrap_content"
               android:columnCount="2"
               android:orientation="horizontal"
-              android:visibility="gone">
+              android:visibility="visible">
 
                 <androidx.cardview.widget.CardView
                   android:id="@+id/cardView1"
@@ -262,7 +262,6 @@
                               android:text="정보과학관 203호" />
                         </LinearLayout>
 
-                        <!-- 본인
                         <LinearLayout
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
@@ -294,7 +293,6 @@
                               android:layout_marginStart="2dp"
                               android:text="이정민" />
                         </LinearLayout>
-                        -->
                         <TextView
                           android:id="@+id/hosted_capacity"
                           style="@style/Body3"
@@ -394,7 +392,6 @@
                               android:text="정보과학관 203호" />
                         </LinearLayout>
 
-            <!-- 본인
             <LinearLayout
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
@@ -426,7 +423,6 @@
                   android:layout_marginStart="2dp"
                   android:text="이정민" />
             </LinearLayout>
-            -->
 
             <TextView
               android:id="@+id/hosted2_capacity"
@@ -452,7 +448,7 @@
               android:layout_centerHorizontal="true"
               android:layout_marginTop="92dp"
               android:background="@drawable/no_hosted_seminer"
-              android:visibility="visible" />
+              android:visibility="gone" />
         </RelativeLayout>
     </RelativeLayout>
 

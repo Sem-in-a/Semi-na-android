@@ -45,7 +45,8 @@ public class MyPageFragment extends Fragment {
     binding.someIdUnderDepartment.setText(preferences.getString("depart", ""));
     binding.someIdMajor.setText(preferences.getString("major", ""));
     binding.someIdGrade.setText(preferences.getString("studentNum", ""));
-    String currentUserId = preferences.getString("userId", "");
+    String currentUserId = preferences.getString("studentNum", "");
+    Log.d("MyPageFragment", "Current User ID: " + currentUserId);
 
     binding.viewDetailHosted.setOnClickListener(hostedView -> {
       Intent intent = new Intent(getActivity(), ViewDetailHostedActivity.class);
@@ -115,6 +116,16 @@ public class MyPageFragment extends Fragment {
     TextView locationTextView = cardView.findViewById(R.id.hosted_under_department);
     TextView locationDetailTextView = cardView.findViewById(R.id.hosted_location_detail);
     TextView capacityTextView = cardView.findViewById(R.id.hosted_capacity);
+    TextView hostedmajorTextView = cardView.findViewById(R.id.hosted_major);
+    TextView hostedgradeTextView = cardView.findViewById(R.id.hosted_grade);
+    TextView hostednameTextView = cardView.findViewById(R.id.hosted_name);
+
+    //추가한 이유는 이미지가 느리게 로딩될 경우 null로 먼저 찍히면 앱이 꺼지기 때문입니다.
+    if (imageView == null) {
+      Log.e("MyPageFragment", "ImageView not found in CardView.");
+      // 이 경우 이미지 뷰가 레이아웃에 없는 것이므로 더 이상 진행하지 않고 반환합니다.
+      return;
+    }
 
     // DocumentSnapshot에서 데이터 추출
     String imgUrl = document.getString("imgUrl");
@@ -122,7 +133,19 @@ public class MyPageFragment extends Fragment {
     String description = document.getString("description");
     String location = document.getString("location");
     String locationDetail = document.getString("locationDetail");
-    Long capacity = document.getLong("capacity");
+    //마이페이라, 우선 프로필에서 가져오듯이 데이터 가져왔습니다!
+    Long capacity = document.getLong("capacity");SharedPreferences preferences = getActivity().getSharedPreferences("UserInfo", MODE_PRIVATE);
+    String userName = preferences.getString("name", "N/A");
+    String userMajor = preferences.getString("major", "N/A");
+    String userGrade = preferences.getString("studentNum", "N/A");
+
+    if (imgUrl != null && !imgUrl.trim().isEmpty()) {
+      Glide.with(this).load(imgUrl).into(imageView);
+    } else {
+      Log.e("MyPageFragment", "Image URL is null or empty.");
+      // 우선 아무 기본 이미지 띄우기
+      Glide.with(this).load(R.drawable.board).into(imageView);
+    }
 
     // UI 컴포넌트에 데이터 바인딩
     Glide.with(this).load(imgUrl).into(imageView);
@@ -131,6 +154,9 @@ public class MyPageFragment extends Fragment {
     locationTextView.setText(location);
     locationDetailTextView.setText(locationDetail);
     capacityTextView.setText(capacity + "명");
+    hostednameTextView.setText(userName);
+    hostedmajorTextView.setText(userMajor);
+    hostedgradeTextView.setText(userGrade);
 
     // CardView를 보이게 설정
     cardView.setVisibility(View.VISIBLE);
