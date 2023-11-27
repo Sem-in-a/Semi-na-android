@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.semina.semi_na.R;
-import com.semina.semi_na.data.model.HobbySeminarItem;
 import com.semina.semi_na.databinding.FragmentHomeBinding;
 import com.semina.semi_na.view.adapter.CollegeSeminarPagerAdapter;
 import com.semina.semi_na.view.adapter.HobbySeminarPagerAdapter;
@@ -34,14 +33,6 @@ public class HomeFragment extends Fragment {
         put("경제통상대학", R.drawable.economics_college_icon);
         put("경영대학", R.drawable.business_college_icon);
     }};
-    private ArrayList<HobbySeminarItem> hobbySeminarItemArrayList = new ArrayList() {
-        {
-            add(new HobbySeminarItem(R.drawable.seminar_hobby_exercise));
-            add(new HobbySeminarItem(R.drawable.seminar_hobby_food));
-            add(new HobbySeminarItem(R.drawable.seminar_hobby_music));
-            add(new HobbySeminarItem(R.drawable.seminar_hobby_book));
-        }
-    };
 
     public HomeFragment() {
         // Required empty public constructor
