@@ -1,62 +1,102 @@
 package com.semina.semi_na.view.mypage;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.paging.PagingConfig;
+import androidx.recyclerview.widget.GridLayoutManager;
+import com.firebase.ui.firestore.paging.FirestorePagingAdapter;
+import com.firebase.ui.firestore.paging.FirestorePagingOptions;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.semina.semi_na.R;
+import com.semina.semi_na.data.db.entity.Semina;
+import com.semina.semi_na.databinding.FragmentHostedProceedingBinding;
+import com.semina.semi_na.databinding.SeminarCardViewItemBinding;
+import com.semina.semi_na.view.viewHolder.DetailCardViewHolder;
 
-/**
- * A simple {@link Fragment} subclass. Use the {@link HostedProceedingFragment#newInstance} factory
- * method to create an instance of this fragment.
- */
+import static android.content.Context.MODE_PRIVATE;
+
+//내가 주최한 세미나 - 진행 중
 public class HostedProceedingFragment extends Fragment {
+  private FragmentHostedProceedingBinding binding;
+  private FirestorePagingAdapter<Semina, DetailCardViewHolder> adapter;
 
-  // TODO: Rename parameter arguments, choose names that match
-  // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-  private static final String ARG_PARAM1 = "param1";
-  private static final String ARG_PARAM2 = "param2";
-
-  // TODO: Rename and change types of parameters
-  private String mParam1;
-  private String mParam2;
-
-  public HostedProceedingFragment() {
-    // Required empty public constructor
-  }
-
-  /**
-   * Use this factory method to create a new instance of this fragment using the provided
-   * parameters.
-   *
-   * @param param1 Parameter 1.
-   * @param param2 Parameter 2.
-   * @return A new instance of fragment HostedProceedingFragment.
-   */
-  // TODO: Rename and change types and number of parameters
-  public static HostedProceedingFragment newInstance(String param1, String param2) {
-    HostedProceedingFragment fragment = new HostedProceedingFragment();
-    Bundle args = new Bundle();
-    args.putString(ARG_PARAM1, param1);
-    args.putString(ARG_PARAM2, param2);
-    fragment.setArguments(args);
-    return fragment;
-  }
-
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    if (getArguments() != null) {
-      mParam1 = getArguments().getString(ARG_PARAM1);
-      mParam2 = getArguments().getString(ARG_PARAM2);
-    }
+  // 현재 로그인한 사용자의 ID를 가져오는 메서드
+  private String getCurrentUserId() {
+    SharedPreferences preferences = getActivity().getSharedPreferences("UserInfo", MODE_PRIVATE);
+    return preferences.getString("studentNum", "");
   }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.fragment_hosted_proceeding, container, false);
+    binding = FragmentHostedProceedingBinding.inflate(inflater, container, false);
+    View view = binding.getRoot();
+
+    String currentUserId = getCurrentUserId();
+
+    Log.d("HostedProceedingFragment", "Current User ID: " + currentUserId);
+
+    // 파이어스토어 쿼리 설정
+    Query baseQuery = FirebaseFirestore.getInstance()
+        .collection("Semina")
+        .whereEqualTo("host", currentUserId)
+        .orderBy("date", Query.Direction.DESCENDING);
+
+    // 페이징 구성
+    PagingConfig config = new PagingConfig(10, 5, false);
+
+    // 어댑터 옵션 설정
+    FirestorePagingOptions<Semina> options = new FirestorePagingOptions.Builder<Semina>()
+        .setLifecycleOwner(this)
+        .setQuery(baseQuery, config, Semina.class)
+        .build();
+
+    // 어댑터 설정
+    adapter = new FirestorePagingAdapter<Semina, DetailCardViewHolder>(options) {
+      @Override
+      protected void onBindViewHolder(@NonNull DetailCardViewHolder holder, int position, @NonNull Semina model) {
+        Log.d("HostedProceedingFragment", "Binding data to view holder at position: " + position);
+        holder.bind(model);
+      }
+
+      @NonNull
+      @Override
+      public DetailCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.d("HostedProceedingFragment", "onCreateViewHolder is called");
+        View itemView = LayoutInflater.from(parent.getContext())
+            .inflate(R.layout.seminar_card_view_item, parent, false);
+        SeminarCardViewItemBinding binding = SeminarCardViewItemBinding.bind(itemView);
+        return new DetailCardViewHolder(binding);
+      }
+    };
+
+    // 리사이클러뷰 설정
+    binding.hostedRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+    binding.hostedRecyclerView.setAdapter(adapter);
+
+    return view;
+  }
+
+  @Override
+  public void onStart() {
+    super.onStart();
+    if (adapter != null) {
+      adapter.startListening();
+    }
+  }
+
+  @Override
+  public void onStop() {
+    super.onStop();
+    if (adapter != null) {
+      adapter.stopListening();
+    }
   }
 }
