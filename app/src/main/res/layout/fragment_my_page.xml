@@ -209,6 +209,7 @@
                               android:layout_width="150dp"
                               android:layout_height="150dp"
                               android:adjustViewBounds="true"
+                              android:scaleType="centerCrop"
                               android:src="@drawable/board" />
                         </androidx.cardview.widget.CardView>
 
@@ -272,12 +273,22 @@
                           android:layout_gravity="start"
                           android:text="학번" />
                         <TextView
+                          android:id="@+id/hosted_date"
+                          style="@style/Body3"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="start"
+                          android:layout_marginStart="2dp"
+                          android:layout_marginTop="4dp"
+                          android:text="2023.10.23 오후 3시" />
+                        <TextView
                           android:id="@+id/hosted_capacity"
                           style="@style/Body3"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:layout_gravity="start"
                           android:layout_marginTop="4dp"
+                          android:layout_marginStart="2dp"
                           android:drawableStart="@drawable/participant_icon"
                           android:text="3/5명" />
                         </LinearLayout>
@@ -314,6 +325,7 @@
                               android:layout_width="150dp"
                               android:layout_height="150dp"
                               android:adjustViewBounds="true"
+                              android:scaleType="centerCrop"
                               android:src="@drawable/board" />
                         </androidx.cardview.widget.CardView>
 
@@ -377,20 +389,30 @@
                               android:layout_marginTop="4dp"
                               android:layout_gravity="start"
                               android:text="학번" />
+                                    <TextView
+                                      android:id="@+id/hosted2_date"
+                                      style="@style/Body3"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:layout_gravity="start"
+                                      android:layout_marginTop="4dp"
+                                      android:layout_marginStart="2dp"
+                                      android:text="2023.10.23 오후 3시" />
 
-                        <TextView
-                          android:id="@+id/hosted2_capacity"
-                          style="@style/Body3"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_gravity="start"
-                          android:layout_marginTop="4dp"
-                          android:drawableStart="@drawable/participant_icon"
-                          android:text="3/5명" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-            </GridLayout>
-<!--주최한 세미가나가 없는 경우-->
+                                    <TextView
+                                      android:id="@+id/hosted2_capacity"
+                                      style="@style/Body3"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:layout_gravity="start"
+                                      android:layout_marginTop="4dp"
+                                      android:layout_marginStart="2dp"
+                                      android:drawableStart="@drawable/participant_icon"
+                                      android:text="3/5명" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                        </GridLayout>
+            <!--주최한 세미가나가 없는 경우-->
             <ImageView
               android:id="@+id/no_hosted_seminer"
               android:layout_width="wrap_content"

@@ -3,7 +3,6 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
   tools:context=".view.mypage.HostedProceedingFragment">
 
   <androidx.recyclerview.widget.RecyclerView
@@ -12,109 +11,4 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:scrollbars="vertical" />
-
-  <androidx.cardview.widget.CardView
-    android:id="@+id/cardView1"
-    android:layout_width="145dp"
-    android:layout_height="wrap_content"
-    android:layout_rowWeight="1"
-    android:layout_columnWeight="1"
-    android:layout_gravity="fill"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="0dp">
-
-    <LinearLayout
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:gravity="center"
-      android:orientation="vertical"
-      android:paddingVertical="8dp">
-
-      <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:elevation="4dp"
-        app:cardCornerRadius="8dp">
-
-        <ImageView
-          android:id="@+id/hosted_img"
-          android:layout_width="wrap_content"
-          android:layout_height="145dp"
-          android:adjustViewBounds="true"
-          android:src="@drawable/board" />
-      </androidx.cardview.widget.CardView>
-
-      <TextView
-        android:id="@+id/hosted_title"
-        style="@style/Body1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="10dp"
-        android:text="한강에 보드타러 가요" />
-
-      <TextView
-        android:id="@+id/hosted_description"
-        style="@style/Body3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="10dp"
-        android:text="친절하게 알려드릴게요" />
-
-      <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal">
-
-        <com.google.android.material.chip.Chip
-          android:id="@+id/hosted_under_department"
-          style="@style/Body3"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:checkable="false"
-          android:clickable="false"
-          android:text="IT대학"
-          app:chipBackgroundColor="@color/chip_bg"
-          app:chipCornerRadius="4dp"
-          app:chipEndPadding="4dp"
-          app:chipMinHeight="20dp"
-          app:chipMinTouchTargetSize="0dp"
-          app:chipStartPadding="4dp"
-          app:chipStrokeColor="@color/chip_bg" />
-
-        <TextView
-          android:id="@+id/hosted_location_detail"
-          style="@style/Body3"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="8dp"
-          android:text="정보과학관 203호" />
-      </LinearLayout>
-
-        <TextView
-          android:id="@+id/hosted_grade"
-          style="@style/Body3"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="2dp"
-          android:layout_gravity="start"
-          android:text="학번" />
-      <TextView
-        android:id="@+id/hosted_capacity"
-        style="@style/Body3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="4dp"
-        android:drawableStart="@drawable/participant_icon"
-        android:text="3/5명" />
-    </LinearLayout>
-  </androidx.cardview.widget.CardView>
-
 </FrameLayout>

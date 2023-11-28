@@ -19,7 +19,6 @@ import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.type.Date;
 import com.semina.semi_na.R;
 import com.semina.semi_na.databinding.FragmentMyPageBinding;
 import com.semina.semi_na.view.mypage.LogoutModalFragment;
@@ -117,14 +116,19 @@ public class MyPageFragment extends Fragment {
     String locationDetail = document.getString("locationDetail");
     String host = document.getString("host");
     Long capacity = document.getLong("capacity");
+    String date = document.getString("date");
 
     // CardView1 바인딩
-    bindCardViewData(cardView, R.id.hosted_img, R.id.hosted_title, R.id.hosted_description, R.id.hosted_under_department,
-        R.id.hosted_location_detail, R.id.hosted_capacity, R.id.hosted_grade, imgUrl, title, description, location, locationDetail, host, capacity);
+    bindCardViewData(cardView, R.id.hosted_img, R.id.hosted_title, R.id.hosted_description,
+        R.id.hosted_under_department, R.id.hosted_location_detail, R.id.hosted_grade,
+        R.id.hosted_capacity, R.id.hosted_date,
+        imgUrl, title, description, location, locationDetail, host, capacity, date);
 
     // CardView2 바인딩
-    bindCardViewData(cardView, R.id.hosted2_img, R.id.hosted2_title, R.id.hosted2_description, R.id.hosted2_under_department,
-        R.id.hosted2_location_detail, R.id.hosted2_capacity, R.id.hosted2_grade, imgUrl, title, description, location, locationDetail, host, capacity);
+    bindCardViewData(cardView, R.id.hosted2_img, R.id.hosted2_title, R.id.hosted2_description,
+        R.id.hosted2_under_department, R.id.hosted2_location_detail, R.id.hosted2_grade,
+        R.id.hosted2_capacity, R.id.hosted2_date,
+        imgUrl, title, description, location, locationDetail, host, capacity, date);
 
     // CardView를 보이게 설정
     cardView.setVisibility(View.VISIBLE);
@@ -132,26 +136,27 @@ public class MyPageFragment extends Fragment {
 
   // 각 CardView에 데이터 바인딩을 수행하는 보조 메서드
   private void bindCardViewData(CardView cardView, int imageViewId, int titleViewId, int descriptionViewId, int underDepartmentViewId,
-      int locationDetailViewId, int capacityViewId, int gradeViewId, String imgUrl, String title,
-      String description, String location, String locationDetail, String host, Long capacity) {
+      int locationDetailViewId,int gradeViewId,  int capacityViewId, int dateViewId, String imgUrl, String title,
+      String description, String location, String locationDetail, String host, Long capacity, String date) {
     ImageView imageView = cardView.findViewById(imageViewId);
     TextView titleTextView = cardView.findViewById(titleViewId);
     TextView descriptionTextView = cardView.findViewById(descriptionViewId);
     TextView locationTextView = cardView.findViewById(underDepartmentViewId);
     TextView locationDetailTextView = cardView.findViewById(locationDetailViewId);
-    TextView capacityTextView = cardView.findViewById(capacityViewId);
     TextView gradeTextView = cardView.findViewById(gradeViewId);
+    TextView capacityTextView = cardView.findViewById(capacityViewId);
+    TextView dateTextView = cardView.findViewById(dateViewId);
 
+    // 이미지 뷰가 없으면 여기서 종료, 필요 이유: 바로 파베 연동이 안될 시 널 값을 줘야 안꺼짐
     if (imageView == null) {
-      Log.d("MyPageFragment", "아직 파이어베이스 연결 전 문제 해결, 기본 이미지 널값 반환");
-      return; // 이미지 뷰가 없으면 여기서 종료
+      return;
     }
 
     // 이미지 로딩
     if (imgUrl != null && !imgUrl.trim().isEmpty()) {
       Glide.with(cardView.getContext()).load(imgUrl).into(imageView);
     } else {
-      imageView.setImageResource(R.drawable.board); // 기본 이미지 설정
+      imageView.setImageResource(R.drawable.board);
     }
 
     // 나머지 텍스트 데이터 바인딩
@@ -161,13 +166,16 @@ public class MyPageFragment extends Fragment {
     locationDetailTextView.setText(locationDetail);
     gradeTextView.setText(host);
     capacityTextView.setText(String.format("%d명", capacity));
+    if (date != null && !date.trim().isEmpty() && dateTextView != null) {
+      dateTextView.setText(date);
+    }
   }
 
 
   @Override
   public void onDestroyView() {
     super.onDestroyView();
-    binding = null; // View Binding 해제
+    binding = null;
   }
 }
 
