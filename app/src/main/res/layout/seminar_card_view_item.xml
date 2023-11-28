@@ -104,5 +104,7 @@
                 android:text="3/5명" />
 
         </LinearLayout>
+
+      
     </LinearLayout>
 </androidx.cardview.widget.CardView>
