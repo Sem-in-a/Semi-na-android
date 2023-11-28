@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/swift_logo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/titleTextView"
+                style="@style/Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="샘이나는 스위프트 UI" />
+
+            <TextView
+                android:id="@+id/descriptionTextView"
+                style="@style/Body3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="10dp"
+                android:text="스유 한입 하실래요?" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/collegeChipView"
+                    style="@style/Body3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="false"
+                    android:clickable="false"
+                    android:text="IT대학"
+                    app:chipBackgroundColor="@color/chip_bg"
+                    app:chipCornerRadius="4dp"
+                    app:chipEndPadding="4dp"
+                    app:chipMinHeight="20dp"
+                    app:chipMinTouchTargetSize="0dp"
+                    app:chipStartPadding="4dp"
+                    app:chipStrokeColor="@color/chip_bg" />
+
+                <TextView
+                    android:id="@+id/locationTextView"
+                    style="@style/Body3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="정보과학관 203호" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/organizerTextView"
+                style="@style/Body3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="4dp"
+                android:text="컴퓨터학부 2학년 이정민" />
+
+            <TextView
+                android:id="@+id/dateTextView"
+                style="@style/Body3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="4dp"
+                android:text="2023.10.23 오후 3시" />
+
+            <TextView
+                android:id="@+id/participantTextView"
+                style="@style/Body3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="4dp"
+                android:drawableStart="@drawable/participant_icon"
+                android:text="3/5명" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

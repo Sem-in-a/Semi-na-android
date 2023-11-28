@@ -12,8 +12,8 @@ import com.semina.semi_na.view.home.LawFragment;
 import com.semina.semi_na.view.home.NaturalScienceFragment;
 import com.semina.semi_na.view.home.SocialScienceFragment;
 
-public class CollegePagerAdapter extends FragmentStateAdapter {
-    public CollegePagerAdapter(Fragment fa) {
+public class CollegeSeminarPagerAdapter extends FragmentStateAdapter {
+    public CollegeSeminarPagerAdapter(Fragment fa) {
         super(fa);
     }
 
