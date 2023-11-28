@@ -43,7 +43,7 @@ public class Semina implements Serializable {
         this.hobbyCategory = hobbyCategory;
     }
 
-    public Semina(){
+    public Semina() {
 
     }
 
