@@ -206,8 +206,8 @@
 
                             <ImageView
                               android:id="@+id/hosted_img"
-                              android:layout_width="145dp"
-                              android:layout_height="143dp"
+                              android:layout_width="150dp"
+                              android:layout_height="150dp"
                               android:adjustViewBounds="true"
                               android:src="@drawable/board" />
                         </androidx.cardview.widget.CardView>
@@ -260,39 +260,17 @@
                               android:layout_height="wrap_content"
                               android:layout_marginStart="8dp"
                               android:text="정보과학관 203호" />
-                        </LinearLayout>
 
-                        <LinearLayout
+                        </LinearLayout>
+                        <TextView
+                          android:id="@+id/hosted_grade"
+                          style="@style/Body3"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:orientation="horizontal"
+                          android:layout_marginTop="4dp"
+                          android:layout_marginStart="2dp"
                           android:layout_gravity="start"
-                          android:layout_marginTop="4dp">
-
-                            <TextView
-                              android:id="@+id/hosted_major"
-                              style="@style/Body3"
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:text="학과" />
-
-                            <TextView
-                              android:id="@+id/hosted_grade"
-                              style="@style/Body3"
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:layout_marginStart="2dp"
-                              android:text="학번" />
-
-                            <TextView
-                              android:id="@+id/hosted_name"
-                              style="@style/Body3"
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:layout_gravity="start"
-                              android:layout_marginStart="2dp"
-                              android:text="이정민" />
-                        </LinearLayout>
+                          android:text="학번" />
                         <TextView
                           android:id="@+id/hosted_capacity"
                           style="@style/Body3"
@@ -302,9 +280,7 @@
                           android:layout_marginTop="4dp"
                           android:drawableStart="@drawable/participant_icon"
                           android:text="3/5명" />
-
-
-                    </LinearLayout>
+                        </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -335,8 +311,8 @@
 
                             <ImageView
                               android:id="@+id/hosted2_img"
-                              android:layout_width="145dp"
-                              android:layout_height="wrap_content"
+                              android:layout_width="150dp"
+                              android:layout_height="150dp"
                               android:adjustViewBounds="true"
                               android:src="@drawable/board" />
                         </androidx.cardview.widget.CardView>
@@ -384,7 +360,7 @@
                               app:chipStrokeColor="@color/chip_bg" />
 
                             <TextView
-                              android:id="@+id/hosted2_locationDetail"
+                              android:id="@+id/hosted2_location_detail"
                               style="@style/Body3"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
@@ -392,53 +368,28 @@
                               android:text="정보과학관 203호" />
                         </LinearLayout>
 
-            <LinearLayout
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal"
-              android:layout_gravity="start"
-              android:layout_marginTop="4dp">
+                            <TextView
+                              android:id="@+id/hosted2_grade"
+                              style="@style/Body3"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_marginStart="2dp"
+                              android:layout_marginTop="4dp"
+                              android:layout_gravity="start"
+                              android:text="학번" />
 
-                <TextView
-                  android:id="@+id/hosted2_major"
-                  style="@style/Body3"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="학과" />
-
-                <TextView
-                  android:id="@+id/hosted2_grade"
-                  style="@style/Body3"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginStart="2dp"
-                  android:text="학번" />
-
-                <TextView
-                  android:id="@+id/hosted2_name"
-                  style="@style/Body3"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_gravity="start"
-                  android:layout_marginStart="2dp"
-                  android:text="이정민" />
-            </LinearLayout>
-
-            <TextView
-              android:id="@+id/hosted2_capacity"
-              style="@style/Body3"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_gravity="start"
-              android:layout_marginTop="4dp"
-              android:drawableStart="@drawable/participant_icon"
-              android:text="3/5명" />
-
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</GridLayout>
-
+                        <TextView
+                          android:id="@+id/hosted2_capacity"
+                          style="@style/Body3"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="start"
+                          android:layout_marginTop="4dp"
+                          android:drawableStart="@drawable/participant_icon"
+                          android:text="3/5명" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </GridLayout>
 <!--주최한 세미가나가 없는 경우-->
             <ImageView
               android:id="@+id/no_hosted_seminer"

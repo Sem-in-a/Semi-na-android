@@ -109,57 +109,58 @@ public class MyPageFragment extends Fragment {
 
   // CardView에 데이터를 설정하는 메서드
   private void updateCardViewWithData(CardView cardView, DocumentSnapshot document) {
-    // CardView 내의 각 View를 찾아옵니다.
-    ImageView imageView = cardView.findViewById(R.id.hosted_img);
-    TextView titleTextView = cardView.findViewById(R.id.hosted_title);
-    TextView descriptionTextView = cardView.findViewById(R.id.hosted_description);
-    TextView locationTextView = cardView.findViewById(R.id.hosted_under_department);
-    TextView locationDetailTextView = cardView.findViewById(R.id.hosted_location_detail);
-    TextView capacityTextView = cardView.findViewById(R.id.hosted_capacity);
-    TextView hostedmajorTextView = cardView.findViewById(R.id.hosted_major);
-    TextView hostedgradeTextView = cardView.findViewById(R.id.hosted_grade);
-    TextView hostednameTextView = cardView.findViewById(R.id.hosted_name);
-
-    //추가한 이유는 이미지가 느리게 로딩될 경우 null로 먼저 찍히면 앱이 꺼지기 때문입니다.
-    if (imageView == null) {
-      Log.e("MyPageFragment", "ImageView not found in CardView.");
-      // 이 경우 이미지 뷰가 레이아웃에 없는 것이므로 더 이상 진행하지 않고 반환합니다.
-      return;
-    }
-
-    // DocumentSnapshot에서 데이터 추출
+    // 데이터 추출
     String imgUrl = document.getString("imgUrl");
     String title = document.getString("title");
     String description = document.getString("description");
     String location = document.getString("location");
     String locationDetail = document.getString("locationDetail");
-    //마이페이라, 우선 프로필에서 가져오듯이 데이터 가져왔습니다!
-    Long capacity = document.getLong("capacity");SharedPreferences preferences = getActivity().getSharedPreferences("UserInfo", MODE_PRIVATE);
-    String userName = preferences.getString("name", "N/A");
-    String userMajor = preferences.getString("major", "N/A");
-    String userGrade = preferences.getString("studentNum", "N/A");
+    String host = document.getString("host");
+    Long capacity = document.getLong("capacity");
 
-    if (imgUrl != null && !imgUrl.trim().isEmpty()) {
-      Glide.with(this).load(imgUrl).into(imageView);
-    } else {
-      Log.e("MyPageFragment", "Image URL is null or empty.");
-      // 우선 아무 기본 이미지 띄우기
-      Glide.with(this).load(R.drawable.board).into(imageView);
+    // CardView1 바인딩
+    bindCardViewData(cardView, R.id.hosted_img, R.id.hosted_title, R.id.hosted_description, R.id.hosted_under_department,
+        R.id.hosted_location_detail, R.id.hosted_capacity, R.id.hosted_grade, imgUrl, title, description, location, locationDetail, host, capacity);
+
+    // CardView2 바인딩
+    bindCardViewData(cardView, R.id.hosted2_img, R.id.hosted2_title, R.id.hosted2_description, R.id.hosted2_under_department,
+        R.id.hosted2_location_detail, R.id.hosted2_capacity, R.id.hosted2_grade, imgUrl, title, description, location, locationDetail, host, capacity);
+
+    // CardView를 보이게 설정
+    cardView.setVisibility(View.VISIBLE);
+  }
+
+  // 각 CardView에 데이터 바인딩을 수행하는 보조 메서드
+  private void bindCardViewData(CardView cardView, int imageViewId, int titleViewId, int descriptionViewId, int underDepartmentViewId,
+      int locationDetailViewId, int capacityViewId, int gradeViewId, String imgUrl, String title,
+      String description, String location, String locationDetail, String host, Long capacity) {
+    ImageView imageView = cardView.findViewById(imageViewId);
+    TextView titleTextView = cardView.findViewById(titleViewId);
+    TextView descriptionTextView = cardView.findViewById(descriptionViewId);
+    TextView locationTextView = cardView.findViewById(underDepartmentViewId);
+    TextView locationDetailTextView = cardView.findViewById(locationDetailViewId);
+    TextView capacityTextView = cardView.findViewById(capacityViewId);
+    TextView gradeTextView = cardView.findViewById(gradeViewId);
+
+    if (imageView == null) {
+      Log.d("MyPageFragment", "아직 파이어베이스 연결 전 문제 해결, 기본 이미지 널값 반환");
+      return; // 이미지 뷰가 없으면 여기서 종료
     }
 
-    // UI 컴포넌트에 데이터 바인딩
-    Glide.with(this).load(imgUrl).into(imageView);
+    // 이미지 로딩
+    if (imgUrl != null && !imgUrl.trim().isEmpty()) {
+      Glide.with(cardView.getContext()).load(imgUrl).into(imageView);
+    } else {
+      imageView.setImageResource(R.drawable.board); // 기본 이미지 설정
+    }
+
+    // 나머지 텍스트 데이터 바인딩
     titleTextView.setText(title);
     descriptionTextView.setText(description);
     locationTextView.setText(location);
     locationDetailTextView.setText(locationDetail);
-    capacityTextView.setText(capacity + "명");
-    hostednameTextView.setText(userName);
-    hostedmajorTextView.setText(userMajor);
-    hostedgradeTextView.setText(userGrade);
-
-    // CardView를 보이게 설정
-    cardView.setVisibility(View.VISIBLE);
+    gradeTextView.setText(host);
+    capacityTextView.setText(String.format("%d명", capacity));
   }
 
 
