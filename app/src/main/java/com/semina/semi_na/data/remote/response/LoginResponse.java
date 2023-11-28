@@ -15,7 +15,7 @@ public class LoginResponse {
     @SerializedName("data")
     StudentData studentData;
 
-    static class StudentData{
+    static class StudentData {
         @SerializedName("dept")
         DeptData deptData;
         @SerializedName("parentDept")
@@ -23,50 +23,52 @@ public class LoginResponse {
 
         //학번
         @SerializedName("memberNo")
-         String memberNo;
+        String memberNo;
 
         //이름
         @SerializedName("name")
         String name;
     }
 
-    static class DeptData{
-         @SerializedName("name")
+    static class DeptData {
+        @SerializedName("name")
         String name;
     }
-    static class ParentDeptData{
+
+    static class ParentDeptData {
         @SerializedName("id")
         int id;
         @SerializedName("code")
         String code;
         @SerializedName("name")
-       String name;
+        String name;
     }
 
-    public StudentData getStudentData(){
+    public StudentData getStudentData() {
         return studentData;
     }
 
-    public String getDept(){
+    public String getDept() {
         return studentData.deptData.name;
     }
 
-    public String getParentDept(){
+    public String getParentDept() {
         return studentData.parentDeptData.name;
     }
-    public String getName(){
+
+    public String getName() {
         return studentData.name;
     }
 
-    public String getStudentNum(){
+    public String getStudentNum() {
         return studentData.memberNo;
     }
 
-    public String getCode(){
+    public String getCode() {
         return code;
     }
 
-    public String getMessage(){
+    public String getMessage() {
         return message;
     }
 
