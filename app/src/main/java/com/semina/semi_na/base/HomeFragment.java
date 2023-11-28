@@ -18,7 +18,6 @@ import com.semina.semi_na.databinding.FragmentHomeBinding;
 import com.semina.semi_na.view.adapter.CollegeSeminarPagerAdapter;
 import com.semina.semi_na.view.adapter.HobbySeminarPagerAdapter;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class HomeFragment extends Fragment {
@@ -48,7 +47,6 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-        // Inflate the layout for this fragment
         return view;
     }
 
@@ -57,19 +55,17 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Log.d("[HomeFragment]", "onViewCreated");
         // get keys of tabTitles
-        String[] titles = (String[]) tabTitles.keySet().toArray(new String[tabTitles.size()]);
+        String[] titles = tabTitles.keySet().toArray(new String[tabTitles.size()]);
 
         CollegeSeminarPagerAdapter pagerAdapter = new CollegeSeminarPagerAdapter(this);
-
         binding.collegeViewPager.setAdapter(pagerAdapter);
-        binding.collegeViewPager.setOffscreenPageLimit(7);
 
         new TabLayoutMediator(binding.tabLayout, binding.collegeViewPager, (tab, position) -> {
             tab.setText(titles[position]);
             tab.setIcon(tabTitles.get(titles[position]));
         }).attach();
 
-
+        // 취미로 찾아보는 세미나 ViewPager
         HobbySeminarPagerAdapter hobbySeminarPagerAdapter = new HobbySeminarPagerAdapter(this);
         binding.hobbyViewPager.setAdapter(hobbySeminarPagerAdapter);
     }

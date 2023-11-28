@@ -3,6 +3,8 @@ package com.semina.semi_na.view.adapter;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.semina.semi_na.view.home.HobbyBookFragment;
@@ -12,8 +14,9 @@ import com.semina.semi_na.view.home.HobbyMusicFragment;
 
 public class HobbySeminarPagerAdapter extends FragmentStateAdapter {
 
-    public HobbySeminarPagerAdapter(Fragment fa) {
-        super(fa);
+
+    public HobbySeminarPagerAdapter(@NonNull Fragment fragment) {
+        super(fragment);
     }
 
     @NonNull
