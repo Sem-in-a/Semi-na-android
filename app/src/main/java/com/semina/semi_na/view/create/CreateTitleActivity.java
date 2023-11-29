@@ -38,9 +38,9 @@ public class CreateTitleActivity extends AppCompatActivity {
         editTitle = binding.createTitleEdit;
         title = "";
         sharedPreferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
-        studentNum = sharedPreferences.getString("studentNum","");
+        studentNum = sharedPreferences.getString("studentNum", "");
 
-        Log.d("CreateTitleActivity",title);
+        Log.d("CreateTitleActivity", title);
 
         ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
@@ -53,19 +53,18 @@ public class CreateTitleActivity extends AppCompatActivity {
                 });
 
 
-
-        nextButton.setOnClickListener(view->{
+        nextButton.setOnClickListener(view -> {
             title = String.valueOf(editTitle.getText());
-            Log.d("CreateTitleActivity",title);
+            Log.d("CreateTitleActivity", title);
 
-            if(title.equals("")){
+            if (title.equals("")) {
                 showToast("세미나 이름을 적어주세요");
-            }else{
+            } else {
                 Semina semina = new Semina();
                 semina.setHost(studentNum);
                 semina.setTitle(title);
-                Log.d("CreateTitleActivity",semina.getHost());
-                launcher.launch(new Intent(getApplicationContext(),CreateCategoryActivity.class).putExtra("semina",semina)
+                Log.d("CreateTitleActivity", semina.getHost());
+                launcher.launch(new Intent(getApplicationContext(), CreateCategoryActivity.class).putExtra("semina", semina)
                         .addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
                 //startActivityForResult(new Intent(getApplicationContext(), CreateCategoryActivity.class));
             }
@@ -75,7 +74,7 @@ public class CreateTitleActivity extends AppCompatActivity {
 
     // @TODO ActivityForResult Register 어쩌구저쩌구 하기
 
-    public void showToast(String msg){
-        Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
+    public void showToast(String msg) {
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
     }
 }

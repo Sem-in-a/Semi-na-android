@@ -14,7 +14,7 @@ public class Member implements Serializable {
 
     private String major;
 
-    public Member(String studentNum,String department,String name,String major,String fcmToken){
+    public Member(String studentNum, String department, String name, String major, String fcmToken) {
         this.studentNum = studentNum;
         this.department = department;
         this.name = name;
@@ -22,19 +22,23 @@ public class Member implements Serializable {
         this.fcmToken = fcmToken;
     }
 
+    public Member() {
+
+    }
+
     public String getStudentNum() {
         return studentNum;
     }
 
-    public String getDepartment(){
+    public String getDepartment() {
         return department;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public String getMajor(){
+    public String getMajor() {
         return major;
     }
 
