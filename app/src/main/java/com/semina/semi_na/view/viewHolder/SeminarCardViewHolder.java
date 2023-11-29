@@ -34,10 +34,10 @@ public class SeminarCardViewHolder extends RecyclerView.ViewHolder {
                 .into(binding.imageView);
         binding.titleTextView.setText(semina.getTitle());
         binding.descriptionTextView.setText(semina.getDescription());
-        binding.locationTextView.setText(semina.getLocation().getLocName() + " " + semina.getLocationDetail());
         binding.dateTextView.setText(semina.getDate());
         binding.participantTextView.setText(String.valueOf(semina.getCapacity()));
         setOrganizerInfo(semina.getHost());
+        setLocationTextView(semina);
         setChipViewText(semina);
     }
 
@@ -61,6 +61,19 @@ public class SeminarCardViewHolder extends RecyclerView.ViewHolder {
                         }
                     }
                 });
+    }
+
+    private void setLocationTextView(Semina semina) {
+        SeminaCategory category = semina.getSeminaCategory();
+
+        if (category == SeminaCategory.MAJOR) {
+            binding.locationTextView.setText(semina.getLocation().getLocName() + " " + semina.getLocationDetail());
+            return;
+        }
+
+        if (category == SeminaCategory.HOBBY) {
+            binding.locationTextView.setText(semina.getHobbyLocation());
+        }
     }
 
     private void setChipViewText(Semina semina) {
