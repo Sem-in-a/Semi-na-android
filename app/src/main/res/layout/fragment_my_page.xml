@@ -163,7 +163,7 @@
               android:background="@drawable/chevron_right"
               android:layout_toRightOf="@+id/host_seminer"
               android:layout_marginLeft="180dp"
-              android:visibility="visible"/>
+              android:visibility="gone"/>
         </RelativeLayout>
         <RelativeLayout
           android:layout_width="match_parent"
@@ -171,14 +171,16 @@
           android:layout_marginTop="32dp">
             <!--주최한 세미가나가 있는 경우-->
             <GridLayout
+              android:id="@+id/hosted_grid"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:columnCount="2"
-              android:orientation="horizontal">
+              android:orientation="horizontal"
+              android:visibility="visible">
 
                 <androidx.cardview.widget.CardView
                   android:id="@+id/cardView1"
-                  android:layout_width="wrap_content"
+                  android:layout_width="145dp"
                   android:layout_height="wrap_content"
                   android:layout_rowWeight="1"
                   android:layout_columnWeight="1"
@@ -203,14 +205,16 @@
                           app:cardCornerRadius="8dp">
 
                             <ImageView
-                              android:layout_width="145dp"
-                              android:layout_height="wrap_content"
+                              android:id="@+id/hosted_img"
+                              android:layout_width="150dp"
+                              android:layout_height="150dp"
                               android:adjustViewBounds="true"
+                              android:scaleType="centerCrop"
                               android:src="@drawable/board" />
                         </androidx.cardview.widget.CardView>
 
-
                         <TextView
+                          android:id="@+id/hosted_title"
                           style="@style/Body1"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
@@ -219,6 +223,7 @@
                           android:text="한강에 보드타러 가요" />
 
                         <TextView
+                          android:id="@+id/hosted_description"
                           style="@style/Body3"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
@@ -233,8 +238,8 @@
                           android:layout_marginTop="16dp"
                           android:orientation="horizontal">
 
-                            <!-- Chip with IT college text                        -->
                             <com.google.android.material.chip.Chip
+                              android:id="@+id/hosted_under_department"
                               style="@style/Body3"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
@@ -250,40 +255,43 @@
                               app:chipStrokeColor="@color/chip_bg" />
 
                             <TextView
+                              android:id="@+id/hosted_location_detail"
                               style="@style/Body3"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
                               android:layout_marginStart="8dp"
                               android:text="정보과학관 203호" />
+
                         </LinearLayout>
-
                         <TextView
+                          android:id="@+id/hosted_grade"
                           style="@style/Body3"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:layout_gravity="start"
                           android:layout_marginTop="4dp"
-                          android:text="컴퓨터학부 2학년 이정민" />
-
+                          android:layout_marginStart="2dp"
+                          android:layout_gravity="start"
+                          android:text="학번" />
                         <TextView
+                          android:id="@+id/hosted_date"
                           style="@style/Body3"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:layout_gravity="start"
+                          android:layout_marginStart="2dp"
                           android:layout_marginTop="4dp"
                           android:text="2023.10.23 오후 3시" />
-
                         <TextView
+                          android:id="@+id/hosted_capacity"
                           style="@style/Body3"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:layout_gravity="start"
                           android:layout_marginTop="4dp"
+                          android:layout_marginStart="2dp"
                           android:drawableStart="@drawable/participant_icon"
                           android:text="3/5명" />
-
-
-                    </LinearLayout>
+                        </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -313,27 +321,32 @@
                           app:cardCornerRadius="8dp">
 
                             <ImageView
-                              android:layout_width="145dp"
-                              android:layout_height="wrap_content"
+                              android:id="@+id/hosted2_img"
+                              android:layout_width="150dp"
+                              android:layout_height="150dp"
                               android:adjustViewBounds="true"
-                              android:src="@drawable/health" />
+                              android:scaleType="centerCrop"
+                              android:src="@drawable/board" />
                         </androidx.cardview.widget.CardView>
 
+
                         <TextView
+                          android:id="@+id/hosted2_title"
                           style="@style/Body1"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:layout_gravity="start"
                           android:layout_marginTop="10dp"
-                          android:text="3대 500 치는 방법I" />
+                          android:text="한강에 보드타러 가요" />
 
                         <TextView
+                          android:id="@+id/hosted2_description"
                           style="@style/Body3"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:layout_gravity="start"
                           android:layout_marginTop="10dp"
-                          android:text=" 나보다 벤치 프레스 장인" />
+                          android:text="친절하게 알려드릴게요" />
 
                         <LinearLayout
                           android:layout_width="wrap_content"
@@ -342,8 +355,8 @@
                           android:layout_marginTop="16dp"
                           android:orientation="horizontal">
 
-                            <!-- Chip with IT college text                        -->
                             <com.google.android.material.chip.Chip
+                              android:id="@+id/hosted2_under_department"
                               style="@style/Body3"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
@@ -359,6 +372,7 @@
                               app:chipStrokeColor="@color/chip_bg" />
 
                             <TextView
+                              android:id="@+id/hosted2_location_detail"
                               style="@style/Body3"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
@@ -366,36 +380,38 @@
                               android:text="정보과학관 203호" />
                         </LinearLayout>
 
-                        <TextView
-                          style="@style/Body3"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_gravity="start"
-                          android:layout_marginTop="4dp"
-                          android:text="컴퓨터학부 2학년 이정민" />
+                            <TextView
+                              android:id="@+id/hosted2_grade"
+                              style="@style/Body3"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_marginStart="2dp"
+                              android:layout_marginTop="4dp"
+                              android:layout_gravity="start"
+                              android:text="학번" />
+                                    <TextView
+                                      android:id="@+id/hosted2_date"
+                                      style="@style/Body3"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:layout_gravity="start"
+                                      android:layout_marginTop="4dp"
+                                      android:layout_marginStart="2dp"
+                                      android:text="2023.10.23 오후 3시" />
 
-                        <TextView
-                          style="@style/Body3"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_gravity="start"
-                          android:layout_marginTop="4dp"
-                          android:text="2023.10.23 오후 3시" />
-
-                        <TextView
-                          style="@style/Body3"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_gravity="start"
-                          android:layout_marginTop="4dp"
-                          android:drawableStart="@drawable/participant_icon"
-                          android:text="3/5명" />
-
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-            </GridLayout>
-
+                                    <TextView
+                                      android:id="@+id/hosted2_capacity"
+                                      style="@style/Body3"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:layout_gravity="start"
+                                      android:layout_marginTop="4dp"
+                                      android:layout_marginStart="2dp"
+                                      android:drawableStart="@drawable/participant_icon"
+                                      android:text="3/5명" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                        </GridLayout>
             <!--주최한 세미가나가 없는 경우-->
             <ImageView
               android:id="@+id/no_hosted_seminer"
@@ -449,7 +465,7 @@
               android:background="@drawable/chevron_right"
               android:layout_toRightOf="@+id/apply_id"
               android:layout_marginLeft="180dp"
-              android:visibility="visible"/>
+              android:visibility="gone"/>
         </RelativeLayout>
         <RelativeLayout
           android:layout_width="match_parent"
@@ -457,10 +473,12 @@
           android:layout_marginTop="32dp">
             <!--신청한 세미나가 있는 경우-->
             <GridLayout
+              android:id="@+id/applied_grid"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:columnCount="2"
-              android:orientation="horizontal">
+              android:orientation="horizontal"
+              android:visibility="gone">
 
                 <androidx.cardview.widget.CardView
                   android:id="@+id/cardView3"
@@ -489,6 +507,7 @@
                           app:cardCornerRadius="8dp">
 
                             <ImageView
+                              android:id="@+id/applied_img"
                               android:layout_width="145dp"
                               android:layout_height="wrap_content"
                               android:adjustViewBounds="true"
@@ -497,6 +516,7 @@
 
 
                         <TextView
+                          android:id="@+id/applied_title"
                           style="@style/Body1"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
@@ -505,6 +525,7 @@
                           android:text="한강에 보드타러 가요" />
 
                         <TextView
+                          android:id="@+id/applied_description"
                           style="@style/Body3"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
@@ -519,8 +540,8 @@
                           android:layout_marginTop="16dp"
                           android:orientation="horizontal">
 
-                            <!-- Chip with IT college text                        -->
                             <com.google.android.material.chip.Chip
+                              android:id="@+id/applied_under_department"
                               style="@style/Body3"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
@@ -536,30 +557,50 @@
                               app:chipStrokeColor="@color/chip_bg" />
 
                             <TextView
+                              android:id="@+id/applied_locationDetail"
                               style="@style/Body3"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
                               android:layout_marginStart="8dp"
                               android:text="정보과학관 203호" />
                         </LinearLayout>
-
-                        <TextView
-                          style="@style/Body3"
+                        <!-- 본인
+                        <LinearLayout
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
+                          android:orientation="horizontal"
                           android:layout_gravity="start"
-                          android:layout_marginTop="4dp"
-                          android:text="컴퓨터학부 2학년 이정민" />
+                          android:layout_marginTop="4dp">
+
+                            <TextView
+                              android:id="@+id/applied_major"
+                              style="@style/Body3"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:text="학과" />
+
+                            <TextView
+                              android:id="@+id/applied_grade"
+                              style="@style/Body3"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_marginStart="2dp"
+                              android:text="학번" />
+
+                            <TextView
+                              android:id="@+id/applied_name"
+                              style="@style/Body3"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_gravity="start"
+                              android:layout_marginStart="2dp"
+                              android:text="이정민" />
+                        </LinearLayout>
+
+                        -->
 
                         <TextView
-                          style="@style/Body3"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_gravity="start"
-                          android:layout_marginTop="4dp"
-                          android:text="2023.10.23 오후 3시" />
-
-                        <TextView
+                          android:id="@+id/applied_capacity"
                           style="@style/Body3"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
@@ -599,27 +640,31 @@
                           app:cardCornerRadius="8dp">
 
                             <ImageView
+                              android:id="@+id/applied2_img"
                               android:layout_width="145dp"
                               android:layout_height="wrap_content"
                               android:adjustViewBounds="true"
-                              android:src="@drawable/health" />
+                              android:src="@drawable/board" />
                         </androidx.cardview.widget.CardView>
 
+
                         <TextView
+                          android:id="@+id/applied2_title"
                           style="@style/Body1"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:layout_gravity="start"
                           android:layout_marginTop="10dp"
-                          android:text="3대 500 치는 방법I" />
+                          android:text="한강에 보드타러 가요" />
 
                         <TextView
+                          android:id="@+id/applied2_description"
                           style="@style/Body3"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:layout_gravity="start"
                           android:layout_marginTop="10dp"
-                          android:text=" 나보다 벤치 프레스 장인" />
+                          android:text="친절하게 알려드릴게요" />
 
                         <LinearLayout
                           android:layout_width="wrap_content"
@@ -628,8 +673,8 @@
                           android:layout_marginTop="16dp"
                           android:orientation="horizontal">
 
-                            <!-- Chip with IT college text                        -->
                             <com.google.android.material.chip.Chip
+                              android:id="@+id/applied2_under_department"
                               style="@style/Body3"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
@@ -645,43 +690,62 @@
                               app:chipStrokeColor="@color/chip_bg" />
 
                             <TextView
+                              android:id="@+id/applied2_locationDetail"
                               style="@style/Body3"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
                               android:layout_marginStart="8dp"
                               android:text="정보과학관 203호" />
                         </LinearLayout>
+            <!-- 본인
+                                    <LinearLayout
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:orientation="horizontal"
+                                      android:layout_gravity="start"
+                                      android:layout_marginTop="4dp">
 
-                        <TextView
-                          style="@style/Body3"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_gravity="start"
-                          android:layout_marginTop="4dp"
-                          android:text="컴퓨터학부 2학년 이정민" />
+                                        <TextView
+                                          android:id="@+id/applied2_major"
+                                          style="@style/Body3"
+                                          android:layout_width="wrap_content"
+                                          android:layout_height="wrap_content"
+                                          android:text="학과" />
 
-                        <TextView
-                          style="@style/Body3"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_gravity="start"
-                          android:layout_marginTop="4dp"
-                          android:text="2023.10.23 오후 3시" />
+                                        <TextView
+                                          android:id="@+id/applied2_grade"
+                                          style="@style/Body3"
+                                          android:layout_width="wrap_content"
+                                          android:layout_height="wrap_content"
+                                          android:layout_marginStart="2dp"
+                                          android:text="학번" />
 
-                        <TextView
-                          style="@style/Body3"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_gravity="start"
-                          android:layout_marginTop="4dp"
-                          android:drawableStart="@drawable/participant_icon"
-                          android:text="3/5명" />
+                                        <TextView
+                                          android:id="@+id/applied2_name"
+                                          style="@style/Body3"
+                                          android:layout_width="wrap_content"
+                                          android:layout_height="wrap_content"
+                                          android:layout_gravity="start"
+                                          android:layout_marginStart="2dp"
+                                          android:text="이정민" />
+                                    </LinearLayout>
+                                    -->
+
+                                    <TextView
+                                      android:id="@+id/applied2_capacity"
+                                      style="@style/Body3"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:layout_gravity="start"
+                                      android:layout_marginTop="4dp"
+                                      android:drawableStart="@drawable/participant_icon"
+                                      android:text="3/5명" />
 
 
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-            </GridLayout>
-            <!--신청한 세미가나가 없는경우-->
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                        </GridLayout>
+                        <!--신청한 세미가나가 없는경우-->
             <ImageView
               android:id="@+id/no_applied_seminer"
               android:layout_width="wrap_content"
@@ -689,8 +753,9 @@
               android:layout_alignParentTop="true"
               android:layout_centerHorizontal="true"
               android:layout_marginTop="92dp"
+              android:layout_marginBottom="100dp"
               android:background="@drawable/no_hosted_seminer"
-              android:visibility="gone" />
+              android:visibility="visible" />
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

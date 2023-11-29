@@ -1,11 +1,13 @@
 package com.semina.semi_na.view.mypage;
 
 import android.os.Bundle;
+import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.semina.semi_na.R;
+import com.semina.semi_na.base.MyPageFragment;
 import com.semina.semi_na.view.adapter.ViewDetailAppliedAdapter;
 
 public class ViewDetailAppliedActivity extends AppCompatActivity {
