@@ -1,13 +1,16 @@
 package com.semina.semi_na.view.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.paging.PagingConfig;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +23,7 @@ import com.semina.semi_na.R;
 import com.semina.semi_na.data.db.entity.Semina;
 import com.semina.semi_na.databinding.FragmentHobbyExerciseBinding;
 import com.semina.semi_na.databinding.SeminarCardViewItemBinding;
+import com.semina.semi_na.view.detail.SeminaDetailActivity;
 import com.semina.semi_na.view.viewHolder.SeminarCardViewHolder;
 
 /**
@@ -50,13 +54,18 @@ public class HobbyExerciseFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentHobbyExerciseBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+        return view;
+    }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         // The "base query" is a query with no startAt/endAt/limit clauses that the adapter can use
         // to form smaller queries for each page. It should only include where() and orderBy() clauses
         Query baseQuery = FirebaseFirestore.getInstance()
                 .collection("Semina")
-                .whereEqualTo("seminaCategory", "HOBBY");
-
+                .whereEqualTo("seminaCategory", "HOBBY")
+                .whereEqualTo("hobbyCategory", "EXERCISE");
         // This configuration comes from the Paging 3 Library
         // https://developer.android.com/reference/kotlin/androidx/paging/PagingConfig
         PagingConfig config = new PagingConfig(/* page size */ 4, /* prefetchDistance */ 2,
@@ -82,14 +91,21 @@ public class HobbyExerciseFragment extends Fragment {
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.seminar_card_view_item, parent, false);
 
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("ITFragment", "SeminarCardView Clicked");
+                        Intent intent = new Intent(getActivity(), SeminaDetailActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
                 return new SeminarCardViewHolder(SeminarCardViewItemBinding.bind(view));
             }
         };
 
         binding.exerciseRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         binding.exerciseRecyclerView.setAdapter(adapter);
-
-        return view;
     }
 
     @Override
