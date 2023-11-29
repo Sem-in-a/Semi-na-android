@@ -138,10 +138,6 @@ public class Semina implements Serializable {
         return capacity;
     }
 
-    public HobbyCategory getHobbyCategory() {
-        return hobbyCategory;
-    }
-
     public String getDate() {
         return date;
     }
@@ -152,5 +148,12 @@ public class Semina implements Serializable {
 
     public String getHobbyLocation() {
         return hobbyLocation;
+    }
+    public MajorCategory getMajorCategory() {
+        return majorCategory;
+    }
+
+    public HobbyCategory getHobbyCategory() {
+        return hobbyCategory;
     }
 }

@@ -2,16 +2,16 @@ package com.semina.semi_na.data.db.entity;
 
 public enum HobbyCategory {
 
-    EXERCISE("운동"), FOOD("음식"), MUSIC("음악"), BOOK("책"), NULL("해당사항없음");
 
-    private String hobbyCategory;
+    EXERCISE("운동"), FOOD("요리"), MUSIC("음악"), BOOK("독서"), NULL("분류없음");
+    private String hobbyName;
 
-    HobbyCategory(String hobbyCategory) {
-        this.hobbyCategory = hobbyCategory;
+    HobbyCategory(String hobbyName) {
+        this.hobbyName = hobbyName;
     }
 
-    public String getHobbyCategory() {
-        return hobbyCategory;
+    public String getHobbyName() {
+        return hobbyName;
     }
 
 }
