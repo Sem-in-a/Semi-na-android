@@ -51,7 +51,8 @@ public class EngineeringFragment extends Fragment {
         // to form smaller queries for each page. It should only include where() and orderBy() clauses
         Query baseQuery = FirebaseFirestore.getInstance()
                 .collection("Semina")
-                .whereEqualTo("seminaCategory", "MAJOR");
+                .whereEqualTo("seminaCategory", "MAJOR")
+                .whereEqualTo("majorCategory", "ENGINEERING");
 
         // This configuration comes from the Paging 3 Library
         // https://developer.android.com/reference/kotlin/androidx/paging/PagingConfig

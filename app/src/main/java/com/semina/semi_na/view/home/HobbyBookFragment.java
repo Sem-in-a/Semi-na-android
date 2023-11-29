@@ -65,7 +65,9 @@ public class HobbyBookFragment extends Fragment {
         // to form smaller queries for each page. It should only include where() and orderBy() clauses
         Query baseQuery = FirebaseFirestore.getInstance()
                 .collection("Semina")
-                .whereEqualTo("seminaCategory", "HOBBY");
+                .whereEqualTo("seminaCategory", "HOBBY")
+                .whereEqualTo("hobbyCategory", "BOOK");
+
 
         // This configuration comes from the Paging 3 Library
         // https://developer.android.com/reference/kotlin/androidx/paging/PagingConfig

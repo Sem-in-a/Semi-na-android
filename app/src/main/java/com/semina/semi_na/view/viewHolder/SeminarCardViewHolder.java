@@ -24,11 +24,11 @@ public class SeminarCardViewHolder extends RecyclerView.ViewHolder {
                 .into(binding.imageView);
         binding.titleTextView.setText(semina.getTitle());
         binding.descriptionTextView.setText(semina.getDescription());
-//        binding.collegeChipView.setText(semina.getHobbyCategory().toString());
         binding.collegeChipView.setText(semina.getLocation().getLocName());
+//        binding.collegeChipView.setText(semina.getHobbyCategory().toString());
         binding.locationTextView.setText(semina.getLocationDetail());
         binding.organizerTextView.setText(semina.getHost());
-//        binding.dateTextView.setText(semina.);
+        binding.dateTextView.setText(semina.getDate());
         binding.participantTextView.setText(String.valueOf(semina.getCapacity()));
     }
 }
