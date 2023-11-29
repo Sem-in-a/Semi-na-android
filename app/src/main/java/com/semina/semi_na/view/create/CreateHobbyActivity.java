@@ -107,7 +107,7 @@ public class CreateHobbyActivity extends AppCompatActivity {
                 }
                 else{
                 semina.setHobbyCategory(hobbyCategory);
-                launcher.launch(new Intent(getApplicationContext(),CreateLocationActivity.class).putExtra("semina",semina)
+                launcher.launch(new Intent(getApplicationContext(),CreateHobbyLocationActivity.class).putExtra("semina",semina)
                         .addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
                 }
             }
