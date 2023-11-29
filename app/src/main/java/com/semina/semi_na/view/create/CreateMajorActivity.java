@@ -22,7 +22,7 @@ import com.semina.semi_na.data.db.entity.Semina;
 import com.semina.semi_na.databinding.ActivityCreateHobbyBinding;
 import com.semina.semi_na.databinding.ActivityCreateMajorBinding;
 
-public class CreateMajorActivity extends AppCompatActivity{
+public class CreateMajorActivity extends AppCompatActivity {
 
     private ActivityCreateMajorBinding binding;
     private Intent intent;
@@ -50,10 +50,10 @@ public class CreateMajorActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 binding.createMajorIt.setSelected(!view.isSelected());
-                if(binding.createMajorIt.isSelected()){
+                if (binding.createMajorIt.isSelected()) {
                     majorCategory = MajorCategory.IT;
                     binding.createMajorIt.setBackground(getDrawable(R.drawable.tab_selected_background));
-                }else{
+                } else {
                     binding.createMajorIt.setBackground(null);
                 }
             }
@@ -62,10 +62,10 @@ public class CreateMajorActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 binding.createMajorEngineer.setSelected(!view.isSelected());
-                if(binding.createMajorEngineer.isSelected()){
+                if (binding.createMajorEngineer.isSelected()) {
                     majorCategory = MajorCategory.ENGINEERING;
                     binding.createMajorEngineer.setBackground(getDrawable(R.drawable.tab_selected_background));
-                }else{
+                } else {
                     binding.createMajorEngineer.setBackground(null);
                 }
             }
@@ -75,10 +75,10 @@ public class CreateMajorActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 binding.createMajorBusiness.setSelected(!view.isSelected());
-                if(binding.createMajorBusiness.isSelected()){
+                if (binding.createMajorBusiness.isSelected()) {
                     majorCategory = MajorCategory.BUSINESS;
                     binding.createMajorBusiness.setBackground(getDrawable(R.drawable.tab_selected_background));
-                }else{
+                } else {
                     binding.createMajorBusiness.setBackground(null);
                 }
             }
@@ -88,10 +88,10 @@ public class CreateMajorActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 binding.createMajorEconomic.setSelected(!view.isSelected());
-                if(binding.createMajorEconomic.isSelected()){
+                if (binding.createMajorEconomic.isSelected()) {
                     majorCategory = MajorCategory.ENGINEERING;
                     binding.createMajorEconomic.setBackground(getDrawable(R.drawable.tab_selected_background));
-                }else{
+                } else {
                     binding.createMajorEconomic.setBackground(null);
                 }
             }
@@ -100,10 +100,10 @@ public class CreateMajorActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 binding.createMajorLaw.setSelected(!view.isSelected());
-                if(binding.createMajorLaw.isSelected()){
+                if (binding.createMajorLaw.isSelected()) {
                     majorCategory = MajorCategory.HUMANITY;
                     binding.createMajorLaw.setBackground(getDrawable(R.drawable.tab_selected_background));
-                }else{
+                } else {
                     binding.createMajorLaw.setBackground(null);
                 }
             }
@@ -112,10 +112,10 @@ public class CreateMajorActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 binding.createMajorHumanity.setSelected(!view.isSelected());
-                if(binding.createMajorHumanity.isSelected()){
+                if (binding.createMajorHumanity.isSelected()) {
                     majorCategory = MajorCategory.HUMANITY;
                     binding.createMajorHumanity.setBackground(getDrawable(R.drawable.tab_selected_background));
-                }else{
+                } else {
                     binding.createMajorHumanity.setBackground(null);
                 }
             }
@@ -124,10 +124,10 @@ public class CreateMajorActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 binding.createMajorScience.setSelected(!view.isSelected());
-                if(binding.createMajorScience.isSelected()){
+                if (binding.createMajorScience.isSelected()) {
                     majorCategory = MajorCategory.SCIENCE;
                     binding.createMajorScience.setBackground(getDrawable(R.drawable.tab_selected_background));
-                }else{
+                } else {
                     binding.createMajorScience.setBackground(null);
                 }
             }
@@ -136,10 +136,10 @@ public class CreateMajorActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 binding.createMajorSocial.setSelected(!view.isSelected());
-                if(binding.createMajorSocial.isSelected()){
+                if (binding.createMajorSocial.isSelected()) {
                     majorCategory = MajorCategory.SOCIAL;
                     binding.createMajorSocial.setBackground(getDrawable(R.drawable.tab_selected_background));
-                }else{
+                } else {
                     binding.createMajorSocial.setBackground(null);
                 }
             }
@@ -151,11 +151,11 @@ public class CreateMajorActivity extends AppCompatActivity{
             public void onClick(View view) {
                 intent = getIntent();
                 Semina semina = (Semina) intent.getSerializableExtra("semina");
-                if(majorCategory==MajorCategory.NULL){
+                if (majorCategory == MajorCategory.NULL) {
                     showToast("전공을 선택해주세요");
-                }else{
+                } else {
                     semina.setMajorCategory(majorCategory);
-                    launcher.launch(new Intent(getApplicationContext(),CreateLocationActivity.class).putExtra("semina",semina)
+                    launcher.launch(new Intent(getApplicationContext(), CreateLocationActivity.class).putExtra("semina", semina)
                             .addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
                 }
             }
@@ -163,9 +163,9 @@ public class CreateMajorActivity extends AppCompatActivity{
 
     }
 
-   public void showToast(String msg){
-       Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
-   }
+    public void showToast(String msg) {
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+    }
 
     // 어떤 이넘 카테고리가 press됐는지에 따라 -> background stroke 정해준다.
 

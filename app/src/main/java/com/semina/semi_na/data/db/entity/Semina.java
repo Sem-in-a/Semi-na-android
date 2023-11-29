@@ -27,8 +27,8 @@ public class Semina implements Serializable {
     private String description;
     private int capacity;
 
-    public Semina(String title, SeminaCategory seminaCategory,MajorCategory majorCategory,String date,String time, String host,String imgUrl,Location location,String locationDetail
-    ,ArrayList<String> memberList,int capacity,HobbyCategory hobbyCategory){
+    public Semina(String title, SeminaCategory seminaCategory, MajorCategory majorCategory, String date, String time, String host, String imgUrl, Location location, String locationDetail
+            , ArrayList<String> memberList, int capacity, HobbyCategory hobbyCategory) {
         this.title = title;
         this.seminaCategory = seminaCategory;
         this.majorCategory = majorCategory;
@@ -135,11 +135,15 @@ public class Semina implements Serializable {
         return capacity;
     }
 
-    public HobbyCategory getHobbyCategory() {
-        return hobbyCategory;
-    }
-
     public String getDate() {
         return date;
+    }
+
+    public MajorCategory getMajorCategory() {
+        return majorCategory;
+    }
+
+    public HobbyCategory getHobbyCategory() {
+        return hobbyCategory;
     }
 }

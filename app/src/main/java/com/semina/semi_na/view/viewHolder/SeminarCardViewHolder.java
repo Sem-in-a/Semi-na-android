@@ -6,7 +6,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.semina.semi_na.data.db.entity.HobbyCategory;
+import com.semina.semi_na.data.db.entity.MajorCategory;
+import com.semina.semi_na.data.db.entity.Member;
 import com.semina.semi_na.data.db.entity.Semina;
+import com.semina.semi_na.data.db.entity.SeminaCategory;
 import com.semina.semi_na.databinding.SeminarCardViewItemBinding;
 
 public class SeminarCardViewHolder extends RecyclerView.ViewHolder {
@@ -24,11 +34,55 @@ public class SeminarCardViewHolder extends RecyclerView.ViewHolder {
                 .into(binding.imageView);
         binding.titleTextView.setText(semina.getTitle());
         binding.descriptionTextView.setText(semina.getDescription());
-        binding.collegeChipView.setText(semina.getLocation().getLocName());
-//        binding.collegeChipView.setText(semina.getHobbyCategory().toString());
-        binding.locationTextView.setText(semina.getLocationDetail());
-        binding.organizerTextView.setText(semina.getHost());
+        binding.locationTextView.setText(semina.getLocation().getLocName() + " " + semina.getLocationDetail());
         binding.dateTextView.setText(semina.getDate());
         binding.participantTextView.setText(String.valueOf(semina.getCapacity()));
+        setOrganizerInfo(semina.getHost());
+        setChipViewText(semina);
+    }
+
+    private void setOrganizerInfo(String host) {
+        Member member;
+        // Get a document whose studentNum matches host from the Member collection in Firestore
+        FirebaseFirestore.getInstance()
+                .collection("Member")
+                .whereEqualTo("studentNum", host)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            QuerySnapshot querySnapshot = task.getResult();
+                            if (querySnapshot != null) {
+                                DocumentSnapshot documentSnapshot = querySnapshot.getDocuments().get(0);
+                                Member member = documentSnapshot.toObject(Member.class);
+                                binding.organizerTextView.setText(member.getMajor() + " " + member.getName());
+                            }
+                        }
+                    }
+                });
+    }
+
+    private void setChipViewText(Semina semina) {
+        SeminaCategory category = semina.getSeminaCategory();
+
+        if (category == SeminaCategory.MAJOR) {
+            MajorCategory major = semina.getMajorCategory();
+            if (major == null) {
+                binding.collegeChipView.setText(MajorCategory.NULL.getMajorName());
+            } else {
+                binding.collegeChipView.setText(major.getMajorName());
+            }
+            return;
+        }
+
+        if (category == SeminaCategory.HOBBY) {
+            HobbyCategory hobby = semina.getHobbyCategory();
+            if (hobby == null) {
+                binding.collegeChipView.setText(HobbyCategory.NULL.getHobbyName());
+            } else {
+                binding.collegeChipView.setText(hobby.getHobbyName());
+            }
+        }
     }
 }
