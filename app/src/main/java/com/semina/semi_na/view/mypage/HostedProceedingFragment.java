@@ -1,5 +1,6 @@
 package com.semina.semi_na.view.mypage;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,14 +19,15 @@ import com.semina.semi_na.R;
 import com.semina.semi_na.data.db.entity.Semina;
 import com.semina.semi_na.databinding.FragmentHostedProceedingBinding;
 import com.semina.semi_na.databinding.SeminarCardViewItemBinding;
-import com.semina.semi_na.view.viewHolder.DetailCardViewHolder;
+import com.semina.semi_na.view.detail.SeminaDetailActivity;
+import com.semina.semi_na.view.viewHolder.SeminarCardViewHolder;
 
 import static android.content.Context.MODE_PRIVATE;
 
 //내가 주최한 세미나 - 진행 중
 public class HostedProceedingFragment extends Fragment {
   private FragmentHostedProceedingBinding binding;
-  private FirestorePagingAdapter<Semina, DetailCardViewHolder> adapter;
+  private FirestorePagingAdapter<Semina, SeminarCardViewHolder> adapter; // 뷰 홀더 이름 변경
 
   // 현재 로그인한 사용자의 ID를 가져오는 메서드
   private String getCurrentUserId() {
@@ -59,21 +61,30 @@ public class HostedProceedingFragment extends Fragment {
         .build();
 
     // 어댑터 설정
-    adapter = new FirestorePagingAdapter<Semina, DetailCardViewHolder>(options) {
+    adapter = new FirestorePagingAdapter<Semina, SeminarCardViewHolder>(options) {
       @Override
-      protected void onBindViewHolder(@NonNull DetailCardViewHolder holder, int position, @NonNull Semina model) {
+      protected void onBindViewHolder(@NonNull SeminarCardViewHolder holder, int position, @NonNull Semina model) {
         Log.d("HostedProceedingFragment", "Binding data to view holder at position: " + position);
         holder.bind(model);
+
+        // 클릭 리스너 추가
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            Intent intent = new Intent(getContext(), SeminaDetailActivity.class);
+            startActivity(intent);
+          }
+        });
       }
 
       @NonNull
       @Override
-      public DetailCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+      public SeminarCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.d("HostedProceedingFragment", "onCreateViewHolder is called");
         View itemView = LayoutInflater.from(parent.getContext())
             .inflate(R.layout.seminar_card_view_item, parent, false);
         SeminarCardViewItemBinding binding = SeminarCardViewItemBinding.bind(itemView);
-        return new DetailCardViewHolder(binding);
+        return new SeminarCardViewHolder(binding);
       }
     };
 
@@ -100,3 +111,4 @@ public class HostedProceedingFragment extends Fragment {
     }
   }
 }
+
