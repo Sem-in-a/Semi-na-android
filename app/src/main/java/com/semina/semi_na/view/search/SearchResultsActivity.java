@@ -1,14 +1,45 @@
 package com.semina.semi_na.view.search;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import com.semina.semi_na.R;
+import android.util.Log;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import com.semina.semi_na.databinding.ActivitySearchResultsBinding;
+import com.semina.semi_na.view.adapter.SearchResultsAdapter;
 
 public class SearchResultsActivity extends AppCompatActivity {
+
+  private SearchResultsAdapter searchResultsAdapter;
+  private ActivitySearchResultsBinding binding;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_search_results);
+
+    // 데이터 바인딩 설정
+    binding = ActivitySearchResultsBinding.inflate(getLayoutInflater());
+    setContentView(binding.getRoot());
+
+    // RecyclerView 설정
+    searchResultsAdapter = new SearchResultsAdapter();
+    binding.recyclerview.setLayoutManager(new LinearLayoutManager(this));
+    binding.recyclerview.setAdapter(searchResultsAdapter);
+
+    // 검색 버튼 클릭 이벤트 설정
+    binding.searchGoBtn.setOnClickListener(view -> {
+      String searchQuery = binding.searchEditText.getText().toString();
+      Log.d("SearchAdapter", "검색 결과 값 " + searchQuery);
+      if (searchQuery != null && !searchQuery.isEmpty()) {
+        searchResultsAdapter.search(searchQuery); // 옵션 파라미터 제거
+      }
+    });
+
+    //위의 아이콘 클릭 시 홈으로 이동 로직 추가
+    binding.homeGoBtn.setOnClickListener(view -> {
+      finish();
+    });
   }
 }
+
+
