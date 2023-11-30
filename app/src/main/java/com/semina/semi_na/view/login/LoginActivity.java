@@ -105,8 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                             String department = loginResponse.getParentDept();
                             String major = loginResponse.getDept();
                             String name = loginResponse.getName();
-                            Member member = new Member(studentNum, department, name, major,fcmToken);
-                            ArrayList<String> memberList = new ArrayList<>();
+
 
                             database.collection("Member")
                                     .whereIn("studentNum", Arrays.asList(studentNum))
@@ -115,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                             if(task.getResult().getDocuments().size()==0){
-                                                Member member = new Member(studentNum, department, name, major,fcmToken);
+                                                Member member = new Member(studentNum, department, name, major,fcmToken,imgUrl,"유어슈 짱먹으러 왔다");
                                                 Log.d("LoginActivity", "파이어 스토어접근");
                                                 database.collection("Member").add(member).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                                     @Override
