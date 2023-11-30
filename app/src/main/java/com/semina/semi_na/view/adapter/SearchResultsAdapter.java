@@ -52,7 +52,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchCardViewHol
           }
 
           if (querySnapshot != null) {
-            filteredSeminaList.clear(); // ArrayList 비워줌
+            filteredSeminaList.clear();
 
             for (DocumentSnapshot document : querySnapshot.getDocuments()) {
               String title = document.getString("title");

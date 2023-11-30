@@ -5,7 +5,8 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   app:cardElevation="1dp"
   app:cardUseCompatPadding="true"
-  android:layout_margin="4dp">
+  app:cardCornerRadius="8dp"
+  android:layout_margin="2dp">
 
     <LinearLayout
       android:layout_width="match_parent"
@@ -15,11 +16,11 @@
         android:id="@+id/search_title"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:gravity="top"
         android:textStyle="bold"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
         android:text="샘이나는 Swift UI" />
       <TextView
         android:id="@+id/search_date"
@@ -27,7 +28,7 @@
         android:layout_height="15dp"
         android:textSize="9sp"
         android:gravity="top"
-        android:layout_marginLeft="4dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="11dp"
         android:text="2023.10.23 오후 3시"/>
 
@@ -38,8 +39,9 @@
         android:textSize="8sp"
         android:gravity="top"
         android:drawableStart="@drawable/participant_icon"
-        android:layout_marginLeft="4dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:text="3/5명"/>
 
     </LinearLayout>
