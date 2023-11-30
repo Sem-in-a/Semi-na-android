@@ -71,4 +71,3 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchCardViewHol
   }
 
 }
-
