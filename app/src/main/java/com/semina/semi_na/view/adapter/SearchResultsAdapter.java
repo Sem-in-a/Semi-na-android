@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.semina.semi_na.data.db.entity.Semina;
 import com.semina.semi_na.databinding.SearchCardViewItemBinding;
 import com.semina.semi_na.view.viewHolder.SearchCardViewHolder;
@@ -64,13 +63,11 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchCardViewHol
                 }
               }
             }
-            notifyDataSetChanged(); // UI 업데이트
+            notifyDataSetChanged();
           } else {
             Log.d("SearchAdapter", "Current data: null");
           }
         });
-
-    Log.d("SearchAdapter", "Search method called with query: " + searchWord);
   }
 
 }

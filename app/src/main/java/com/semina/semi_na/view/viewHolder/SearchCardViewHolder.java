@@ -15,9 +15,9 @@ public class SearchCardViewHolder extends RecyclerView.ViewHolder {
   }
 
   public void bind(Semina semina){
-    Log.d("SearchCardViewHolder", "Title: " + semina.getTitle());
-    Log.d("SearchCardViewHolder", "Date: " + semina.getDate());
-    Log.d("SearchCardViewHolder", "Capacity: " + semina.getCapacity());
+    Log.d("SearchCardViewHolder", "검색 결과 Title: " + semina.getTitle());
+    //Log.d("SearchCardViewHolder", "Date: " + semina.getDate());
+    //Log.d("SearchCardViewHolder", "Capacity: " + semina.getCapacity());
 
     binding.searchTitle.setText(semina.getTitle());
     binding.searchDate.setText(semina.getDate());

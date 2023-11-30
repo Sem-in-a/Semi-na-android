@@ -17,25 +17,23 @@ public class SearchResultsActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    // 데이터 바인딩 설정
     binding = ActivitySearchResultsBinding.inflate(getLayoutInflater());
     setContentView(binding.getRoot());
 
-    // RecyclerView 설정
     searchResultsAdapter = new SearchResultsAdapter();
     binding.recyclerview.setLayoutManager(new LinearLayoutManager(this));
     binding.recyclerview.setAdapter(searchResultsAdapter);
 
-    // 검색 버튼 클릭 이벤트 설정
+    // 검색 버튼 클릭 이벤트
     binding.searchGoBtn.setOnClickListener(view -> {
       String searchQuery = binding.searchEditText.getText().toString();
-      Log.d("SearchAdapter", "검색 결과 값 " + searchQuery);
+      Log.d("SearchAdapter", "검색 값: " + searchQuery);
       if (searchQuery != null && !searchQuery.isEmpty()) {
-        searchResultsAdapter.search(searchQuery); // 옵션 파라미터 제거
+        searchResultsAdapter.search(searchQuery);
       }
     });
 
-    //위의 아이콘 클릭 시 홈으로 이동 로직 추가
+    // 아이콘 클릭 시 홈으로 이동 로직 추가
     binding.homeGoBtn.setOnClickListener(view -> {
       finish();
     });
