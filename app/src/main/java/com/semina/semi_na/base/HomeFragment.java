@@ -22,6 +22,7 @@ import com.semina.semi_na.databinding.FragmentHomeBinding;
 import com.semina.semi_na.view.adapter.CollegeSeminarPagerAdapter;
 import com.semina.semi_na.view.adapter.HobbySeminarPagerAdapter;
 
+import com.semina.semi_na.view.search.SearchResultsActivity;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
