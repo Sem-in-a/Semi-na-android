@@ -38,7 +38,7 @@
                 android:orientation="horizontal"
                 android:padding="8dp">
 
-                <EditText
+                <TextView
                     android:id="@+id/searchEditText"
                     style="@style/Body3"
                     android:layout_width="0dp"
