@@ -14,24 +14,35 @@ import android.view.ViewGroup;
 
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.semina.semi_na.R;
+import com.semina.semi_na.data.db.entity.HobbyCategory;
+import com.semina.semi_na.data.db.entity.MajorCategory;
 import com.semina.semi_na.databinding.FragmentHomeBinding;
 import com.semina.semi_na.view.adapter.CollegeSeminarPagerAdapter;
 import com.semina.semi_na.view.adapter.HobbySeminarPagerAdapter;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class HomeFragment extends Fragment {
-    private FragmentHomeBinding binding;
-    private LinkedHashMap<String, Integer> tabTitles = new LinkedHashMap() {{
-        put("IT대학", R.drawable.it_college_icon);
-        put("공과대학", R.drawable.engineering_college_icon);
-        put("자연과학대학", R.drawable.natural_science_college_icon);
-        put("사회과학대학", R.drawable.social_science_college_icon);
-        put("인문사회대학", R.drawable.humanity_college_icon);
-        put("법과대학", R.drawable.law_college_icon);
-        put("경제통상대학", R.drawable.economics_college_icon);
-        put("경영대학", R.drawable.business_college_icon);
+    private static final LinkedHashMap<MajorCategory, Integer> collegeMap = new LinkedHashMap() {{
+        put(MajorCategory.IT, R.drawable.it_college_icon);
+        put(MajorCategory.ENGINEERING, R.drawable.engineering_college_icon);
+        put(MajorCategory.SCIENCE, R.drawable.natural_science_college_icon);
+        put(MajorCategory.SOCIAL, R.drawable.social_science_college_icon);
+        put(MajorCategory.HUMANITY, R.drawable.humanity_college_icon);
+        put(MajorCategory.LAW, R.drawable.law_college_icon);
+        put(MajorCategory.ECONOMIC, R.drawable.economics_college_icon);
+        put(MajorCategory.BUSINESS, R.drawable.business_college_icon);
     }};
+
+    private static final ArrayList<HobbyCategory> hobbyList = new ArrayList() {{
+        add(HobbyCategory.EXERCISE);
+        add(HobbyCategory.FOOD);
+        add(HobbyCategory.MUSIC);
+        add(HobbyCategory.BOOK);
+    }};
+
+    private FragmentHomeBinding binding;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -54,19 +65,19 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.d("[HomeFragment]", "onViewCreated");
-        // get keys of tabTitles
-        String[] titles = tabTitles.keySet().toArray(new String[tabTitles.size()]);
+        ArrayList<MajorCategory> collegeList = new ArrayList<>(collegeMap.keySet());
 
-        CollegeSeminarPagerAdapter pagerAdapter = new CollegeSeminarPagerAdapter(this);
-        binding.collegeViewPager.setAdapter(pagerAdapter);
+        // 전공별로 찾아보는 세미나 ViewPager
+        CollegeSeminarPagerAdapter collegeSeminarPagerAdapter = new CollegeSeminarPagerAdapter(collegeList);
+        binding.collegeViewPager.setAdapter(collegeSeminarPagerAdapter);
 
         new TabLayoutMediator(binding.tabLayout, binding.collegeViewPager, (tab, position) -> {
-            tab.setText(titles[position]);
-            tab.setIcon(tabTitles.get(titles[position]));
+            tab.setText(collegeList.get(position).getMajorName());
+            tab.setIcon(collegeMap.get(collegeList.get(position)));
         }).attach();
 
         // 취미로 찾아보는 세미나 ViewPager
-        HobbySeminarPagerAdapter hobbySeminarPagerAdapter = new HobbySeminarPagerAdapter(this);
+        HobbySeminarPagerAdapter hobbySeminarPagerAdapter = new HobbySeminarPagerAdapter(hobbyList);
         binding.hobbyViewPager.setAdapter(hobbySeminarPagerAdapter);
     }
 }
