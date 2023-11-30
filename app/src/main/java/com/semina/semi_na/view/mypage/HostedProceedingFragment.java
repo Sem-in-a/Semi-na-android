@@ -1,5 +1,6 @@
 package com.semina.semi_na.view.mypage;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.semina.semi_na.R;
 import com.semina.semi_na.data.db.entity.Semina;
 import com.semina.semi_na.databinding.FragmentHostedProceedingBinding;
 import com.semina.semi_na.databinding.SeminarCardViewItemBinding;
+import com.semina.semi_na.view.detail.SeminaDetailActivity;
 import com.semina.semi_na.view.viewHolder.SeminarCardViewHolder;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -64,6 +66,15 @@ public class HostedProceedingFragment extends Fragment {
       protected void onBindViewHolder(@NonNull SeminarCardViewHolder holder, int position, @NonNull Semina model) {
         Log.d("HostedProceedingFragment", "Binding data to view holder at position: " + position);
         holder.bind(model);
+
+        // 클릭 리스너 추가
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            Intent intent = new Intent(getContext(), SeminaDetailActivity.class);
+            startActivity(intent);
+          }
+        });
       }
 
       @NonNull
