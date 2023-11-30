@@ -1,6 +1,5 @@
 package com.semina.semi_na.view.search;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,9 +19,10 @@ public class SearchResultsActivity extends AppCompatActivity {
     binding = ActivitySearchResultsBinding.inflate(getLayoutInflater());
     setContentView(binding.getRoot());
 
-    searchResultsAdapter = new SearchResultsAdapter();
-    binding.recyclerview.setLayoutManager(new LinearLayoutManager(this));
-    binding.recyclerview.setAdapter(searchResultsAdapter);
+    // 아이콘 클릭 시 홈으로 이동 로직 추가
+    binding.homeGoBtn.setOnClickListener(view -> {
+      finish();
+    });
 
     // 검색 버튼 클릭 이벤트
     binding.searchGoBtn.setOnClickListener(view -> {
@@ -33,11 +33,12 @@ public class SearchResultsActivity extends AppCompatActivity {
       }
     });
 
-    // 아이콘 클릭 시 홈으로 이동 로직 추가
-    binding.homeGoBtn.setOnClickListener(view -> {
-      finish();
-    });
+    // 검색 결과 어댑터 초기화
+    searchResultsAdapter = new SearchResultsAdapter();
+    binding.recyclerview.setLayoutManager(new LinearLayoutManager(this));
+    binding.recyclerview.setAdapter(searchResultsAdapter);
   }
 }
+
 
 

@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import android.util.Log;
 
-// 검색 어뎁터
 public class SearchResultsAdapter extends RecyclerView.Adapter<SearchCardViewHolder> {
 
   private FirebaseFirestore firestore;
@@ -43,6 +42,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchCardViewHol
     return filteredSeminaList.size();
   }
 
+  // 검색 기능 함수
   public void search(String searchWord) {
     firestore.collection("Semina")
         .addSnapshotListener((querySnapshot, e) -> {
