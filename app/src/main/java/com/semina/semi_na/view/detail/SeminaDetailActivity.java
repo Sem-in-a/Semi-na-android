@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -39,12 +40,15 @@ import com.semina.semi_na.data.db.entity.Semina;
 import com.semina.semi_na.data.db.entity.SeminaCategory;
 import com.semina.semi_na.databinding.ActivitySeminaDetailBinding;
 import com.semina.semi_na.view.adapter.SeminaAdapter;
+import com.semina.semi_na.view.adapter.SeminarFirestorePagingAdapter;
 import com.semina.semi_na.view.adapter.SeminarParticipantAdapter;
 
 import java.util.ArrayList;
 
 public class SeminaDetailActivity extends AppCompatActivity {
     private ActivitySeminaDetailBinding binding;
+
+    private SeminarFirestorePagingAdapter recommendedSeminarAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,27 +85,31 @@ public class SeminaDetailActivity extends AppCompatActivity {
             });
         }
 
-        Query recommendedSeminarQuery = FirebaseFirestore.getInstance()
+        // The "base query" is a query with no startAt/endAt/limit clauses that the adapter can use
+        // to form smaller queries for each page. It should only include where() and orderBy() clauses
+        Query baseQuery = FirebaseFirestore.getInstance()
                 .collection("Semina")
+                .orderBy("date", Query.Direction.ASCENDING)
                 .limit(2);
 
-        recommendedSeminarQuery.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                QuerySnapshot querySnapshot = task.getResult();
-                if (querySnapshot != null) {
-                    ArrayList<Semina> seminaList = new ArrayList<>();
-                    for (DocumentSnapshot documentSnapshot : querySnapshot.getDocuments()) {
-                        Semina recommendedSemina = documentSnapshot.toObject(Semina.class);
-                        seminaList.add(recommendedSemina);
-                    }
+        // This configuration comes from the Paging 3 Library
+        // https://developer.android.com/reference/kotlin/androidx/paging/PagingConfig
+        PagingConfig config = new PagingConfig(2, 0, true, 2, 2);
 
-                    // 추천 세미나 리사이클러뷰
-                    binding.recommendedSeminaRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-                    binding.recommendedSeminaRecyclerView.setAdapter(new SeminaAdapter(seminaList));
-                }
-            }
-        });
+        // The options for the adapter combine the paging configuration with query information
+        // and application-specific options for lifecycle, etc.
+        FirestorePagingOptions<Semina> options = new FirestorePagingOptions.Builder<Semina>()
+                .setLifecycleOwner(this)// an activity or a fragment
+                // 정해진 객체 타입으로 FireStore document를 받아 올 수 있게 모델을 제공
+                .setQuery(baseQuery, config, Semina.class)
+                .build();
 
+
+        recommendedSeminarAdapter = new SeminarFirestorePagingAdapter(options);
+
+        // 추천 세미나 리사이클러뷰
+        binding.recommendedSeminaRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        binding.recommendedSeminaRecyclerView.setAdapter(recommendedSeminarAdapter);
 
         binding.applyButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +128,7 @@ public class SeminaDetailActivity extends AppCompatActivity {
                                 if (querySnapshot != null) {
                                     DocumentSnapshot documentSnapshot = querySnapshot.getDocuments().get(0);
                                     documentSnapshot.getReference().update("memberList", FieldValue.arrayUnion(studentNum));
-                                    showBottomSheetDialog();
+                                    showBottomSheetDialog(semina);
                                 }
                             }
                         });
@@ -128,9 +136,30 @@ public class SeminaDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void showBottomSheetDialog() {
+
+    private void showBottomSheetDialog(Semina semina) {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
         View bottomSheetView = LayoutInflater.from(this).inflate(R.layout.activity_semina_apply_bottom_sheet_dialog, (LinearLayout) findViewById(R.id.bottomSheetLayout));
+
+        TextView seminarNameTextView = bottomSheetView.findViewById(R.id.seminarNameTextView);
+        seminarNameTextView.setText(semina.getTitle());
+
+        TextView seminarDateTextView = bottomSheetView.findViewById(R.id.seminarDateTextView);
+        seminarDateTextView.setText(semina.getDate());
+
+        TextView seminarLocationTextView = bottomSheetView.findViewById(R.id.seminarPlaceTextView);
+        SeminaCategory category = semina.getSeminaCategory();
+
+        if (category == SeminaCategory.MAJOR) {
+            seminarLocationTextView.setText(semina.getLocation().getLocName() + " " + semina.getLocationDetail());
+        } else if (category == SeminaCategory.HOBBY) {
+            seminarLocationTextView.setText(semina.getHobbyLocation());
+        }
+
+        TextView seminarApplyPersonTextView = bottomSheetView.findViewById(R.id.seminarApplyPersonTextView);
+        String name = getSharedPreferences("UserInfo", MODE_PRIVATE).getString("name", "");
+        seminarApplyPersonTextView.setText(name);
+
         bottomSheetView.findViewById(R.id.confirmButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,6 +169,7 @@ public class SeminaDetailActivity extends AppCompatActivity {
         });
 
         bottomSheetDialog.setContentView(bottomSheetView);
+
         bottomSheetDialog.show();
     }
 
@@ -191,7 +221,6 @@ public class SeminaDetailActivity extends AppCompatActivity {
     }
 
     private void setHostInfo(String host) {
-        Member member;
         // Get a document whose studentNum matches host from the Member collection in Firestore
         FirebaseFirestore.getInstance()
                 .collection("Member")
@@ -216,4 +245,17 @@ public class SeminaDetailActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        recommendedSeminarAdapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        recommendedSeminarAdapter.stopListening();
+    }
+
 }
