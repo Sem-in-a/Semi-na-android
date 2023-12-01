@@ -35,7 +35,7 @@ public class SeminarCardViewHolder extends RecyclerView.ViewHolder {
         binding.titleTextView.setText(semina.getTitle());
         binding.descriptionTextView.setText(semina.getDescription());
         binding.dateTextView.setText(semina.getDate());
-        binding.participantTextView.setText(String.valueOf(semina.getCapacity()));
+        binding.participantTextView.setText(semina.getMemberList().size() + "/" + semina.getCapacity());
         setOrganizerInfo(semina.getHost());
         setLocationTextView(semina);
         setChipViewText(semina);

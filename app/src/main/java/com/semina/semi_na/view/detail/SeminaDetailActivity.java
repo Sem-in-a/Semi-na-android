@@ -149,7 +149,7 @@ public class SeminaDetailActivity extends AppCompatActivity {
         binding.seminaDateTextView.setText(semina.getDate());
         setChipViewText(semina);
         setLocationTextView(semina);
-        binding.seminaParticipantTextView.setText(String.valueOf(semina.getCapacity()));
+        binding.seminaParticipantTextView.setText(semina.getMemberList().size() + "/" + semina.getCapacity());
         binding.seminaDescriptionTextView.setText(semina.getDescription());
         setHostInfo(semina.getHost());
     }
