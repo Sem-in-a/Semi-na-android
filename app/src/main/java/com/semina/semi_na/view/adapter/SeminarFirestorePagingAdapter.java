@@ -1,5 +1,6 @@
 package com.semina.semi_na.view.adapter;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.firebase.ui.firestore.paging.FirestorePagingOptions;
 import com.semina.semi_na.R;
 import com.semina.semi_na.data.db.entity.Semina;
 import com.semina.semi_na.databinding.SeminarCardViewItemBinding;
+import com.semina.semi_na.view.detail.SeminaDetailActivity;
 import com.semina.semi_na.view.viewHolder.SeminarCardViewHolder;
 
 public class SeminarFirestorePagingAdapter extends FirestorePagingAdapter<Semina, SeminarCardViewHolder> {
@@ -28,6 +30,9 @@ public class SeminarFirestorePagingAdapter extends FirestorePagingAdapter<Semina
             @Override
             public void onClick(View v) {
                 Log.d("[SeminarFirestorePagingAdapter]", "onClick: " + model.getTitle());
+                Intent intent = new Intent(holder.itemView.getContext(), SeminaDetailActivity.class);
+                intent.putExtra("Semina", model);
+                holder.itemView.getContext().startActivity(intent);
             }
         });
     }
