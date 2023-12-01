@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.paging.FirestorePagingAdapter;
@@ -25,9 +26,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.model.mutation.ArrayTransformOperation;
 import com.semina.semi_na.R;
 import com.semina.semi_na.data.db.entity.HobbyCategory;
 import com.semina.semi_na.data.db.entity.MajorCategory;
@@ -52,27 +55,31 @@ public class SeminaDetailActivity extends AppCompatActivity {
         Semina semina = (Semina) getIntent().getSerializableExtra("Semina");
         bindDataToView(semina);
 
+        if (semina.getMemberList().size() == 0) {
+            binding.participantLinearLayout.setVisibility(View.GONE);
+            binding.participantDivider.setVisibility(View.GONE);
+        } else {
+            Query participantQuery = FirebaseFirestore.getInstance()
+                    .collection("Member")
+                    .whereIn("studentNum", semina.getMemberList());
 
-        Query participantQuery = FirebaseFirestore.getInstance()
-                .collection("Member")
-                .whereIn("studentNum", semina.getMemberList());
+            participantQuery.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    QuerySnapshot querySnapshot = task.getResult();
+                    if (querySnapshot != null) {
+                        ArrayList<Member> memberList = new ArrayList<>();
+                        for (DocumentSnapshot documentSnapshot : querySnapshot.getDocuments()) {
+                            Member member = documentSnapshot.toObject(Member.class);
+                            memberList.add(member);
+                        }
 
-        participantQuery.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                QuerySnapshot querySnapshot = task.getResult();
-                if (querySnapshot != null) {
-                    ArrayList<Member> memberList = new ArrayList<>();
-                    for (DocumentSnapshot documentSnapshot : querySnapshot.getDocuments()) {
-                        Member member = documentSnapshot.toObject(Member.class);
-                        memberList.add(member);
+                        // 세미나 참가자 리사이클러뷰
+                        binding.participantRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.participantRecyclerView.setAdapter(new SeminarParticipantAdapter(memberList));
                     }
-
-                    // 세미나 참가자 리사이클러뷰
-                    binding.participantRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-                    binding.participantRecyclerView.setAdapter(new SeminarParticipantAdapter(memberList));
                 }
-            }
-        });
+            });
+        }
 
         Query recommendedSeminarQuery = FirebaseFirestore.getInstance()
                 .collection("Semina")
@@ -100,7 +107,23 @@ public class SeminaDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("SeminaDetailActivity", "applyButton clicked");
-                showBottomSheetDialog();
+
+                String studentNum = getSharedPreferences("UserInfo", MODE_PRIVATE).getString("studentNum", "");
+                // add studentNum to the Semina Collection memberList field
+                FirebaseFirestore.getInstance()
+                        .collection("Semina")
+                        .whereEqualTo("title", binding.seminaTitleTextView.getText().toString())
+                        .get()
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                QuerySnapshot querySnapshot = task.getResult();
+                                if (querySnapshot != null) {
+                                    DocumentSnapshot documentSnapshot = querySnapshot.getDocuments().get(0);
+                                    documentSnapshot.getReference().update("memberList", FieldValue.arrayUnion(studentNum));
+                                    showBottomSheetDialog();
+                                }
+                            }
+                        });
             }
         });
     }

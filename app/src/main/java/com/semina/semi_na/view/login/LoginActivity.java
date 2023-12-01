@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                         // Get new FCM registration token
                         fcmToken = task.getResult();
 
-                        Log.d("LoginActivity",fcmToken);
+                        Log.d("LoginActivity", fcmToken);
                     }
                 });
 
@@ -113,29 +113,31 @@ public class LoginActivity extends AppCompatActivity {
                                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                         @Override
                                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                            if(task.getResult().getDocuments().size()==0){
-                                                Member member = new Member(studentNum, department, name, major,fcmToken,imgUrl,"유어슈 짱먹으러 왔다");
+                                            if (task.getResult().getDocuments().size() == 0) {
+                                                Member member = new Member(studentNum, department, name, major, fcmToken, imgUrl, "유어슈 짱먹으러 왔다");
                                                 Log.d("LoginActivity", "파이어 스토어접근");
-                                                database.collection("Member").add(member).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<DocumentReference> task) {
-                                                        Log.d("LoginActivity", "파이어스토어 저장");
-                                                        SharedPreferences.Editor editor = preferences.edit();
-                                                        editor.putString("studentNum", studentNum);
-                                                        editor.putString("depart", department);
-                                                        editor.putString("name", name);
-                                                        editor.putString("major", major);
-                                                        editor.putString("img",imgUrl);
-                                                        //항상 commit & apply 를 해주어야 저장이 된다.
-                                                        editor.commit();
-                                                        editor.apply();
-                                                        Log.d("LoginActivity", preferences.getString("studentNum", ""));
-                                                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                                database.collection("Member")
+                                                        .add(member)
+                                                        .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<DocumentReference> task) {
+                                                                Log.d("LoginActivity", "파이어스토어 저장");
+                                                                SharedPreferences.Editor editor = preferences.edit();
+                                                                editor.putString("studentNum", studentNum);
+                                                                editor.putString("depart", department);
+                                                                editor.putString("name", name);
+                                                                editor.putString("major", major);
+                                                                editor.putString("img", imgUrl);
+                                                                //항상 commit & apply 를 해주어야 저장이 된다.
+                                                                editor.commit();
+                                                                editor.apply();
+                                                                Log.d("LoginActivity", preferences.getString("studentNum", ""));
+                                                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
-                                                    }
-                                                });
+                                                            }
+                                                        });
 
-                                            }else{
+                                            } else {
 
                                                 Log.d("LoginActivity", task.getResult().getDocuments().toString());
                                                 Log.d("LoginActivity", "파이어 스토어접근");
@@ -144,7 +146,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 editor.putString("depart", department);
                                                 editor.putString("name", name);
                                                 editor.putString("major", major);
-                                                editor.putString("img",imgUrl);
+                                                editor.putString("img", imgUrl);
                                                 //항상 commit & apply 를 해주어야 저장이 된다.
                                                 editor.commit();
                                                 editor.apply();
@@ -169,7 +171,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void showToast(String msg){
-        Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
+    public void showToast(String msg) {
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
     }
 }

@@ -178,10 +178,12 @@
         </LinearLayout>
 
         <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/participantDivider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <LinearLayout
+            android:id="@+id/participantLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
