@@ -11,13 +11,12 @@ public class Member implements Serializable {
     private String department;
     private String name;
     private String fcmToken;
-
     private String major;
-    private String profileImg;
+    private String imgUrl;
 
     private String message;
 
-    public Member(String studentNum, String department, String name, String major, String fcmToken,String profileImg,String message) {
+    public Member(String studentNum, String department, String name, String major, String fcmToken,String imgUrl,String message) {
         this.studentNum = studentNum;
         this.department = department;
         this.name = name;
@@ -50,11 +49,19 @@ public class Member implements Serializable {
         return fcmToken;
     }
 
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
     public void setMessage(String message) {
         this.message = message;
     }
 
-    public void setProfileImg(String profileImg) {
-        this.profileImg = profileImg;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }
