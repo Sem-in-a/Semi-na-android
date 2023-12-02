@@ -161,16 +161,11 @@ public class Semina implements Serializable {
         return hobbyCategory;
     }
 
-    public boolean isClosed() {
+    public boolean isClosed() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREA);
-        try {
-            Date seminarDate = dateFormat.parse(date);
-            Date currentDate = new Date();
+        Date seminarDate = dateFormat.parse(date);
+        Date currentDate = new Date();
 
-            return seminarDate != null && seminarDate.before(currentDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return false;
-        }
+        return seminarDate.before(currentDate);
     }
 }
