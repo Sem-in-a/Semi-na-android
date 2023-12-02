@@ -24,13 +24,14 @@
         <ImageView
           android:id="@+id/rectangle_profile"
           android:layout_width="110dp"
-          android:layout_height="117dp"
+          android:layout_height="110dp"
           android:layout_alignParentLeft="true"
           android:layout_alignParentTop="true"
           android:layout_marginTop="8dp"
+          android:scaleType="centerCrop"
           android:src="@drawable/profile_rectangle"
           />
-
+        <!--
         <ImageView
           android:id="@+id/ellipse_6"
           android:layout_width="30dp"
@@ -41,6 +42,7 @@
           android:layout_marginBottom="11dp"
           android:src="@drawable/edit_1"
           android:scaleType="fitXY" />
+        -->
 
         <RelativeLayout
           android:id="@+id/id_contianer"

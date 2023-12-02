@@ -14,6 +14,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -46,6 +47,10 @@ public class MyPageFragment extends Fragment {
     binding.someIdUnderDepartment.setText(preferences.getString("depart", ""));
     binding.someIdMajor.setText(preferences.getString("major", ""));
     binding.someIdGrade.setText(preferences.getString("studentNum", ""));
+    String imageUrl = preferences.getString("img", "");
+    if (!imageUrl.isEmpty()) {
+      Glide.with(this).load(imageUrl).circleCrop().into(binding.rectangleProfile);
+    }
     String currentUserId = preferences.getString("studentNum", "");
     Log.d("MyPageFragment", "Current User ID: " + currentUserId);
 
@@ -63,6 +68,8 @@ public class MyPageFragment extends Fragment {
       DialogFragment logoutDialog = new LogoutModalFragment();
       logoutDialog.show(getParentFragmentManager(), "logoutDialog");
     });
+
+    //파이어베이스 연결
 
     recyclerView = binding.hostedRecyclerView;
     recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));

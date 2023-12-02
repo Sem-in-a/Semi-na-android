@@ -21,10 +21,7 @@ import com.semina.semi_na.data.db.entity.Semina;
 import com.semina.semi_na.databinding.FragmentHostedClosedBinding;
 import com.semina.semi_na.databinding.SeminarCardViewItemBinding;
 import com.semina.semi_na.view.viewHolder.SeminarCardViewHolder;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 // 내가 주최한 세미나 - 마감 된 : 프론트 단에서 현재 날짜 비교
 public class HostedClosedFragment extends Fragment {
@@ -45,44 +42,29 @@ public class HostedClosedFragment extends Fragment {
     View view = binding.getRoot();
 
     String currentUserId = getCurrentUserId();
-    Date currentDate = new Date();
 
-    Query baseQuery = FirebaseFirestore.getInstance()
+    Date currentDate = new Date();
+    Query closedSeminaQuery = FirebaseFirestore.getInstance()
         .collection("Semina")
         .whereEqualTo("host", currentUserId)
+        .whereLessThanOrEqualTo("date", currentDate)
         .orderBy("date", Query.Direction.DESCENDING);
 
     // 페이징 구성
     PagingConfig config = new PagingConfig(10, 5, false);
 
     // 어댑터 옵션 설정
-    FirestorePagingOptions<Semina> options = new FirestorePagingOptions.Builder<Semina>()
+    FirestorePagingOptions<Semina> closedSeminaOptions = new FirestorePagingOptions.Builder<Semina>()
         .setLifecycleOwner(this)
-        .setQuery(baseQuery, config, Semina.class)
+        .setQuery(closedSeminaQuery, config, Semina.class)
         .build();
 
     // 어댑터 설정
-    adapter = new FirestorePagingAdapter<Semina, SeminarCardViewHolder>(options) {
+    adapter = new FirestorePagingAdapter<Semina, SeminarCardViewHolder>(closedSeminaOptions) {
       @Override
-      protected void onBindViewHolder(@NonNull SeminarCardViewHolder holder, int position, @NonNull Semina model) { // 뷰 홀더 이름 변경
-        // 날짜 문자열을 Date 객체로 파싱
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREA);
-        try {
-          Date seminarDate = dateFormat.parse(model.getDate()); // 날짜 문자열 파싱
-          Date currentDate = new Date(); // 현재 날짜
-
-          // 세미나 날짜가 현재 날짜 이전인지 확인
-          if (seminarDate != null && seminarDate.before(currentDate)) {
-            // 과거 날짜인 경우에만 뷰 홀더에 데이터를 바인딩
-            holder.bind(model);
-            holder.itemView.setVisibility(View.VISIBLE); // 뷰 홀더를 표시
-          } else {
-            // 아닌 경우에는 카드뷰를 숨김
-            holder.itemView.setVisibility(View.GONE);
-          }
-        } catch (ParseException e) {
-          Log.e("HostedClosedFragment", "날짜 파싱 에러", e);
-        }
+      protected void onBindViewHolder(@NonNull SeminarCardViewHolder holder, int position, @NonNull Semina model) {
+        holder.bind(model);
+        Log.d("HostedClosedFragment", "onBindViewHolder is called with position: " + position);
       }
 
       @NonNull
@@ -119,5 +101,6 @@ public class HostedClosedFragment extends Fragment {
     }
   }
 }
+
 
 

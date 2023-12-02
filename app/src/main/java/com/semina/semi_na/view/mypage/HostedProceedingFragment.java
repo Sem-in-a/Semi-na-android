@@ -21,13 +21,14 @@ import com.semina.semi_na.databinding.FragmentHostedProceedingBinding;
 import com.semina.semi_na.databinding.SeminarCardViewItemBinding;
 import com.semina.semi_na.view.detail.SeminaDetailActivity;
 import com.semina.semi_na.view.viewHolder.SeminarCardViewHolder;
+import java.util.Date;
 
 import static android.content.Context.MODE_PRIVATE;
 
 //내가 주최한 세미나 - 진행 중
 public class HostedProceedingFragment extends Fragment {
   private FragmentHostedProceedingBinding binding;
-  private FirestorePagingAdapter<Semina, SeminarCardViewHolder> adapter; // 뷰 홀더 이름 변경
+  private FirestorePagingAdapter<Semina, SeminarCardViewHolder> adapter;
 
   // 현재 로그인한 사용자의 ID를 가져오는 메서드
   private String getCurrentUserId() {
@@ -42,6 +43,7 @@ public class HostedProceedingFragment extends Fragment {
     View view = binding.getRoot();
 
     String currentUserId = getCurrentUserId();
+    //Date currentDate = new Date();
 
     Log.d("HostedProceedingFragment", "Current User ID: " + currentUserId);
 
@@ -72,6 +74,7 @@ public class HostedProceedingFragment extends Fragment {
           @Override
           public void onClick(View v) {
             Intent intent = new Intent(getContext(), SeminaDetailActivity.class);
+            intent.putExtra("Semina", model);
             startActivity(intent);
           }
         });
