@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -47,7 +48,6 @@ import java.util.ArrayList;
 
 public class SeminaDetailActivity extends AppCompatActivity {
     private ActivitySeminaDetailBinding binding;
-
     private SeminarFirestorePagingAdapter recommendedSeminarAdapter;
 
     @Override
@@ -165,11 +165,33 @@ public class SeminaDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("SeminaDetailActivity", "confirmButton clicked");
                 bottomSheetDialog.dismiss();
+
+                // get Semina
+                FirebaseFirestore.getInstance()
+                        .collection("Semina")
+                        .whereEqualTo("title", semina.getTitle())
+                        .get()
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                QuerySnapshot querySnapshot = task.getResult();
+                                if (querySnapshot != null) {
+                                    DocumentSnapshot documentSnapshot = querySnapshot.getDocuments().get(0);
+                                    Semina semina = documentSnapshot.toObject(Semina.class);
+                                    Intent intent = new Intent(SeminaDetailActivity.this, SeminaDetailActivity.class);
+                                    intent.putExtra("Semina", semina);
+
+                                    // Activity 재시작
+                                    finish();
+                                    overridePendingTransition(0, 0);
+                                    startActivity(intent);
+                                    overridePendingTransition(0, 0);
+                                }
+                            }
+                        });
             }
         });
 
         bottomSheetDialog.setContentView(bottomSheetView);
-
         bottomSheetDialog.show();
     }
 
