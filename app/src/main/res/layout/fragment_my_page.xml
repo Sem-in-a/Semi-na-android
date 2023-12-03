@@ -24,13 +24,14 @@
         <ImageView
           android:id="@+id/rectangle_profile"
           android:layout_width="110dp"
-          android:layout_height="117dp"
+          android:layout_height="110dp"
           android:layout_alignParentLeft="true"
           android:layout_alignParentTop="true"
           android:layout_marginTop="8dp"
+          android:scaleType="centerCrop"
           android:src="@drawable/profile_rectangle"
           />
-
+        <!--
         <ImageView
           android:id="@+id/ellipse_6"
           android:layout_width="30dp"
@@ -41,13 +42,14 @@
           android:layout_marginBottom="11dp"
           android:src="@drawable/edit_1"
           android:scaleType="fitXY" />
+        -->
 
         <RelativeLayout
           android:id="@+id/id_contianer"
           android:layout_width="match_parent"
           android:layout_height="90dp"
           android:layout_toRightOf="@id/rectangle_profile"
-          android:layout_marginLeft="50dp">
+          android:layout_marginLeft="64dp">
 
             <ImageView
               android:id="@+id/profile_logo"
@@ -105,7 +107,7 @@
           android:id="@+id/logout_btn"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginLeft="43dp"
+          android:layout_marginLeft="57dp"
           android:layout_below="@+id/id_contianer"
           android:layout_toRightOf="@id/rectangle_profile"
           android:paddingTop="5dp"

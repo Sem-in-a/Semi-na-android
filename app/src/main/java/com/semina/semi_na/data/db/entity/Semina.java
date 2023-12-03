@@ -4,7 +4,11 @@ package com.semina.semi_na.data.db.entity;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 @IgnoreExtraProperties
 public class Semina implements Serializable {
@@ -155,5 +159,13 @@ public class Semina implements Serializable {
 
     public HobbyCategory getHobbyCategory() {
         return hobbyCategory;
+    }
+
+    public boolean isClosed() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREA);
+        Date seminarDate = dateFormat.parse(date);
+        Date currentDate = new Date();
+
+        return seminarDate.before(currentDate);
     }
 }
