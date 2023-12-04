@@ -1,6 +1,7 @@
 package com.semina.semi_na.view.adapter;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +18,15 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchCardViewHol
 
   private FirebaseFirestore firestore;
   private List<Semina> filteredSeminaList;
+  private OnItemClickListener listener;
+
+  //클릭 리스너 추가
+  public interface OnItemClickListener {
+    void onItemClick(Semina semina);
+  }
+  public void setOnItemClickListener(OnItemClickListener listener) {
+    this.listener = listener;
+  }
 
   public SearchResultsAdapter() {
     firestore = FirebaseFirestore.getInstance();
@@ -35,6 +45,15 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchCardViewHol
   public void onBindViewHolder(@NonNull SearchCardViewHolder holder, int position) {
     Semina semina = filteredSeminaList.get(position);
     holder.bind(semina);
+
+    holder.itemView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        if (listener != null) {
+          listener.onItemClick(semina);
+        }
+      }
+    });
   }
 
   @Override
