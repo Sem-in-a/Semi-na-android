@@ -98,13 +98,4 @@ public class AppliedProceedingFragment extends Fragment {
     binding.appiledRecyclerView.setAdapter(adapter);
   }
 
-  @Override
-  public void onStart() {
-    super.onStart();
-  }
-
-  @Override
-  public void onStop() {
-    super.onStop();
-  }
 }

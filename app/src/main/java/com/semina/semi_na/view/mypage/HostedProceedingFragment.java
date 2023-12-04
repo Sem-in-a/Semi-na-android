@@ -90,14 +90,4 @@ public class HostedProceedingFragment extends Fragment {
     binding.hostedRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
     binding.hostedRecyclerView.setAdapter(adapter);
   }
-
-  @Override
-  public void onStart() {
-    super.onStart();
-  }
-
-  @Override
-  public void onStop() {
-    super.onStop();
-  }
 }

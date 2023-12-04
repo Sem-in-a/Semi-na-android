@@ -87,14 +87,5 @@ public class AppliedClosedFragment extends Fragment {
     recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
     recyclerView.setAdapter(adapter);
   }
-  @Override
-  public void onStart() {
-    super.onStart();
-  }
-
-  @Override
-  public void onStop() {
-    super.onStop();
-  }
 
 }

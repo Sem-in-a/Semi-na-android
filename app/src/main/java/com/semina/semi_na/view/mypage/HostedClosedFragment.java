@@ -91,15 +91,6 @@ public class HostedClosedFragment extends Fragment {
     binding.hosted2RecyclerView.setAdapter(adapter);
   }
 
-  @Override
-  public void onStart() {
-    super.onStart();
-  }
-
-  @Override
-  public void onStop() {
-    super.onStop();
-  }
 }
 
 
