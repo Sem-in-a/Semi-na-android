@@ -33,7 +33,7 @@ public class SearchResultsActivity extends AppCompatActivity {
       }
     });
 
-    // 검색 결과 어댑터 초기화
+    // 어뎁터 초기화
     searchResultsAdapter = new SearchResultsAdapter();
     binding.recyclerview.setLayoutManager(new LinearLayoutManager(this));
     binding.recyclerview.setAdapter(searchResultsAdapter);
