@@ -79,7 +79,7 @@ public class MyPageFragment extends Fragment {
         List<DocumentSnapshot> documents = task.getResult().getDocuments();
         if (!documents.isEmpty()) {
           List<Semina> seminaList = new ArrayList<>();
-          int maxCardsToShow = 2; // 최대 2개의 카드뷰만 보이도록 설정
+          int maxCardsToShow = 2;
 
           for (int i = 0; i < Math.min(maxCardsToShow, documents.size()); i++) {
             DocumentSnapshot document = documents.get(i);
@@ -114,7 +114,7 @@ public class MyPageFragment extends Fragment {
         List<DocumentSnapshot> documents = task.getResult().getDocuments();
         if (!documents.isEmpty()) {
           List<Semina> appliedSeminaList = new ArrayList<>();
-          int maxAppliedCardsToShow = 2; // 최대 2개의 카드만 보이도록 설정
+          int maxAppliedCardsToShow = 2;
 
           for (int i = 0; i < Math.min(maxAppliedCardsToShow, documents.size()); i++) {
             DocumentSnapshot document = documents.get(i);

@@ -51,7 +51,7 @@ public class AppliedProceedingFragment extends Fragment {
             Semina semina = snapshot.toObject(Semina.class);
             if (semina != null) {
               try {
-                if (!semina.isClosed()) {  // 진행 중인 세미나만 필터링
+                if (!semina.isClosed()) {
                   proceedingSeminarsList.add(semina);
                 }
               } catch (ParseException e) {
