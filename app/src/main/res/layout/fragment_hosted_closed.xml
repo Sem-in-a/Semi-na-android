@@ -6,7 +6,7 @@
   tools:context=".view.mypage.HostedProceedingFragment">
 
   <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/hosted_recycler_view"
+    android:id="@+id/hosted2_recycler_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:scrollbars="vertical" />

@@ -79,8 +79,8 @@ public class HostedClosedFragment extends Fragment {
     };
 
     // 리사이클러뷰 설정
-    binding.hostedRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-    binding.hostedRecyclerView.setAdapter(adapter);
+    binding.hosted2RecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+    binding.hosted2RecyclerView.setAdapter(adapter);
 
     return view;
   }
