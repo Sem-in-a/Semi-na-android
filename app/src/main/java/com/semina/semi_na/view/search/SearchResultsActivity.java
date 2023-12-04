@@ -1,14 +1,11 @@
 package com.semina.semi_na.view.search;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import com.semina.semi_na.data.db.entity.Semina;
 import com.semina.semi_na.databinding.ActivitySearchResultsBinding;
 import com.semina.semi_na.view.adapter.SearchResultsAdapter;
-import com.semina.semi_na.view.detail.SeminaDetailActivity;
 
 public class SearchResultsActivity extends AppCompatActivity {
 
@@ -38,17 +35,6 @@ public class SearchResultsActivity extends AppCompatActivity {
 
     // 어뎁터 초기화
     searchResultsAdapter = new SearchResultsAdapter();
-
-    // 아이템 클릭 이벤트
-    searchResultsAdapter.setOnItemClickListener(new SearchResultsAdapter.OnItemClickListener() {
-      @Override
-      public void onItemClick(Semina semina) {
-        Intent intent = new Intent(SearchResultsActivity.this, SeminaDetailActivity.class);
-        intent.putExtra("Semina", semina);
-        startActivity(intent);
-      }
-    });
-
     binding.recyclerview.setLayoutManager(new LinearLayoutManager(this));
     binding.recyclerview.setAdapter(searchResultsAdapter);
   }
