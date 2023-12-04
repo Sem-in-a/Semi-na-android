@@ -18,7 +18,7 @@ public class LogoutModalFragment extends DialogFragment {
   @Override
   public Dialog onCreateDialog(Bundle savedInstanceState) {
     LayoutInflater inflater = getActivity().getLayoutInflater();
-    View customView = inflater.inflate(R.layout.fragment_logout_modal, null); // 'fragment_logout_modal'은 파일의 이름을 가정한 것입니다. 실제 레이아웃 파일 이름으로 대체해야 합니다.
+    View customView = inflater.inflate(R.layout.fragment_logout_modal, null);
 
     //'취소'버튼
     AppCompatButton noButton = customView.findViewById(R.id.logout_no_btn);

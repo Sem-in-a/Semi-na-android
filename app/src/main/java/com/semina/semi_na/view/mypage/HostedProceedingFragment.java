@@ -49,7 +49,7 @@ public class HostedProceedingFragment extends Fragment {
             Semina semina = snapshot.toObject(Semina.class);
             if (semina != null) {
               try {
-                if (!semina.isClosed()) {  // Check if the seminar is still proceeding
+                if (!semina.isClosed()) {
                   proceedingSeminarsList.add(semina);
                 }
               } catch (ParseException e) {

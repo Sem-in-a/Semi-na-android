@@ -46,7 +46,7 @@ public class AppliedClosedFragment extends Fragment {
             Semina semina = snapshot.toObject(Semina.class);
             if (semina != null) {
               try {
-                if (semina.isClosed()) {  // 마감된 세미나만 필터링
+                if (semina.isClosed()) {
                   closedSeminarsList.add(semina);
                 }
               } catch (ParseException e) {
