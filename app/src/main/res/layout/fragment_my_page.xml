@@ -165,7 +165,7 @@
               android:layout_height="wrap_content"
               android:background="@drawable/chevron_right"
               android:layout_toRightOf="@+id/host_seminer"
-              android:layout_marginLeft="188dp"
+              android:layout_marginLeft="180dp"
               android:visibility="gone"/>
         </RelativeLayout>
         <RelativeLayout
@@ -234,7 +234,7 @@
               android:layout_height="wrap_content"
               android:background="@drawable/chevron_right"
               android:layout_toRightOf="@+id/apply_id"
-              android:layout_marginLeft="188dp"
+              android:layout_marginLeft="180dp"
               android:visibility="gone"/>
         </RelativeLayout>
         <RelativeLayout
