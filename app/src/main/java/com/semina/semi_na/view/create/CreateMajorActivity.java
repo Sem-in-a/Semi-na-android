@@ -101,7 +101,7 @@ public class CreateMajorActivity extends AppCompatActivity {
             public void onClick(View view) {
                 binding.createMajorLaw.setSelected(!view.isSelected());
                 if (binding.createMajorLaw.isSelected()) {
-                    majorCategory = MajorCategory.HUMANITY;
+                    majorCategory = MajorCategory.LAW;
                     binding.createMajorLaw.setBackground(getDrawable(R.drawable.tab_selected_background));
                 } else {
                     binding.createMajorLaw.setBackground(null);
